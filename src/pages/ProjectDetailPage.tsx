@@ -45,7 +45,7 @@ const MATERIAL_DIALOGUE_GALLERY = [
 ];
 
 const BUSINESS_CENTER_GALLERY = [
-  { image: 'https://lh3.googleusercontent.com/d/1-yVVcug6KYFWQvXMQntsOJWdJ7skf4Mh', text: 'Business Center 01' },
+  { image: 'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor', text: 'Business Center 01' },
   { image: 'https://lh3.googleusercontent.com/d/14xLpEu59w4M4VNtvc7GaQid9pBAwQfd-', text: 'Business Center 02' },
   { image: 'https://lh3.googleusercontent.com/d/16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ', text: 'Business Center 03' },
   { image: 'https://lh3.googleusercontent.com/d/1HSEFBOKUnegGjnvvY9xXcSnL7GAKoDXe', text: 'Business Center 04' },
@@ -537,6 +537,8 @@ export const ProjectDetailPage: React.FC = () => {
               <img 
                 src={project.galleryItems[0].image} 
                 alt={project.title} 
+                loading="lazy"
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
             </motion.div>

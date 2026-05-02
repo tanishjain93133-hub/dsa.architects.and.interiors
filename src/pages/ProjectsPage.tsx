@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
-import DomeGallery from '../components/DomeGallery';
 import { cn } from '@/src/lib/utils';
 
 import { HomeGallery } from '../components/HomeGallery';
@@ -71,7 +70,7 @@ const PROJECTS_IMAGES = [
   },
   {
     id: 'comm-dsa-03',
-    src: 'https://lh3.googleusercontent.com/d/1-yVVcug6KYFWQvXMQntsOJWdJ7skf4Mh',
+    src: 'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor',
     alt: 'Business Center',
     category: 'Commercial'
   },
@@ -110,19 +109,9 @@ export const ProjectsPage: React.FC = () => {
       <Navbar />
       {/* 1. TOP HERO: TemplateMonster Style Design */}
       <section className="relative h-screen flex flex-col lg:flex-row overflow-hidden bg-[#050505]">
-        {/* Extreme Left: Vertical Social Bar */}
-        <div className="hidden lg:flex flex-col items-center justify-center gap-12 w-24 border-r border-white/5 relative z-30">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="flex flex-col gap-8 text-[10px] tracking-[0.3em] font-bold uppercase text-white/40 vertical-rl rotate-180"
-          >
-            <a href="#" className="hover:text-neon-cyan transition-colors">Instagram</a>
-            <a href="#" className="hover:text-neon-cyan transition-colors">Facebook</a>
-            <a href="#" className="hover:text-neon-cyan transition-colors">Pinterest</a>
-          </motion.div>
-          <div className="w-[1px] h-32 bg-gradient-to-b from-white/10 to-transparent" />
+        {/* Extreme Left: Decorative Bar */}
+        <div className="hidden lg:flex flex-col items-center justify-end pb-12 w-24 border-r border-white/5 relative z-30">
+          <div className="w-[1px] h-64 bg-gradient-to-t from-neon-cyan/50 to-transparent" />
         </div>
 
         {/* Left Column: Narrative & Typography */}
@@ -150,7 +139,7 @@ export const ProjectsPage: React.FC = () => {
               timeless aesthetics and meticulous spatial planning.
             </p>
 
-            <div className="flex items-center gap-10">
+            <div className="flex items-center gap-10 mb-16">
               <Link to="/#contact">
                  <motion.button 
                    whileHover={{ scale: 1.05 }}
@@ -164,6 +153,15 @@ export const ProjectsPage: React.FC = () => {
                 <div className="w-12 h-[1px] bg-white/20 group-hover:w-20 transition-all duration-500" />
                 <span className="text-[10px] font-bold tracking-[0.3em] text-white/60 uppercase group-hover:text-white transition-colors">Discover</span>
               </div>
+            </div>
+
+            {/* Straight Social Links */}
+            <div className="flex items-center gap-8 text-[10px] tracking-[0.3em] font-bold uppercase text-white/30">
+              <a href="https://www.instagram.com/dsa.architects.and.interiors" target="_blank" rel="noopener noreferrer" className="hover:text-neon-cyan transition-colors">Instagram</a>
+              <span className="w-8 h-[1px] bg-white/10" />
+              <a href="#" className="hover:text-neon-cyan transition-colors">Facebook</a>
+              <span className="w-8 h-[1px] bg-white/10" />
+              <a href="#" className="hover:text-neon-cyan transition-colors">Pinterest</a>
             </div>
           </motion.div>
         </div>
@@ -336,7 +334,9 @@ export const ProjectsPage: React.FC = () => {
                   <img 
                     src={project.src} 
                     alt={project.alt} 
+                    loading="lazy"
                     className="w-full h-full object-cover object-top grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 hover:scale-110"
+                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
