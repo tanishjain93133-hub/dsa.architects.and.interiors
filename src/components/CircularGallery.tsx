@@ -238,10 +238,17 @@ class Media {
     });
     const img = new Image();
     img.crossOrigin = 'anonymous';
+    img.referrerPolicy = 'no-referrer';
     img.src = this.image;
     img.onload = () => {
       texture.image = img;
       this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+    };
+    img.onerror = () => {
+      // Fallback for Google Drive
+      if (img.src.includes('lh3.googleusercontent.com/d/')) {
+        img.src = img.src.replace('lh3.googleusercontent.com/d/', 'lh3.googleusercontent.com/u/0/d/');
+      }
     };
   }
   createMesh() {

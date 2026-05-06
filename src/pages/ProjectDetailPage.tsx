@@ -441,6 +441,20 @@ export const ProjectDetailPage: React.FC = () => {
   const [viewMode, setViewMode] = React.useState<'case-study' | 'gallery'>('case-study');
   const [gallerySubView, setGallerySubView] = React.useState<'immersion' | 'grid'>('immersion');
 
+  const [windowWidth, setWindowWidth] = React.useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const getResponsiveOffset = (offset: number) => {
+    if (windowWidth < 640) return offset * (windowWidth * 0.6);
+    if (windowWidth < 1024) return offset * (windowWidth * 0.4);
+    return offset * 450;
+  };
+
   const slideTo = (index: number) => {
     if (index < 0 || index >= project.galleryItems.length) return;
     setCurrentIndex(index);
@@ -679,7 +693,7 @@ export const ProjectDetailPage: React.FC = () => {
                                 animate={{ 
                                   opacity: 1 - Math.abs(offset) * 0.3,
                                   scale: 1 - Math.abs(offset) * 0.15,
-                                  x: offset * (window.innerWidth < 768 ? 220 : 450),
+                                  x: getResponsiveOffset(offset),
                                   rotateY: offset * -25,
                                   z: -Math.abs(offset) * 150,
                                   zIndex: 10 - Math.abs(offset)
@@ -698,7 +712,7 @@ export const ProjectDetailPage: React.FC = () => {
                                 )}
                                 style={{ 
                                   width: 'auto',
-                                  minWidth: window.innerWidth < 768 ? '80vw' : '400px'
+                                  minWidth: windowWidth < 768 ? '80vw' : '400px'
                                 }}
                                 onClick={() => {
                                   if (offset === 0) setSelectedImage(item.image);
@@ -714,11 +728,18 @@ export const ProjectDetailPage: React.FC = () => {
                                     src={item.image}
                                     alt={item.text}
                                     loading="lazy"
+                                    decoding="async"
                                     className={cn(
                                       "h-full w-auto object-contain transition-all duration-1000",
                                       offset === 0 ? "scale-100" : "scale-95 blur-[2px]"
                                     )}
                                     referrerPolicy="no-referrer"
+                                    onError={(e) => {
+                                      const img = e.currentTarget;
+                                      if (img.src.includes('lh3.googleusercontent.com/d/')) {
+                                        img.src = img.src.replace('lh3.googleusercontent.com/d/', 'lh3.googleusercontent.com/u/0/d/');
+                                      }
+                                    }}
                                   />
                                 </div>
                                 

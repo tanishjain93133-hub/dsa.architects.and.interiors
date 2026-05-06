@@ -177,8 +177,16 @@ export const ProjectsPage: React.FC = () => {
             <img 
               src="https://lh3.googleusercontent.com/d/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE" 
               alt="Architectural Masterpiece" 
-              className="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-[3s]"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                const img = e.currentTarget;
+                if (img.src.includes('lh3.googleusercontent.com/d/')) {
+                  img.src = img.src.replace('lh3.googleusercontent.com/d/', 'lh3.googleusercontent.com/u/0/d/');
+                }
+              }}
             />
             {/* Glossy Overlay */}
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#050505]" />
@@ -261,7 +269,16 @@ export const ProjectsPage: React.FC = () => {
                 <img 
                    src={cat.img} 
                    alt={cat.name} 
-                   className="absolute inset-0 w-full h-full object-cover object-top grayscale brightness-50 group-hover:grayscale-0 group-hover:scale-110 group-hover:brightness-75 transition-all duration-1000"
+                   loading="lazy"
+                   decoding="async"
+                   className="absolute inset-0 w-full h-full object-cover object-top transition-all duration-1000 group-hover:scale-110"
+                   referrerPolicy="no-referrer"
+                   onError={(e) => {
+                     const img = e.currentTarget;
+                     if (img.src.includes('lh3.googleusercontent.com/d/')) {
+                       img.src = img.src.replace('lh3.googleusercontent.com/d/', 'lh3.googleusercontent.com/u/0/d/');
+                     }
+                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                 <div className={cn(
@@ -335,8 +352,15 @@ export const ProjectsPage: React.FC = () => {
                     src={project.src} 
                     alt={project.alt} 
                     loading="lazy"
-                    className="w-full h-full object-cover object-top grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 hover:scale-110"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top transition-all duration-1000 hover:scale-110"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      if (img.src.includes('lh3.googleusercontent.com/d/')) {
+                        img.src = img.src.replace('lh3.googleusercontent.com/d/', 'lh3.googleusercontent.com/u/0/d/');
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
