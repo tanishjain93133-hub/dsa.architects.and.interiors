@@ -11,88 +11,102 @@ import { HomeGallery } from '../components/HomeGallery';
 
 const PROJECTS_IMAGES = [
   {
+    id: 'comm-dsa-04',
+    src: 'https://lh3.googleusercontent.com/d/16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ',
+    alt: 'A & A Wealth',
+    category: 'Commercial',
+    description: 'A & A Wealth is a modern commercial office space designed to create a professional yet comfortable working environment. The project features elegant interiors, premium materials, warm lighting, and smart space planning that together give the office a sophisticated and welcoming feel.'
+  },
+  {
     id: 'res-dsa-01',
     src: 'https://lh3.googleusercontent.com/d/1IvJZ2tMlDc86dsptcjWoTjVBbn2GLJXe',
-    alt: 'Lakeside Pavilion',
-    category: 'Residential'
+    alt: 'Subtle Sanctuary',
+    category: 'Residential',
+    description: 'This home interior combines simplicity, functionality, and modern design with soft color tones, spacious layouts, and refined finishes for comfortable everyday living'
   },
   {
     id: 'res-dsa-02',
     src: 'https://lh3.googleusercontent.com/d/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I',
-    alt: 'Modernist Villa',
-    category: 'Residential'
+    alt: 'The White House',
+    category: 'Residential',
+    description: 'The White House is a modern architectural masterpiece featuring clean lines, minimal aesthetics, and functional design tailored for luxury living.'
   },
   {
     id: 'comm-dsa-01',
     src: 'https://lh3.googleusercontent.com/d/1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41',
-    alt: 'Corporate Hub',
-    category: 'Commercial'
+    alt: 'Achira',
+    category: 'Commercial',
+    description: 'Achira is a premium commercial project designed with a focus on sophisticated interiors, efficient layout, and modern lighting to create a professional business environment.'
   },
   {
     id: 'other-dsa-01',
     src: 'https://lh3.googleusercontent.com/d/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM',
     alt: 'Conceptual Design',
-    category: 'Other'
+    category: 'Other',
+    description: 'Exploring theoretical boundaries of form and function in the contemporary architectural landscape.'
   },
   {
     id: 'res-dsa-04',
     src: 'https://lh3.googleusercontent.com/d/1ATpVoCZUuKvgssfy4TcClIPCA6v8K3yz',
-    alt: 'Living Space',
-    category: 'Residential'
+    alt: 'JS House',
+    category: 'Residential',
+    description: 'JS House is a modern residential interior designed with warm textures, elegant furniture, and a clean contemporary layout to create a comfortable and inviting living experience.'
   },
   {
     id: 'res-dsa-05',
     src: 'https://lh3.googleusercontent.com/d/1UlOsOlkAnM_Z-ohufO0QsFR1gQ7NzcnK',
-    alt: 'Interior Detail',
-    category: 'Residential'
+    alt: 'JD Bedroom',
+    category: 'Residential',
+    description: 'JS House Designed with a balance of luxury and comfort, this JD Bedroom offers modern interiors, rich textures, and a peaceful ambiance perfect for everyday relaxation.'
   },
   {
     id: 'res-dsa-06',
     src: 'https://lh3.googleusercontent.com/d/18wghnSqoU4DceWGwb3OrGqMIb-bCrx_4',
-    alt: 'Master Bedroom',
-    category: 'Residential'
+    alt: 'DHS House',
+    category: 'Residential',
+    description: 'DHS House is a modern residential interior designed with clean lines, premium materials, and warm lighting to create a sophisticated and welcoming home environment.'
   },
   {
     id: 'res-dsa-07',
     src: 'https://lh3.googleusercontent.com/d/1Tzq0ooCQnYLh-F6ns11Wfy1QK7K3W0jh',
-    alt: 'Minimalist Void',
-    category: 'Residential'
+    alt: 'CP House',
+    category: 'Residential',
+    description: 'JS House This home interior combines simplicity and elegance through minimal design, soft color tones, and smart space planning for a modern everyday lifestyle.'
   },
   {
     id: 'res-dsa-08',
     src: 'https://lh3.googleusercontent.com/d/1fQxUcOX6Xya8S1QgM-SEPknvST3Z-XPV',
-    alt: 'Corridor Perspective',
-    category: 'Residential'
+    alt: 'Anchor House',
+    category: 'Residential',
+    description: 'Anchor House is a modern residential interior designed with warm tones, elegant wall detailing, and comfortable seating to create a calm and welcoming living space'
   },
   {
     id: 'comm-dsa-02',
     src: 'https://lh3.googleusercontent.com/d/1_BEEwFeRswSl-qmhg6cGM3CSVZBNxitc',
-    alt: 'Material Dialogue',
-    category: 'Commercial'
-  },
-  {
-    id: 'comm-dsa-03',
-    src: 'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor',
-    alt: 'Business Center',
-    category: 'Commercial'
-  },
-  {
-    id: 'comm-dsa-04',
-    src: 'https://lh3.googleusercontent.com/d/11TbTFOKmmDw5GgkEcUPklEkQgWW9u06Z',
-    alt: 'Iconic Shyamal',
-    category: 'Commercial'
+    alt: 'JD Office',
+    category: 'Commercial',
+    description: 'A premium JD office designed with elegant interiors, warm lighting, and modern detailing to create a professional yet luxurious workspace. The space combines comfort, sophistication, and functionality for a refined office experience.'
   },
   {
     id: 'comm-dsa-05',
-    src: 'https://lh3.googleusercontent.com/d/1GqZsuB4FzUy9H9QA2Cnm0_ZPTsVWxnhs',
-    alt: 'Safal Commercial',
-    category: 'Commercial'
+    src: 'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor',
+    alt: 'Safal Office',
+    category: 'Commercial',
+    description: 'Safal Commercial is a modern office workspace designed with clean interiors, smart layouts, and functional workstations to create a comfortable and productive professional environment.'
   },
   {
     id: 'res-dsa-09',
     src: 'https://lh3.googleusercontent.com/d/1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki',
-    alt: 'Sasan Bhai Residential',
-    category: 'Residential'
+    alt: 'Shela House',
+    category: 'Residential',
+    description: 'Shela House is a modern residential interior designed with clean lines, warm lighting, and elegant finishes that create a calm and welcoming living experience.'
+  },
+  {
+    id: 'comm-dsa-06',
+    src: 'https://lh3.googleusercontent.com/d/1ZfjIAL296LD5uhCuifOGUUhAAFEkFWoB',
+    alt: 'iFlair',
+    category: 'Commercial',
+    description: 'iFlair is a modern commercial office space designed with clean interiors, smart workspace planning, and contemporary aesthetics to create a comfortable and productive working environment.'
   }
 ];
 
@@ -271,7 +285,7 @@ export const ProjectsPage: React.FC = () => {
             {[
               { name: 'All', img: 'https://lh3.googleusercontent.com/d/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE', type: 'Complete' },
               { name: 'Residential', img: 'https://lh3.googleusercontent.com/d/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I', type: 'Living' },
-              { name: 'Commercial', img: 'https://lh3.googleusercontent.com/d/1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41', type: 'Workspace' },
+              { name: 'Commercial', img: 'https://lh3.googleusercontent.com/d/1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41', type: 'Luxe Retail' },
               { name: 'Other', img: 'https://lh3.googleusercontent.com/d/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM', type: 'Concept' }
             ].map((cat, idx) => (
               <motion.button
@@ -384,7 +398,6 @@ export const ProjectsPage: React.FC = () => {
                 'https://lh3.googleusercontent.com/d/1Tzq0ooCQnYLh-F6ns11Wfy1QK7K3W0jh',
                 'https://lh3.googleusercontent.com/d/1fQxUcOX6Xya8S1QgM-SEPknvST3Z-XPV',
                 'https://lh3.googleusercontent.com/d/1_BEEwFeRswSl-qmhg6cGM3CSVZBNxitc',
-                'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor',
                 'https://lh3.googleusercontent.com/d/11TbTFOKmmDw5GgkEcUPklEkQgWW9u06Z',
                 'https://lh3.googleusercontent.com/d/1GqZsuB4FzUy9H9QA2Cnm0_ZPTsVWxnhs',
               ]}
@@ -438,17 +451,12 @@ export const ProjectsPage: React.FC = () => {
                   <span className="text-neon-cyan text-[11px] font-bold tracking-[0.5em] uppercase">Project Discovery</span>
                   <h3 className="text-4xl md:text-6xl font-display font-thin text-white tracking-tight">{project.alt}</h3>
                   <p className="text-white/70 text-base leading-relaxed max-w-md font-light">
-                    Redefining contemporary living through an uncompromising commitment to structural integrity and spatial harmony. This project stands as a testament to the DSA design philosophy.
+                    {project.description || 'Redefining contemporary living through an uncompromising commitment to structural integrity and spatial harmony. This project stands as a testament to the DSA design philosophy.'}
                   </p>
                   <div className="flex gap-6">
                     <Link to={`/project/${project.id}`}>
                       <button className="px-10 py-4 rounded-full bg-white text-obsidian text-[10px] font-bold tracking-widest uppercase hover:bg-neon-cyan transition-all">
-                        Case Study
-                      </button>
-                    </Link>
-                    <Link to={`/project/${project.id}#gallery`}>
-                      <button className="px-10 py-4 rounded-full border border-white/10 text-white text-[10px] font-bold tracking-widest uppercase hover:bg-white/5 transition-all">
-                        Gallery
+                        View Project Gallery
                       </button>
                     </Link>
                   </div>
