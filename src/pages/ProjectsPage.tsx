@@ -70,9 +70,9 @@ const PROJECTS_IMAGES = [
   {
     id: 'comm-dsa-05',
     src: 'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor',
-    alt: 'Safal Office',
+    alt: 'Safal',
     category: 'Commercial',
-    description: 'Safal Commercial is a modern office workspace designed with clean interiors, smart layouts, and functional workstations to create a comfortable and productive professional environment.'
+    description: 'Safal is a modern commercial project designed with efficient space planning and premium detailing to create a professional business environment.'
   },
   {
     id: 'res-dsa-08',

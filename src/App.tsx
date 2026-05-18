@@ -16,6 +16,10 @@ import { ProjectsPage } from './pages/ProjectsPage';
 import { AboutPage } from './pages/AboutPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { AnchorHousePage } from './pages/AnchorHousePage';
+import { AAWealthPage } from './pages/AAWealthPage';
+import { CPHouseReviewGalleryPage } from './pages/CPHouseReviewGalleryPage';
+import { AAWealthReviewGalleryPage } from './pages/AAWealthReviewGalleryPage';
+import { ParthShahReviewGalleryPage } from './pages/ParthShahReviewGalleryPage';
 
 import { HomeGallery } from './components/HomeGallery';
 
@@ -48,6 +52,10 @@ export default function App() {
           <Route path="/portfolio" element={<ProjectsPage />} />
           <Route path="/project/:id" element={<ProjectDetailPage />} />
           <Route path="/anchor-house" element={<AnchorHousePage />} />
+          <Route path="/aa-wealth" element={<AAWealthPage />} />
+          <Route path="/cp-house-review" element={<CPHouseReviewGalleryPage />} />
+          <Route path="/aa-wealth-review" element={<AAWealthReviewGalleryPage />} />
+          <Route path="/parth-shah-review" element={<ParthShahReviewGalleryPage />} />
         </Routes>
       </div>
     </Router>

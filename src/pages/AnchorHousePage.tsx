@@ -8,24 +8,29 @@ import { SafeImage } from '../components/SafeImage';
 
 const ANCHOR_HOUSE_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1bzdXh5z0896VNvWTeOtwc99sEu_9xNTZ', 
+    image: 'https://lh3.googleusercontent.com/d/1E5xewnh4MFm2xWapf5HC8tHwKcbDPO5X', 
     title: 'Modern Living', 
     desc: 'Clean lines and warm aesthetics define the main hall.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1rq3SNAeWfGz6hnnrxzP7D5I2ieC7YnKA', 
+    image: 'https://lh3.googleusercontent.com/d/1KHVlbwwVVsVynXiB8wIeFAfynfhlR38X', 
     title: 'Spatial Harmony', 
     desc: 'A seamless transition between light and shadows.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1UX7UD9LYciKhOU1lZAFGJhXZqTU9ZHhj', 
+    image: 'https://lh3.googleusercontent.com/d/1bp9jkz-TNVWZrSIytSx5crAzXC5uRZR_', 
     title: 'Crafted Details', 
     desc: 'Intricate paneling adds texture to the modern space.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1Q1acrIupIQ9GCs794TI1iUupjTGA2GBc', 
+    image: 'https://lh3.googleusercontent.com/d/1lLY4JdpG34ZWglkSrAd6USmhl4_uoEqc', 
     title: 'Elegant Entrance', 
     desc: 'Making a bold statement from the very first step.' 
+  },
+  { 
+    image: 'https://lh3.googleusercontent.com/d/1rrNLby_fEBTkq_BJLZfvTP3L1boO8eK7', 
+    title: 'Refined Comfort', 
+    desc: 'Soft textures and warm lighting create a peaceful retreat.' 
   }
 ];
 
@@ -45,7 +50,7 @@ export const AnchorHousePage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight uppercase">
               Anchor <span className="text-gradient">House</span>
             </h1>
             <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto font-light">

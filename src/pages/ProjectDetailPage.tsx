@@ -46,18 +46,21 @@ const JD_OFFICE_GALLERY = [
 ];
 
 const A_A_WEALTH_GALLERY = [
-  { image: 'https://lh3.googleusercontent.com/d/1HitK9MepXCJqmoMaisI3_pUTzvYJZA00', text: 'A & A Wealth 07' },
-  { image: 'https://lh3.googleusercontent.com/d/1NPceFslGWT3fUyWn6AGSqGJPxh0a4j1A', text: 'A & A Wealth 08' },
-  { image: 'https://lh3.googleusercontent.com/d/1QD35D6_0pT2a_j9vYk2IO5-BhrRbXrwc', text: 'A & A Wealth 09' },
-  { image: 'https://lh3.googleusercontent.com/d/1Rg-tzflx4mY1yefb608u77YANq5xeFUk', text: 'A & A Wealth 10' },
-  { image: 'https://lh3.googleusercontent.com/d/1HSEFBOKUnegGjnvvY9xXcSnL7GAKoDXe', text: 'A & A Wealth 05' },
-  { image: 'https://lh3.googleusercontent.com/d/1fsRJBocZlFhIge-FrFCk09hJwHK3Vqpt', text: 'A & A Wealth 12' },
-  { image: 'https://lh3.googleusercontent.com/d/1gtqBoeZxA4aXSYVrnm_ldNO2G0aOFjhJ', text: 'A & A Wealth 13' },
-  { image: 'https://lh3.googleusercontent.com/d/16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ', text: 'A & A Wealth 02' },
-  { image: 'https://lh3.googleusercontent.com/d/14xLpEu59w4M4VNtvc7GaQid9pBAwQfd-', text: 'A & A Wealth 03' },
-  { image: 'https://lh3.googleusercontent.com/d/1z1nVJt04BqT5iYcHD8cbRbvFmKg_flY_', text: 'A & A Wealth 15' },
-  { image: 'https://lh3.googleusercontent.com/d/1kxc3WSIA8ddPNzX0dIpJ4FeGhQYu7uH2', text: 'A & A Wealth 14' },
-  { image: 'https://lh3.googleusercontent.com/d/1-yVVcug6KYFWQvXMQntsOJWdJ7skf4Mh', text: 'A & A Wealth 04' },
+  { image: 'https://lh3.googleusercontent.com/d/1HitK9MepXCJqmoMaisI3_pUTzvYJZA00', text: 'A & A Wealth 11' },
+  { image: 'https://lh3.googleusercontent.com/d/1NPceFslGWT3fUyWn6AGSqGJPxh0a4j1A', text: 'A & A Wealth 14' },
+  { image: 'https://lh3.googleusercontent.com/d/1JHPhEFvokVoMViai2JRY2C97I_wcZ5Ap', text: 'A & A Wealth 12' },
+  { image: 'https://lh3.googleusercontent.com/d/1QD35D6_0pT2a_j9vYk2IO5-BhrRbXrwc', text: 'A & A Wealth 16' },
+  { image: 'https://lh3.googleusercontent.com/d/1Rg-tzflx4mY1yefb608u77YANq5xeFUk', text: 'A & A Wealth 17' },
+  { image: 'https://lh3.googleusercontent.com/d/1MHk72anDHYgYGtCAuWJx2GWJ02Ts97UC', text: 'A & A Wealth 13' },
+  { image: 'https://lh3.googleusercontent.com/d/1eKA1CHzewmgRmwNRWG_oI2s_fKYrSMDL', text: 'A & A Wealth 18' },
+  { image: 'https://lh3.googleusercontent.com/d/1fsRJBocZlFhIge-FrFCk09hJwHK3Vqpt', text: 'A & A Wealth 19' },
+  { image: 'https://lh3.googleusercontent.com/d/16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ', text: 'A & A Wealth 10' },
+  { image: 'https://lh3.googleusercontent.com/d/1gtqBoeZxA4aXSYVrnm_ldNO2G0aOFjhJ', text: 'A & A Wealth 20' },
+  { image: 'https://lh3.googleusercontent.com/d/14xLpEu59w4M4VNtvc7GaQid9pBAwQfd-', text: 'A & A Wealth 09' },
+  { image: 'https://lh3.googleusercontent.com/d/1z1nVJt04BqT5iYcHD8cbRbvFmKg_flY_', text: 'A & A Wealth 22' },
+  { image: 'https://lh3.googleusercontent.com/d/1O5txCTxKc9EoSV62XE9b09ds8eZtQ61r', text: 'A & A Wealth 15' },
+  { image: 'https://lh3.googleusercontent.com/d/1kxc3WSIA8ddPNzX0dIpJ4FeGhQYu7uH2', text: 'A & A Wealth 21' },
+  { image: 'https://lh3.googleusercontent.com/d/1-yVVcug6KYFWQvXMQntsOJWdJ7skf4Mh', text: 'A & A Wealth 08' },
 ];
 
 const IFLAIR_WORKSPACE_GALLERY = [
@@ -290,14 +293,14 @@ const PROJECTS_DATA = [
   },
   {
     id: 'comm-dsa-05',
-    title: 'Safal Office',
-    subtitle: 'Contemporary Excellence',
-    description: 'Safal Commercial is a modern office workspace designed with clean interiors, smart layouts, and functional workstations to create a comfortable and productive professional environment.',
-    fullStory: 'Safal Commercial is a modern office workspace designed with clean interiors, smart layouts, and functional workstations to create a comfortable and productive professional environment.',
+    title: 'Safal',
+    subtitle: 'Commercial Excellence',
+    description: 'Safal is a modern commercial project designed with efficient space planning and premium detailing to create a professional business environment.',
+    fullStory: 'Safal is a modern commercial project designed with efficient space planning and premium detailing to create a professional business environment.',
     metadata: [
       { label: 'Location', value: 'Ahmedabad, Gujarat', icon: <MapPin size={16} /> },
       { label: 'Year', value: '2024', icon: <Calendar size={16} /> },
-      { label: 'Area', value: '45,000 sq.ft', icon: <Layers size={16} /> },
+      { label: 'Area', value: '12,500 sq.ft', icon: <Layers size={16} /> },
       { label: 'Status', value: 'Completed', icon: <ExternalLink size={16} /> },
     ],
     galleryItems: SAFAL_COMMERCIAL_GALLERY
