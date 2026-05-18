@@ -141,7 +141,6 @@ export const Testimonials: React.FC = () => {
 
                 <Link 
                   to={testimonial.projectName === "CP House" ? "/cp-house-review" : testimonial.projectName === "A & A Wealth" ? "/aa-wealth-review" : (testimonial.projectName === "Subtle Sanctuary" || testimonial.projectName === "SPATIAL HARMONY") ? "/parth-shah-review" : `/project/${testimonial.projectId}`} 
-                  target={(testimonial.projectName === "CP House" || testimonial.projectName === "A & A Wealth" || testimonial.projectName === "Subtle Sanctuary" || testimonial.projectName === "SPATIAL HARMONY") ? "_blank" : undefined}
                   className="mb-10"
                 >
                   <motion.button
