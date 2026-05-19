@@ -21,8 +21,6 @@ import { CPHouseReviewGalleryPage } from './pages/CPHouseReviewGalleryPage';
 import { AAWealthReviewGalleryPage } from './pages/AAWealthReviewGalleryPage';
 import { ParthShahReviewGalleryPage } from './pages/ParthShahReviewGalleryPage';
 
-import { HomeGallery } from './components/HomeGallery';
-
 const HomePage: React.FC = () => (
   <>
     <NebulaBackground />

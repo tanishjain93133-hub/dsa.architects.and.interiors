@@ -8,8 +8,6 @@ import DomeGallery from '../components/DomeGallery';
 import { cn } from '@/src/lib/utils';
 import { SafeImage } from '../components/SafeImage';
 
-import { HomeGallery } from '../components/HomeGallery';
-
 const PROJECTS_IMAGES = [
   {
     id: 'comm-dsa-04',
@@ -227,7 +225,7 @@ export const ProjectsPage: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.4 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-10 right-10 flex items-center gap-6"
+          className="absolute bottom-10 right-10 flex items-center gap-6 optimize-gpu"
         >
           <span className="text-[9px] tracking-[0.5em] text-white/70 uppercase">Architecture Hero 02</span>
           <div className="w-16 h-[1px] bg-white/20" />
@@ -246,6 +244,7 @@ export const ProjectsPage: React.FC = () => {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
             className="text-center mb-8"
           >
             <span className="text-neon-cyan text-[10px] font-black tracking-[1em] uppercase block mb-3">Discovery</span>
@@ -357,84 +356,110 @@ export const ProjectsPage: React.FC = () => {
           >
             <DomeGallery 
               images={[
-                'https://lh3.googleusercontent.com/d/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM',
-                'https://lh3.googleusercontent.com/d/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I',
-                'https://lh3.googleusercontent.com/d/1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41',
+                'https://lh3.googleusercontent.com/d/1IvJZ2tMlDc86dsptcjWoTjVBbn2GLJXe',
+                'https://lh3.googleusercontent.com/d/1WC-BXDJSfS3GKFozaBavmZkHfrGeWE8k',
+                'https://lh3.googleusercontent.com/d/1cb-sHqV2zBhZm-q_xzutywoL5Mk38mOx',
+                'https://lh3.googleusercontent.com/d/1A-GMMiT7zVSVme_9ANjVRoJpd6cbuNjY',
                 'https://lh3.googleusercontent.com/d/1ATpVoCZUuKvgssfy4TcClIPCA6v8K3yz',
+                'https://lh3.googleusercontent.com/d/1QtyrH4BL03_19HDNi4U5L8jdjWxbGmqG',
                 'https://lh3.googleusercontent.com/d/1UlOsOlkAnM_Z-ohufO0QsFR1gQ7NzcnK',
-                'https://lh3.googleusercontent.com/d/18wghnSqoU4DceWGwb3OrGqMIb-bCrx_4',
-                'https://lh3.googleusercontent.com/d/1Tzq0ooCQnYLh-F6ns11Wfy1QK7K3W0jh',
+                'https://lh3.googleusercontent.com/d/1zLZcMS7ehDmOXqZ3xftn68HSZIpPf-eG',
+                'https://lh3.googleusercontent.com/d/1WTeS-ivEHtUgCizv4QWCr-0OMg4-h8gT',
+                'https://lh3.googleusercontent.com/d/13dT40m1keBawrXj_LTFiqHf5L68DurIW',
+                'https://lh3.googleusercontent.com/d/1OlTdX7oAFnvHokByvAo7CDRtG3Ev0jKh',
+                'https://lh3.googleusercontent.com/d/1WcsfUWRrmZ3_KCXMIssJEjm0p6WzBCld',
+                'https://lh3.googleusercontent.com/d/1-muYkqhKVHIFcPnOTRMuHckfveopxo9M',
+                'https://lh3.googleusercontent.com/d/1EsMLe08jkprzx3ZDo1GAcmzZH3N-Frpp',
+                'https://lh3.googleusercontent.com/d/1U7YxzdLn1xQcth_3bK9aNjKxS9XHEMJ9',
+                'https://lh3.googleusercontent.com/d/1f9c0oNatpygcipVjuBuTEn6JukHXPiXT',
                 'https://lh3.googleusercontent.com/d/1fQxUcOX6Xya8S1QgM-SEPknvST3Z-XPV',
+                'https://lh3.googleusercontent.com/d/1jyyq5qsWmffsEPw3XTZ3n0zscrWFS9zh',
+                'https://lh3.googleusercontent.com/d/1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki',
+                'https://lh3.googleusercontent.com/d/1CwpouFmp3RkObvO8v0kStEZr5Qho1upO',
+                'https://lh3.googleusercontent.com/d/1VmORiXXnSwLwAMa6ZFZNUyFSeODRuJvZ',
+                'https://lh3.googleusercontent.com/d/17OkF3i4Ktbnkjw21ieEtiueXdcppqQhA',
+                'https://lh3.googleusercontent.com/d/1UZf7kEu_LgU7H725aGhIs2oD3r7dxsaL',
+                'https://lh3.googleusercontent.com/d/1yNArVeNijD0ZdMs_b6gVzA4cDGZQrNDa',
+                'https://lh3.googleusercontent.com/d/1BFzYFW7w2D_fSzHxGGXC0jP_9NLJ1k0O',
+                'https://lh3.googleusercontent.com/d/1O52HcsPN87XM4fbK7Geh4MXe4Gd49je-',
                 'https://lh3.googleusercontent.com/d/1_BEEwFeRswSl-qmhg6cGM3CSVZBNxitc',
-                'https://lh3.googleusercontent.com/d/11TbTFOKmmDw5GgkEcUPklEkQgWW9u06Z',
-                'https://lh3.googleusercontent.com/d/1GqZsuB4FzUy9H9QA2Cnm0_ZPTsVWxnhs',
+                'https://lh3.googleusercontent.com/d/16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ',
+                'https://lh3.googleusercontent.com/d/1JHPhEFvokVoMViai2JRY2C97I_wcZ5Ap',
+                'https://lh3.googleusercontent.com/d/1gtqBoeZxA4aXSYVrnm_ldNO2G0aOFjhJ',
+                'https://lh3.googleusercontent.com/d/1Wi0ySgvW2nXAkjt9VZO_142AScdkhoe5',
+                'https://lh3.googleusercontent.com/d/1cCkNNGVuquVa7qJsIwU3DaB3HmLywvn5',
+                'https://lh3.googleusercontent.com/d/1w2v0x_u3_eykFh4KxJHv9UdmK4AL_PrY',
+                'https://lh3.googleusercontent.com/d/1i2Yqp-lSj_-Jjv7UUTPNFJDn0OhmvOr2',
+                'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor',
+                'https://lh3.googleusercontent.com/d/1x4dXgc6hRFY3orI353oZn6N5aqjmkWRt',
               ]}
-              fit={0.9}
+              fit={0.8}
               fitBasis="height"
               padFactor={0.02}
               minRadius={600}
-              maxVerticalRotationDeg={5}
-              segments={35}
+              maxVerticalRotationDeg={4}
+              segments={28}
               grayscale={false}
               overlayBlurColor="#000000"
-              openedImageWidth="min(800px, 80vw)"
-              openedImageHeight="min(500px, 60vh)"
-              imageBorderRadius="40px"
+              openedImageWidth="min(1200px, 90vw)"
+              openedImageHeight="min(800px, 85vh)"
+              imageBorderRadius="50%"
+              openedImageBorderRadius="12px"
             />
           </motion.section>
         ) : (
           <section 
-            className="relative z-20 px-6 py-16 bg-obsidian/40 backdrop-blur-3xl border-y border-white/5"
+            className="relative z-20 px-6 py-16 bg-obsidian/40 backdrop-blur-3xl border-y border-white/5 content-visibility-auto"
           >
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col gap-32">
-            {filteredProjects.map((project, i) => (
-              <motion.div 
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: i * 0.1 }}
-                className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center`}
-              >
-                <div className="w-full md:w-1/2 aspect-[16/9] overflow-hidden rounded-2xl border border-white/10 group relative">
-                  <SafeImage 
-                    src={project.src} 
-                    alt={project.alt} 
-                    loading="lazy"
-                    decoding="async"
-                    size="medium"
-                    objectFit="cover"
-                    className="w-full h-full object-top transition-all duration-1000 hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-                <div className="w-full md:w-1/2 flex flex-col gap-8">
-                  <span className="text-neon-cyan text-[11px] font-bold tracking-[0.5em] uppercase">Project Discovery</span>
-                  <h3 className="text-4xl md:text-6xl font-display font-thin text-white tracking-tight">{project.alt}</h3>
-                  <p className="text-white/70 text-base leading-relaxed max-w-md font-light">
-                    {project.description || 'Redefining contemporary living through an uncompromising commitment to structural integrity and spatial harmony. This project stands as a testament to the DSA design philosophy.'}
-                  </p>
-                  <div className="flex gap-6">
-                    <Link to={`/project/${project.id}`}>
-                      <button className="px-10 py-4 rounded-full bg-white text-obsidian text-[10px] font-bold tracking-widest uppercase hover:bg-neon-cyan transition-all">
-                        View Project Gallery
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col gap-32">
+                {filteredProjects.map((project, i) => (
+                  <motion.div 
+                    key={project.id}
+                    layout
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 1, delay: i * 0.1 }}
+                    className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center`}
+                  >
+                    <div className="w-full md:w-1/2 aspect-[16/9] overflow-hidden rounded-2xl border border-white/10 group relative">
+                      <SafeImage 
+                        src={project.src} 
+                        alt={project.alt} 
+                        loading="lazy"
+                        decoding="async"
+                        size="medium"
+                        objectFit="cover"
+                        className="w-full h-full object-top transition-all duration-1000 hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+                    <div className="w-full md:w-1/2 flex flex-col gap-8">
+                      <span className="text-neon-cyan text-[11px] font-bold tracking-[0.5em] uppercase">Project Discovery</span>
+                      <h3 className="text-4xl md:text-6xl font-display font-thin text-white tracking-tight">{project.alt}</h3>
+                      <p className="text-white/70 text-base leading-relaxed max-w-md font-light">
+                        {project.description || 'Redefining contemporary living through an uncompromising commitment to structural integrity and spatial harmony. This project stands as a testament to the DSA design philosophy.'}
+                      </p>
+                      <div className="flex gap-6">
+                        <Link to={`/project/${project.id}`}>
+                          <button className="px-10 py-4 rounded-full bg-white text-obsidian text-[10px] font-bold tracking-widest uppercase hover:bg-neon-cyan transition-all">
+                            View Project Gallery
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
         )}
       </AnimatePresence>
 
       {/* Ambient Glows */}
-      <div className="fixed -top-1/4 -left-1/4 w-1/2 h-1/2 bg-neon-cyan/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="fixed -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-electric-purple/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="fixed -top-1/4 -left-1/4 w-1/2 h-1/2 bg-neon-cyan/5 rounded-full blur-[150px] pointer-events-none optimize-gpu" />
+      <div className="fixed -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-electric-purple/5 rounded-full blur-[150px] pointer-events-none optimize-gpu" />
       
       <Footer />
     </div>

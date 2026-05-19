@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useRef, useCallback } from 'react';
+import React, { useEffect, useMemo, useRef, useCallback } from 'react';
 import { useGesture } from '@use-gesture/react';
-import { SafeImage } from './SafeImage';
 import './DomeGallery.css';
 
 const DEFAULT_IMAGES = [
@@ -15,20 +14,7 @@ const DEFAULT_IMAGES = [
   {
     src: 'https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     alt: 'Digital artwork'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Contemporary art'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Geometric pattern'
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Textured surface'
-  },
-  { src: 'https://pbs.twimg.com/media/Gyla7NnXMAAXSo_?format=jpg&name=large', alt: 'Social media image' }
+  }
 ];
 
 const DEFAULTS = {
@@ -64,11 +50,6 @@ function buildItems(pool: (string | { src: string; alt?: string })[], seg: numbe
   if (pool.length === 0) {
     return coords.map(c => ({ ...c, src: '', alt: '' }));
   }
-  if (pool.length > totalSlots) {
-    console.warn(
-      `[DomeGallery] Provided image count (${pool.length}) exceeds available tiles (${totalSlots}). Some images will not be shown.`
-    );
-  }
 
   const normalizedImages = pool.map(image => {
     if (typeof image === 'string') {
@@ -79,17 +60,10 @@ function buildItems(pool: (string | { src: string; alt?: string })[], seg: numbe
 
   const usedImages = Array.from({ length: totalSlots }, (_, i) => normalizedImages[i % normalizedImages.length]);
 
-  for (let i = 1; i < usedImages.length; i++) {
-    if (usedImages[i].src === usedImages[i - 1].src) {
-      for (let j = i + 1; j < usedImages.length; j++) {
-        if (usedImages[j].src !== usedImages[i].src) {
-          const tmp = usedImages[i];
-          usedImages[i] = usedImages[j];
-          usedImages[j] = tmp;
-          break;
-        }
-      }
-    }
+  // Shuffle the usedImages to provide a more random distribution
+  for (let i = usedImages.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [usedImages[i], usedImages[j]] = [usedImages[j], usedImages[i]];
   }
 
   return coords.map((c, i) => ({
@@ -143,7 +117,7 @@ export default function DomeGallery({
   openedImageHeight = '350px',
   imageBorderRadius = '30px',
   openedImageBorderRadius = '30px',
-  grayscale = false
+  grayscale = true
 }: DomeGalleryProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLElement>(null);
@@ -156,7 +130,7 @@ export default function DomeGallery({
 
   const rotationRef = useRef({ x: 0, y: 0 });
   const startRotRef = useRef({ x: 0, y: 0 });
-  const startPosRef = useRef<{ x: number, y: number } | null>(null);
+  const startPosRef = useRef<{x: number, y: number} | null>(null);
   const draggingRef = useRef(false);
   const movedRef = useRef(false);
   const inertiaRAF = useRef<number | null>(null);
@@ -179,26 +153,12 @@ export default function DomeGallery({
 
   const items = useMemo(() => buildItems(images, segments), [images, segments]);
 
-  const applyTransform = useCallback((xDeg: number, yDeg: number) => {
+  const applyTransform = (xDeg: number, yDeg: number) => {
     const el = sphereRef.current;
     if (el) {
       el.style.transform = `translateZ(calc(var(--radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
     }
-  }, []);
-
-  // Auto-rotation effect
-  useEffect(() => {
-    let raf: number;
-    const rotate = () => {
-      if (!draggingRef.current && !openingRef.current && !inertiaRAF.current) {
-        rotationRef.current.y = wrapAngleSigned(rotationRef.current.y + 0.03);
-        applyTransform(rotationRef.current.x, rotationRef.current.y);
-      }
-      raf = requestAnimationFrame(rotate);
-    };
-    raf = requestAnimationFrame(rotate);
-    return () => cancelAnimationFrame(raf);
-  }, [applyTransform]);
+  };
 
   const lockedRadiusRef = useRef<number | null>(null);
 
@@ -335,7 +295,7 @@ export default function DomeGallery({
       onDragStart: ({ event }) => {
         if (focusedElRef.current) return;
         stopInertia();
-        const evt = event as any;
+        const evt = event as PointerEvent;
         draggingRef.current = true;
         movedRef.current = false;
         startRotRef.current = { ...rotationRef.current };
@@ -343,7 +303,7 @@ export default function DomeGallery({
       },
       onDrag: ({ event, last, velocity = [0, 0], direction = [0, 0], movement }) => {
         if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
-        const evt = event as any;
+        const evt = event as PointerEvent;
         const dxTotal = evt.clientX - startPosRef.current.x;
         const dyTotal = evt.clientY - startPosRef.current.y;
         if (!movedRef.current) {
@@ -377,7 +337,7 @@ export default function DomeGallery({
         }
       }
     },
-    { target: mainRef as any, eventOptions: { passive: true } }
+    { target: mainRef, eventOptions: { passive: true } }
   );
 
   useEffect(() => {
@@ -392,7 +352,7 @@ export default function DomeGallery({
       if (!overlay) return;
       const refDiv = parent.querySelector('.item__image--reference');
       const originalPos = originalTilePositionRef.current;
-      if (!originalPos) {
+      if (!originalPos || !rootRef.current) {
         overlay.remove();
         if (refDiv) refDiv.remove();
         parent.style.setProperty('--rot-y-delta', '0deg');
@@ -406,7 +366,7 @@ export default function DomeGallery({
         return;
       }
       const currentRect = overlay.getBoundingClientRect();
-      const rootRect = rootRef.current!.getBoundingClientRect();
+      const rootRect = rootRef.current.getBoundingClientRect();
       const originalPosRelativeToRoot = {
         left: originalPos.left - rootRect.left,
         top: originalPos.top - rootRect.top,
@@ -425,12 +385,11 @@ export default function DomeGallery({
       const originalImg = overlay.querySelector('img');
       if (originalImg) {
         const img = originalImg.cloneNode() as HTMLImageElement;
-        img.referrerPolicy = "no-referrer";
         img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
         animatingOverlay.appendChild(img);
       }
       overlay.remove();
-      rootRef.current!.appendChild(animatingOverlay);
+      rootRef.current.appendChild(animatingOverlay);
       void animatingOverlay.getBoundingClientRect();
       requestAnimationFrame(() => {
         animatingOverlay.style.left = originalPosRelativeToRoot.left + 'px';
@@ -478,7 +437,7 @@ export default function DomeGallery({
     window.addEventListener('keydown', onKey);
     return () => {
       scrim.removeEventListener('click', close);
-      window.removeEventListener('keydown', onKey);
+      window.addEventListener('keydown', onKey);
     };
   }, [enlargeTransitionMs, unlockScroll]);
 
@@ -509,13 +468,13 @@ export default function DomeGallery({
       refDiv.style.transform = `rotateX(${-parentRot.rotateX}deg) rotateY(${-parentRot.rotateY}deg)`;
       parent.appendChild(refDiv);
 
-      void (refDiv as HTMLElement).offsetHeight;
+      void refDiv.offsetHeight;
 
       const tileR = refDiv.getBoundingClientRect();
       const mainR = mainRef.current?.getBoundingClientRect();
       const frameR = frameRef.current?.getBoundingClientRect();
 
-      if (!mainR || !frameR || tileR.width <= 0 || tileR.height <= 0) {
+      if (!mainR || !frameR || tileR.width <= 0 || tileR.height <= 0 || !viewerRef.current) {
         openingRef.current = false;
         focusedElRef.current = null;
         parent.removeChild(refDiv);
@@ -541,22 +500,8 @@ export default function DomeGallery({
       const rawSrc = parent.dataset.src || el.querySelector('img')?.src || '';
       const img = document.createElement('img');
       img.src = rawSrc;
-      img.referrerPolicy = "no-referrer";
-      
-      const handleImgError = () => {
-        const id = img.src.split('/').pop()?.split('?')[0];
-        if (!id) return;
-        if (!img.dataset.retryCount) img.dataset.retryCount = '0';
-        const retryCount = parseInt(img.dataset.retryCount, 10);
-        if (retryCount < 2) {
-          img.dataset.retryCount = (retryCount + 1).toString();
-          img.src = `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
-        }
-      };
-      
-      img.onerror = handleImgError;
       overlay.appendChild(img);
-      viewerRef.current!.appendChild(overlay);
+      viewerRef.current.appendChild(overlay);
       const tx0 = tileR.left - frameR.left;
       const ty0 = tileR.top - frameR.top;
       const sx0 = tileR.width / frameR.width;
@@ -588,7 +533,7 @@ export default function DomeGallery({
           const newRect = overlay.getBoundingClientRect();
           overlay.style.width = frameR.width + 'px';
           overlay.style.height = frameR.height + 'px';
-          void (overlay as HTMLElement).offsetWidth;
+          void overlay.offsetWidth;
           overlay.style.transition = `left ${enlargeTransitionMs}ms ease, top ${enlargeTransitionMs}ms ease, width ${enlargeTransitionMs}ms ease, height ${enlargeTransitionMs}ms ease`;
           const centeredLeft = frameR.left - mainR.left + (frameR.width - newRect.width) / 2;
           const centeredTop = frameR.top - mainR.top + (frameR.height - newRect.height) / 2;
@@ -611,7 +556,7 @@ export default function DomeGallery({
   );
 
   const onTileClick = useCallback(
-    (e: React.MouseEvent) => {
+    (e: React.MouseEvent<HTMLDivElement>) => {
       if (draggingRef.current) return;
       if (movedRef.current) return;
       if (performance.now() - lastDragEndAt.current < 80) return;
@@ -622,7 +567,7 @@ export default function DomeGallery({
   );
 
   const onTilePointerUp = useCallback(
-    (e: React.PointerEvent) => {
+    (e: React.PointerEvent<HTMLDivElement>) => {
       if (e.pointerType !== 'touch') return;
       if (draggingRef.current) return;
       if (movedRef.current) return;
@@ -653,12 +598,12 @@ export default function DomeGallery({
       }}
     >
       <main ref={mainRef} className="sphere-main">
-        <div className="dg-stage">
+        <div className="stage">
           <div ref={sphereRef} className="sphere">
             {items.map((it, i) => (
               <div
                 key={`${it.x},${it.y},${i}`}
-                className="dg-item"
+                className="item"
                 data-src={it.src}
                 data-offset-x={it.x}
                 data-offset-y={it.y}
@@ -672,33 +617,28 @@ export default function DomeGallery({
                 }}
               >
                 <div
-                  className="dg-item__image"
+                  className="item__image"
                   role="button"
                   tabIndex={0}
                   aria-label={it.alt || 'Open image'}
                   onClick={onTileClick}
                   onPointerUp={onTilePointerUp}
                 >
-                  <SafeImage 
-                    src={it.src} 
-                    draggable={false} 
-                    alt={it.alt} 
-                    size="small"
-                  />
+                  <img src={it.src} draggable={false} alt={it.alt} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="dg-overlay" />
-        <div className="dg-overlay dg-overlay--blur" />
-        <div className="dg-edge-fade dg-edge-fade--top" />
-        <div className="dg-edge-fade dg-edge-fade--bottom" />
+        <div className="overlay" />
+        <div className="overlay overlay--blur" />
+        <div className="edge-fade edge-fade--top" />
+        <div className="edge-fade edge-fade--bottom" />
 
-        <div className="dg-viewer" ref={viewerRef}>
-          <div ref={scrimRef} className="dg-scrim" />
-          <div ref={frameRef} className="dg-frame" />
+        <div className="viewer" ref={viewerRef}>
+          <div ref={scrimRef} className="scrim" />
+          <div ref={frameRef} className="frame" />
         </div>
       </main>
     </div>

@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, MapPin, Calendar, Layers, ExternalLink, X, ZoomIn, ChevronLeft, ChevronRight, LayoutGrid, Maximize2 } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
-import CircularGallery from '../components/CircularGallery';
 import { cn } from '../lib/utils';
 import { SafeImage } from '../components/SafeImage';
 

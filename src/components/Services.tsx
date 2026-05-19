@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { PencilRuler, Armchair, Box, Hammer, ArrowRight } from 'lucide-react';
+import { PencilRuler, Armchair, Box, Hammer } from 'lucide-react';
 
 const services = [
   {
@@ -82,9 +82,7 @@ export const Services: React.FC = () => {
                   {service.desc}
                 </p>
 
-                <div className="flex items-center gap-3 text-white/20 group-hover:text-neon-cyan transition-colors duration-500 font-bold tracking-widest text-xs uppercase">
-                  Discover More <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
-                </div>
+
               </div>
             </motion.div>
           ))}

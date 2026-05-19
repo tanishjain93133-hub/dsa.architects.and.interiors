@@ -17,8 +17,22 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-obsidian text-white font-sans antialiased selection:bg-neon-cyan/30;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* GPU acceleration for main containers */
+  main, section {
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -27,6 +41,16 @@
 }
 
 @layer utilities {
+  .optimize-gpu {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+  }
   .glass {
     @apply bg-glass backdrop-blur-md border border-glass-border;
   }

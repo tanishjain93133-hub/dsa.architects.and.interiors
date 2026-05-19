@@ -110,8 +110,9 @@ export const SafeImage: React.FC<SafeImageProps> = ({
         onLoad={handleLoad}
         referrerPolicy="no-referrer"
         loading="lazy"
+        decoding="async"
         className={cn(
-          "transition-all duration-700 w-full h-full",
+          "transition-all duration-700 w-full h-full optimize-gpu",
           !isLoaded ? "opacity-0 scale-105 blur-lg" : "opacity-100 scale-100 blur-0",
           objectFit === "contain" ? "object-contain" : "object-cover"
         )}
