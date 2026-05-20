@@ -10,10 +10,6 @@ import { cn } from '@/src/lib/utils';
 import { SafeImage } from '../components/SafeImage';
 
 export const AboutPage: React.FC = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const teamItems = [
     {
       image: "https://lh3.googleusercontent.com/d/111OTmw-5OnABcNOMgnx4ko3C1cndGuPc",

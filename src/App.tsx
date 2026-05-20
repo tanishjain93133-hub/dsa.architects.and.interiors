@@ -12,6 +12,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Testimonials } from './components/Testimonials';
 import { NebulaBackground } from './components/NebulaBackground';
+import { ScrollRestoration } from './components/ScrollRestoration';
 import { ProjectsPage } from './pages/ProjectsPage';
 import { AboutPage } from './pages/AboutPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
@@ -43,6 +44,7 @@ const HomePage: React.FC = () => (
 export default function App() {
   return (
     <Router>
+      <ScrollRestoration />
       <div className="relative min-h-screen">
         <Routes>
           <Route path="/" element={<HomePage />} />

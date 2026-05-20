@@ -12,7 +12,8 @@ const testimonials = [
     rating: 4,
     image: "https://lh3.googleusercontent.com/d/1m1Di2ATc7FCF1xlCB2HHy9GTa7spClb5",
     projectName: "CP House",
-    projectId: "res-dsa-07"
+    projectId: "res-dsa-07",
+    videoLink: "https://youtube.com/shorts/4Ym1Dd2zYyo?si=nNcHTo8k2x_HnIuI"
   },
   {
     name: "Mr Chinten Bhai",
@@ -85,18 +86,14 @@ export const Testimonials: React.FC = () => {
                     className="w-full h-full object-cover object-center"
                     size="small"
                   />
-                  {/* Floating Play Button inside Image */}
+                  {/* Floating Clickable Link Area inside Image */}
                   {testimonial.videoLink && (
                     <a 
                       href={testimonial.videoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300"
-                    >
-                      <div className="w-10 h-10 rounded-full bg-[#FF0000] text-white flex items-center justify-center shadow-[0_0_15px_rgba(255,0,0,0.5)]">
-                        <div className="ml-0.5 w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[8px] border-l-white" />
-                      </div>
-                    </a>
+                      className="absolute inset-0 z-20 cursor-pointer"
+                    />
                   )}
                 </div>
 

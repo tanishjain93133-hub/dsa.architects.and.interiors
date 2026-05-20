@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, MapPin, Calendar, Layers, ExternalLink, X, ZoomIn, ChevronLeft, ChevronRight, LayoutGrid, Maximize2 } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
@@ -421,6 +421,7 @@ const PROJECTS_DATA = [
 
 export const ProjectDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const location = useLocation();
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
   
@@ -435,7 +436,12 @@ export const ProjectDetailPage: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const isFirstRender = React.useRef(true);
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [viewMode]);
 
@@ -455,9 +461,12 @@ export const ProjectDetailPage: React.FC = () => {
       <main className="pt-32 pb-24">
         {/* Header Section */}
         <div className={cn("max-w-7xl mx-auto px-6 transition-all duration-700", viewMode === 'gallery' ? "opacity-0 invisible h-0 pointer-events-none" : "opacity-100 visible mb-20")}>
-          <Link to="/portfolio" className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform">
+          <button 
+            onClick={() => navigate(-1)} 
+            className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform cursor-pointer"
+          >
             <ArrowLeft size={16} /> Back to Projects
-          </Link>
+          </button>
 
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <motion.div
@@ -523,13 +532,13 @@ export const ProjectDetailPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             className="fixed top-8 left-8 md:top-32 md:left-24 z-50 flex items-center gap-6"
           >
-            <Link 
-              to="/portfolio"
-              className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-obsidian flex items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.3)] hover:scale-110 active:scale-95 transition-all group"
+            <button 
+              onClick={() => navigate(-1)}
+              className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-obsidian flex items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.3)] hover:scale-110 active:scale-95 transition-all group cursor-pointer"
               title="Back to Projects"
             >
               <ArrowLeft size={20} className="md:size-6 group-hover:-translate-x-1 transition-transform" />
-            </Link>
+            </button>
             <div className="hidden lg:block">
               <span className="text-white/40 text-[10px] font-black tracking-[0.4em] uppercase block mb-1">Project</span>
               <h4 className="text-white text-sm font-bold tracking-widest uppercase">{project.title}</h4>

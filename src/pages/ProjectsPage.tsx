@@ -103,7 +103,13 @@ const PROJECTS_IMAGES = [
 ];
 
 export const ProjectsPage: React.FC = () => {
-  const [activeFilter, setActiveFilter] = React.useState<string>('All');
+  const [activeFilter, setActiveFilter] = React.useState<string>(() => {
+    return sessionStorage.getItem('projects-active-filter') || 'All';
+  });
+  
+  React.useEffect(() => {
+    sessionStorage.setItem('projects-active-filter', activeFilter);
+  }, [activeFilter]);
   
   const filteredProjects = activeFilter === 'All' 
     ? PROJECTS_IMAGES 

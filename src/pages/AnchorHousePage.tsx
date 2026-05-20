@@ -1,7 +1,6 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SafeImage } from '../components/SafeImage';
@@ -35,15 +34,19 @@ const ANCHOR_HOUSE_DATA = [
 ];
 
 export const AnchorHousePage: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-obsidian min-h-screen text-white">
       <Navbar />
       
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6">
-          <Link to="/" className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform">
-            <ArrowLeft size={16} /> Back to Home
-          </Link>
+          <button 
+            onClick={() => navigate(-1)} 
+            className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform cursor-pointer"
+          >
+            <ArrowLeft size={16} /> Back to Projects
+          </button>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

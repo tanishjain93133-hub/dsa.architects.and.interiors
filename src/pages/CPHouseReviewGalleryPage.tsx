@@ -10,27 +10,32 @@ const CP_HOUSE_REVIEW_DATA = [
   { 
     image: 'https://lh3.googleusercontent.com/d/1mhpz_vNze-FuV7hH9ufbbI1x5Hx4-HQu', 
     title: 'ARTFUL AMBIANCE', 
-    desc: 'Lighting and layout working in harmony to elevate every moment.' 
+    desc: 'Lighting and layout working in harmony to elevate every moment.',
+    videoLink: 'https://youtube.com/shorts/4Ym1Dd2zYyo?si=nNcHTo8k2x_HnIuI'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1QXMPG5YtO4y0kC1CKzrB_b2GUAJ5pt0Z', 
     title: 'MODERN AMBIENCE', 
-    desc: 'Bespoke detailing that defines the contemporary residential experience.' 
+    desc: 'Bespoke detailing that defines the contemporary residential experience.',
+    videoLink: 'https://youtube.com/shorts/78-R4XpK6eI?si=9fH5AXETthfjDN8H'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1lD0CEuLCr-nI2BGcaRcvl_X0-Z47qZSU', 
     title: 'CRAFTED ELEGANCE', 
-    desc: 'Seamless integration of technology and timeless design.' 
+    desc: 'Seamless integration of technology and timeless design.',
+    videoLink: 'https://youtube.com/shorts/SHspUt_74-I?si=jAP3UZAye1PMoFcJ'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1btD6mutBhXw9Nbv1CmQ7P6pC4zHOUxtj', 
     title: 'SPATIAL HARMONY', 
-    desc: 'A curated selection of materials that create a rich, tactile atmosphere.' 
+    desc: 'A curated selection of materials that create a rich, tactile atmosphere.',
+    videoLink: 'https://youtube.com/shorts/Al7pwYM4xJk?si=TSbKjw2_hIJ_uy5k'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1Bj5scyAh-CBR_weHmdjcECgjcmhTmFk-', 
     title: 'LUXURIOUS COMFORT', 
-    desc: 'Thoughtfully designed spaces that prioritize both style and serenity.' 
+    desc: 'Thoughtfully designed spaces that prioritize both style and serenity.',
+    videoLink: 'https://youtube.com/shorts/y70IIQYpufM?si=dc5F5wJCF0AZY99j'
   }
 ];
 
@@ -58,39 +63,11 @@ export const CPHouseReviewGalleryPage: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {CP_HOUSE_REVIEW_DATA.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                className="flex flex-col"
-              >
-                <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass group shadow-2xl mb-6">
-                  <SafeImage
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
-                </div>
-                <div className="px-2">
-                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight uppercase tracking-[0.1em]">{item.title}</h3>
-                  <div className="h-px w-12 bg-neon-cyan mb-3 opacity-50" />
-                  <p className="text-white/40 text-sm font-light leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Final Section - Watch Full Client Review */}
+          {/* Watch Full Client Review */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-32 max-w-4xl mx-auto"
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-20 max-w-4xl mx-auto"
           >
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-neon-cyan/30 via-electric-purple/30 to-neon-cyan/30 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
@@ -118,6 +95,58 @@ export const CPHouseReviewGalleryPage: React.FC = () => {
               </div>
             </div>
           </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {CP_HOUSE_REVIEW_DATA.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                className="flex flex-col"
+              >
+                <div className="relative group/card mb-6">
+                  {item.videoLink ? (
+                    <a 
+                      href={item.videoLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass shadow-2xl ring-neon-cyan/0 group-hover/card:ring-4 group-hover/card:ring-neon-cyan/20 transition-all duration-500">
+                        <SafeImage
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
+                        />
+                        {/* Video Overlay Button */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
+                          <div className="w-16 h-16 rounded-full bg-neon-cyan text-black flex items-center justify-center shadow-[0_0_30px_rgba(0,255,255,0.4)]">
+                            <div className="ml-1 w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[12px] border-l-black" />
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass shadow-2xl">
+                      <SafeImage
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="px-2">
+                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight uppercase tracking-[0.1em]">{item.title}</h3>
+                  <div className="h-px w-12 bg-neon-cyan mb-3 opacity-50" />
+                  <p className="text-white/40 text-sm font-light leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </main>
 
