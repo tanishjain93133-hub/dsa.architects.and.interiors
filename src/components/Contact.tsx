@@ -16,7 +16,7 @@ export const Contact: React.FC = () => {
           <h2 className="text-4xl md:text-6xl font-light text-white mb-8 leading-tight">
             Let's Build Your <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-white to-electric-purple font-bold">
-              Dream Up in the Air.
+              Dream Into Reality ✨
             </span>
           </h2>
           <p className="text-white/60 text-lg mb-8 mx-auto max-w-md font-light leading-relaxed">

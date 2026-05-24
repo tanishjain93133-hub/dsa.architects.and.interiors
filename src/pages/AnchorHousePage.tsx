@@ -9,38 +9,38 @@ import { SafeImage } from '../components/SafeImage';
 const ANCHOR_HOUSE_DATA = [
   { 
     image: 'https://lh3.googleusercontent.com/d/1L_Srg6u-xk1_nOSwxrexxcy3cdGPupQN', 
-    title: 'Spatial Harmony', 
-    desc: 'A gorgeous interplay of materials, lighting, and luxurious furnishings.',
+    title: 'DESIGN CLARITY', 
+    desc: 'Smart planning that gave a clear vision from day one.',
     videoLink: 'https://youtube.com/shorts/bJX3JVCjFyg?si=Jw8T9i3GVv3R7FzF'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1oYmipYl4ALNBCWEut-7mpQ3PvoN4EaBl', 
-    title: 'Sophisticated Detailing', 
-    desc: 'Pristine spatial geometry combined with a rich and cohesive material palette.',
+    title: 'SAME AS 3D', 
+    desc: 'The final home looked exactly like the design we imagined.',
     videoLink: 'https://youtube.com/shorts/_IFCW2cBoDU?si=BfWGXU9yF5XeLeYN'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1ZngK_XgobM9f4gHT_NLkz4bHTqykhKSV', 
-    title: 'Crafted Details', 
-    desc: 'Intricate custom paneling adds rich texture to the modern space.',
+    title: 'TRUSTED TEAMWORK', 
+    desc: 'Smooth coordination and reliable execution throughout the project.',
     videoLink: 'https://youtube.com/shorts/jMgkL7Rzee4?si=_WjmCj8nmGatd9E-'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1domLU1l6dVKY6JFAiLvx5NBxpp8cLmz9', 
-    title: 'Elegant Entrance', 
-    desc: 'Making a bold and welcoming statement from the very first step.',
+    title: 'DREAM TO REALITY', 
+    desc: 'Turning ideas and imagination into a beautiful living space.',
     videoLink: 'https://youtube.com/shorts/u80EaWFqLYQ?si=9aRUZLHsvyBGnFnj'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1vLY-SLoEeypev5w_3fGHO6QlixCDABT-', 
-    title: 'Architectural Unity', 
-    desc: 'A seamless, sophisticated layout that maximizes light and spatial volume.',
+    title: 'Budget & Quality Balance', 
+    desc: 'Premium quality delivered perfectly without exceeding expectations.',
     videoLink: 'https://youtube.com/shorts/hbUZ839MvV8?si=7ijIQIU83QLUjphM'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1fYxYVzfD8Sgem7C9wKoIX1eIW4yMVdYg', 
-    title: 'Refined Comfort', 
-    desc: 'Soft textures and warm lighting create a peaceful family retreat.',
+    title: 'Transparent Material Selection', 
+    desc: 'Honest guidance with zero hidden commission and quality-focused choices.',
     videoLink: 'https://youtube.com/shorts/RgbqR62kG7k?si=tAXEYMlizoL5VncW'
   }
 ];

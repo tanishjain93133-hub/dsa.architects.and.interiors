@@ -233,6 +233,18 @@ const SHELA_HOUSE_GALLERY = [
   { image: 'https://lh3.googleusercontent.com/d/1UfmiDAau64UhaDRwp63ecE7kzN41Ha-F', text: 'Shela House 04' },
 ];
 
+const SHLIP_AARON_GALLERY = [
+  { image: 'https://lh3.googleusercontent.com/d/10bqHIbfF1VJqrGk1I_iC9AyLh_aKscph', text: 'Shlip Aaron 01' },
+  { image: 'https://lh3.googleusercontent.com/d/1W3WQQZozxeLqmqfLGkhsrE2YFcShJycD', text: 'Shlip Aaron 02' },
+  { image: 'https://lh3.googleusercontent.com/d/1hLLKbRkEReJrsKZTUt-WcNRZ-2jKmJXu', text: 'Shlip Aaron 03' },
+  { image: 'https://lh3.googleusercontent.com/d/1nCDhbW97MEx7Teo-E8-0FM74rds5iXr6', text: 'Shlip Aaron 04' },
+  { image: 'https://lh3.googleusercontent.com/d/1EBDT9KSQ0tVHiK9YAPSf2V41Rkbmk_nV', text: 'Shlip Aaron 05' },
+  { image: 'https://lh3.googleusercontent.com/d/1JB_YIBJWi0WTA9orjsZ7CkZ4idWl_czY', text: 'Shlip Aaron 06' },
+  { image: 'https://lh3.googleusercontent.com/d/1f3UEQQ1VViht-LPMzcJ1YR4XnJe3FEM1', text: 'Shlip Aaron 07' },
+  { image: 'https://lh3.googleusercontent.com/d/1sN2oH3O1ZuOl6CPssgOQXNVWE-gAe6Yf', text: 'Shlip Aaron 08' },
+  { image: 'https://lh3.googleusercontent.com/d/12vmmKtDJg-KxJPSbW3wTTg8gOxsrMFwa', text: 'Shlip Aaron 09' },
+];
+
 const PROJECTS_DATA = [
   {
     id: 'res-dsa-01',
@@ -416,6 +428,20 @@ const PROJECTS_DATA = [
       { label: 'Status', value: 'Completed', icon: <ExternalLink size={16} /> },
     ],
     galleryItems: SHELA_HOUSE_GALLERY
+  },
+  {
+    id: 'comm-dsa-07',
+    title: 'Shlip Aaron',
+    subtitle: 'Commercial Workspace',
+    description: 'Shlip Aaron is a premium commercial office space featuring state-of-the-art office interiors, modern materials, sophisticated lighting designs, and highly functional workspace planning.',
+    fullStory: 'Shlip Aaron is a premium commercial office space featuring state-of-the-art office interiors, modern materials, sophisticated lighting designs, and highly functional workspace planning.',
+    metadata: [
+      { label: 'Location', value: 'Ahmedabad, Gujarat', icon: <MapPin size={16} /> },
+      { label: 'Year', value: '2024', icon: <Calendar size={16} /> },
+      { label: 'Area', value: '10,000 sq.ft', icon: <Layers size={16} /> },
+      { label: 'Status', value: 'Completed', icon: <ExternalLink size={16} /> },
+    ],
+    galleryItems: SHLIP_AARON_GALLERY
   }
 ];
 

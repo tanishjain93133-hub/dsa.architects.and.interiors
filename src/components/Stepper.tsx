@@ -17,6 +17,7 @@ interface StepperProps {
   backButtonText?: string;
   nextButtonText?: string;
   disableStepIndicators?: boolean;
+  showCompleteButton?: boolean;
   renderStepIndicator?: (props: {
     step: number;
     currentStep: number;
@@ -39,6 +40,7 @@ export default function Stepper({
   backButtonText = 'Back',
   nextButtonText = 'Continue',
   disableStepIndicators = false,
+  showCompleteButton = true,
   renderStepIndicator,
   ...rest
 }: StepperProps) {
@@ -133,9 +135,11 @@ export default function Stepper({
                   {backButtonText}
                 </button>
               )}
-              <button onClick={isLastStep ? handleComplete : handleNext} className="next-button" {...nextButtonProps}>
-                {isLastStep ? 'Complete' : nextButtonText}
-              </button>
+              {(!isLastStep || showCompleteButton) && (
+                <button onClick={isLastStep ? handleComplete : handleNext} className="next-button" {...nextButtonProps}>
+                  {isLastStep ? 'Complete' : nextButtonText}
+                </button>
+              )}
             </div>
           </div>
         )}

@@ -99,6 +99,13 @@ const PROJECTS_IMAGES = [
     alt: 'Shela House',
     category: 'Residential',
     description: 'Shela House is a modern residential interior designed with clean lines, warm lighting, and elegant finishes that create a calm and welcoming living experience.'
+  },
+  {
+    id: 'comm-dsa-07',
+    src: 'https://lh3.googleusercontent.com/d/10bqHIbfF1VJqrGk1I_iC9AyLh_aKscph',
+    alt: 'Shlip Aaron',
+    category: 'Commercial',
+    description: 'Shlip Aaron is a premium commercial office space featuring state-of-the-art office interiors, modern materials, sophisticated lighting designs, and highly functional workspace planning.'
   }
 ];
 

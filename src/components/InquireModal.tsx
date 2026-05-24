@@ -42,6 +42,7 @@ export const InquireModal: React.FC<InquireModalProps> = ({ isOpen, onClose }) =
               }}
               nextButtonText="Continue"
               backButtonText="Back"
+              showCompleteButton={false}
             >
               <Step>
                 <div className="text-center py-4">
