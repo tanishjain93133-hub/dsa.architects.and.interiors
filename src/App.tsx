@@ -21,6 +21,10 @@ import { AAWealthPage } from './pages/AAWealthPage';
 import { CPHouseReviewGalleryPage } from './pages/CPHouseReviewGalleryPage';
 import { AAWealthReviewGalleryPage } from './pages/AAWealthReviewGalleryPage';
 import { ParthShahReviewGalleryPage } from './pages/ParthShahReviewGalleryPage';
+import { JSHouseReviewGalleryPage } from './pages/JSHouseReviewGalleryPage';
+import { ShelaHouseReviewGalleryPage } from './pages/ShelaHouseReviewGalleryPage';
+import { JDOfficeReviewGalleryPage } from './pages/JDOfficeReviewGalleryPage';
+import { TestimonialsPage } from './pages/TestimonialsPage';
 
 const HomePage: React.FC = () => (
   <>
@@ -56,6 +60,10 @@ export default function App() {
           <Route path="/cp-house-review" element={<CPHouseReviewGalleryPage />} />
           <Route path="/aa-wealth-review" element={<AAWealthReviewGalleryPage />} />
           <Route path="/parth-shah-review" element={<ParthShahReviewGalleryPage />} />
+          <Route path="/js-house-review" element={<JSHouseReviewGalleryPage />} />
+          <Route path="/shela-house-review" element={<ShelaHouseReviewGalleryPage />} />
+          <Route path="/jd-office-review" element={<JDOfficeReviewGalleryPage />} />
+          <Route path="/testimonials" element={<TestimonialsPage />} />
         </Routes>
       </div>
     </Router>

@@ -35,7 +35,8 @@ function isBackNav(from: string, to: string, navigationType: string, historyStac
   if (from === '/anchor-house' && to === '/portfolio') return true;
   if (from === '/aa-wealth' && to === '/portfolio') return true;
   if (from === '/portfolio' && to === '/') return true;
-  if ((from === '/cp-house-review' || from === '/aa-wealth-review' || from === '/parth-shah-review') && to === '/') return true;
+  if ((from === '/cp-house-review' || from === '/aa-wealth-review' || from === '/parth-shah-review' || from === '/js-house-review' || from === '/anchor-house' || from === '/shela-house-review' || from === '/jd-office-review') && (to === '/' || to === '/testimonials')) return true;
+  if (to === '/testimonials' && from !== '/testimonials') return true;
   
   // Generic: any other page returning back to home page is treated as back
   if (to === '/' && from !== '/') return true;

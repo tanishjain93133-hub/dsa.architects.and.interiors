@@ -9,38 +9,39 @@ import { SafeImage } from '../components/SafeImage';
 const AA_WEALTH_REVIEW_DATA = [
   { 
     image: 'https://lh3.googleusercontent.com/d/11SkczFb1XHrgWcMlRyxo0Ncx1XGUsWdR', 
-    title: 'Professional Ambience', 
-    desc: 'Wealth management excellence reflected in elegant design.' 
+    title: 'LUXURY WITHIN BUDGET', 
+    desc: 'Premium office aesthetics achieved with smart planning, functional design, and budget-conscious execution.',
+    videoLink: 'https://youtube.com/shorts/IsQJ_I5lvC0?si=Ipj9R8upW-J3wP6o'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1t2y0zdd55FJSIRuzTM54EXPCSt-7Udf5', 
-    title: 'STRATEGIC DETAILS', 
-    desc: 'Every element chosen to represent the brand identity.' 
+    title: 'SMOOTH PROCESS', 
+    desc: 'A seamless design journey with clear communication, timely execution, and hassle-free coordination.',
+    videoLink: 'https://youtube.com/shorts/obSgqzNZnxM?si=X92oj335io02_qnd'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1siPgPnVrWQFJycGfDi1gPHXgfUYocSbo', 
-    title: 'EXECUTIVE COMFORT', 
-    desc: 'Sophisticated design for private consultations.' 
+    title: 'DELIVERED AS PROMISED', 
+    desc: 'Every expectation was fulfilled with precision, transparency, and attention to detail.',
+    videoLink: 'https://youtube.com/shorts/oNgfVy2HU7U?si=_FnZsnF6dWZRqz11'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1bp9jkz-TNVWZrSIytSx5crAzXC5uRZR_', 
-    title: 'MATERIAL EXCELLENCE', 
-    desc: 'Premium finishes that define modern corporate interiors.' 
+    title: 'TRUSTED TEAMWORK', 
+    desc: 'Strong collaboration and mutual trust helped transform the vision into a refined commercial space.',
+    videoLink: 'https://youtube.com/shorts/dMq94n6C6oI?si=fJyqKXr-002R65wI'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1lLY4JdpG34ZWglkSrAd6USmhl4_uoEqc', 
     title: 'COLLABORATIVE AREAS', 
-    desc: 'Smart space planning for productive team work.' 
+    desc: 'Smartly planned spaces designed to encourage productivity, teamwork, and seamless daily workflow.',
+    videoLink: 'https://youtube.com/shorts/00A-HvP5DF4?si=4zWFpWC5MsMJ0ykp'
   },
   { 
     image: 'https://lh3.googleusercontent.com/d/1E5xewnh4MFm2xWapf5HC8tHwKcbDPO5X', 
     title: 'REFINED WORKSPACES', 
-    desc: 'Functional yet sophisticated office planning.' 
-  },
-  { 
-    image: 'https://lh3.googleusercontent.com/d/1KHVlbwwVVsVynXiB8wIeFAfynfhlR38X', 
-    title: 'WARM LIGHTING', 
-    desc: 'Creating an inviting atmosphere for clients and staff.' 
+    desc: 'Elegant office interiors combining functionality, sophistication, and modern professional aesthetics.',
+    videoLink: 'https://youtube.com/shorts/oNgfVy2HU7U?si=AFjvgdJ8luVTNL-G' 
   }
 ];
 
@@ -85,7 +86,7 @@ export const AAWealthReviewGalleryPage: React.FC = () => {
                 </p>
                 
                 <motion.a
-                  href="https://www.youtube.com/results?search_query=DSA+Architects+Ahmedabad+Review"
+                  href="https://youtu.be/2ZEw3Ne2YQI?si=6eOsFa8B42EM9kPu"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
@@ -110,12 +111,37 @@ export const AAWealthReviewGalleryPage: React.FC = () => {
                 transition={{ delay: index * 0.1 }}
                 className="flex flex-col"
               >
-                <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass group shadow-2xl mb-6">
-                  <SafeImage
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
+                <div className="relative group/card mb-6">
+                  {item.videoLink ? (
+                    <a 
+                      href={item.videoLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass shadow-2xl ring-neon-cyan/0 group-hover/card:ring-4 group-hover/card:ring-neon-cyan/20 transition-all duration-500">
+                        <SafeImage
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
+                        />
+                        {/* Video Overlay Button */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
+                          <div className="w-16 h-16 rounded-full bg-neon-cyan text-black flex items-center justify-center shadow-[0_0_30px_rgba(0,255,255,0.4)]">
+                            <div className="ml-1 w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[12px] border-l-black" />
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass shadow-2xl">
+                      <SafeImage
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="px-2">
                   <h3 className="text-xl font-bold text-white mb-2 tracking-tight uppercase tracking-[0.1em]">{item.title}</h3>

@@ -6,34 +6,28 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SafeImage } from '../components/SafeImage';
 
-const PARTH_SHAH_REVIEW_DATA = [
+const JS_HOUSE_REVIEW_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1Y41fXvA3RArFVTj5XIhR-3YfnHeTYwMF', 
-    title: 'STARTED FROM SCRATCH', 
-    desc: 'A completely blank space transformed into a warm, elegant, and thoughtfully designed dream home.',
-    videoLink: 'https://youtu.be/gJnjnILgxAY?si=Qh0cgFrRHKIN5S5f'
+    image: 'https://lh3.googleusercontent.com/d/1L_Srg6u-xk1_nOSwxrexxcy3cdGPupQN', 
+    title: 'Warm Welcome', 
+    desc: 'Bespoke entry space featuring warm textures and soft, atmospheric lighting.',
+    videoLink: 'https://youtube.com/shorts/-1tGdGRpzFo?si=2v2E7LhfDDezGVnI'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1y_BUKxYPucLE9d_Mn8WShV3FCX_44vY-', 
-    title: 'PROBLEM SOLVING', 
-    desc: 'Smart planning and creative interior solutions solved every space and functionality challenge beautifully.',
-    videoLink: 'https://youtube.com/shorts/uQWnLGPpLEE?si=GPcDDGU9ONxxFeAl'
+    image: 'https://lh3.googleusercontent.com/d/1xYA2QYmETIW4lsJJkqIp4j8c4UIyktK2', 
+    title: 'Textured Living', 
+    desc: 'Harmonious wood detailing integrated with premium modern furnishings.',
+    videoLink: 'https://youtube.com/shorts/_ll6rw4dy8A?si=q0UNdsiUH83lkoGK'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1yPTh94I2c-bUH-yQO9eL2OEGWFbKNtpR', 
-    title: 'BUDGET FRIENDLY', 
-    desc: 'Premium aesthetics and modern comfort achieved with practical planning and balanced budgeting.',
-    videoLink: 'https://youtube.com/shorts/THubXSNQtMQ?si=5hwmazhYhtBTqC8w' 
-  },
-  { 
-    image: 'https://lh3.googleusercontent.com/d/1ZS9Bu2WvFmKF2gIAcyVS0tYVCBMytBO_', 
-    title: 'DREAM COMPLETED', 
-    desc: 'A personalized dream home brought to life exactly as imagined with refined detailing and comfort.',
-    videoLink: 'https://youtube.com/shorts/4TTUjtNYh3g?si=DzSDHD_uTnFprhTF'
+    image: 'https://lh3.googleusercontent.com/d/1ezmNrbJg-jmiBsSA2eGIamXdjQTpCty9', 
+    title: 'Sophisticated Lounging', 
+    desc: 'The master lounge showcasing pristine spatial geometry and rich material palette.',
+    videoLink: 'https://youtube.com/shorts/LrDeeDrff9A?si=jupeKbRdeRNquPwg'
   }
 ];
 
-export const ParthShahReviewGalleryPage: React.FC = () => {
+export const JSHouseReviewGalleryPage: React.FC = () => {
   return (
     <div className="bg-obsidian min-h-screen text-white">
       <Navbar />
@@ -50,10 +44,10 @@ export const ParthShahReviewGalleryPage: React.FC = () => {
             className="text-center mb-16"
           >
             <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight uppercase">
-              Mr. Parth <span className="text-gradient">Shah</span> Review
+              Mr. Jainam <span className="text-gradient">Bhai</span> Review
             </h1>
             <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto font-light">
-              Explore the premium design journey of Mr. Parth Shah's residence through this exclusive review gallery.
+              Explore the premium design journey of DHS House through this exclusive review gallery.
             </p>
           </motion.div>
 
@@ -74,7 +68,7 @@ export const ParthShahReviewGalleryPage: React.FC = () => {
                 </p>
                 
                 <motion.a
-                  href="https://youtu.be/gJnjnILgxAY?si=Qh0cgFrRHKIN5S5f"
+                  href="https://youtu.be/wE6hgUvp0g4?si=kmE1lMVDzxxImoeY"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
@@ -91,7 +85,7 @@ export const ParthShahReviewGalleryPage: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {PARTH_SHAH_REVIEW_DATA.map((item, index) => (
+            {JS_HOUSE_REVIEW_DATA.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -107,7 +101,7 @@ export const ParthShahReviewGalleryPage: React.FC = () => {
                       rel="noopener noreferrer"
                       className="block"
                     >
-                      <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass shadow-2xl ring-neon-cyan/0 group-hover/card:ring-4 group-hover/card:ring-neon-cyan/20 transition-all duration-500">
+                      <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass shadow-2xl ring-neon-cyan/0 group-hover/card:ring-4 group-hover/card:ring-neon-cyan/20 transition-all duration-500 relative">
                         <SafeImage
                           src={item.image}
                           alt={item.title}
@@ -132,15 +126,11 @@ export const ParthShahReviewGalleryPage: React.FC = () => {
                   )}
                 </div>
                 <div className="px-2">
-                  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2 tracking-tight uppercase tracking-[0.1em]">{item.title}</h3>
-                      <div className="h-px w-12 bg-neon-cyan mb-3 opacity-50" />
-                      <p className="text-white/40 text-sm font-light leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight uppercase tracking-[0.1em]">{item.title}</h3>
+                  <div className="h-px w-12 bg-neon-cyan mb-3 opacity-50" />
+                  <p className="text-white/40 text-sm font-light leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               </motion.div>
             ))}

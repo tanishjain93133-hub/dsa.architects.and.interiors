@@ -6,14 +6,15 @@ import { SafeImage } from './SafeImage';
 
 const testimonials = [
   {
-    name: "C.A Chetas Patel",
-    role: "Ahmedabad",
+    name: "Mr. Chetas Patel",
+    role: "Chartered Accountant",
     content: "Working with DSA was a smooth and professional experience from start to finish. The team understood our vision perfectly and transformed our home into a modern, elegant, and comfortable living space. Their attention to detail, material selection, and execution quality truly exceeded our expectations.",
     rating: 4,
     image: "https://lh3.googleusercontent.com/d/1m1Di2ATc7FCF1xlCB2HHy9GTa7spClb5",
     projectName: "CP House",
     projectId: "res-dsa-07",
-    videoLink: "https://youtube.com/shorts/4Ym1Dd2zYyo?si=nNcHTo8k2x_HnIuI"
+    videoLink: "https://youtu.be/RShwYG0Znao?si=SgVgDsSz6Eyzr0oD",
+    reviewPath: "/cp-house-review"
   },
   {
     name: "Mr Chinten Bhai",
@@ -22,17 +23,58 @@ const testimonials = [
     rating: 4.5,
     image: "https://lh3.googleusercontent.com/d/16PrfPpHke1l4A_1xsvbVsDIBVI-CqQFh",
     projectName: "A & A Wealth",
-    projectId: "comm-dsa-04"
+    projectId: "comm-dsa-04",
+    videoLink: "https://youtu.be/2ZEw3Ne2YQI?si=6eOsFa8B42EM9kPu",
+    reviewPath: "/aa-wealth-review"
   },
   {
     name: "Mr. Parth Shah",
     role: "Anchor",
-    content: "When we first met, we had no idea how the house would turn out or how everything would be planned. But Dhwanish Shah transformed our home beyond our expectations. The entire process felt smooth and budget-friendly, and the final result looked exactly the way we had imagined. Seeing our dream home come to life so beautifully was truly satisfying.",
+    content: "From our very first meeting, we had no clear idea how the house would be planned or designed. But Dhwanish Shah transformed our home beyond our expectations. The entire process felt smooth and budget-friendly, and the final result looked exactly the way we had imagined. Seeing our dream home come to life so beautifully was truly satisfying.",
     rating: 4.8,
     image: "https://lh3.googleusercontent.com/d/12DLBtHG8UYHWhfPkPKE19bL1GF2tJDHt",
     projectName: "Subtle Sanctuary",
     projectId: "res-dsa-01",
-    videoLink: "https://youtube.com/shorts/k-pZipf1kpM?si=2eVIdUJCAZShFEUL"
+    videoLink: "https://youtu.be/gJnjnILgxAY?si=Qh0cgFrRHKIN5S5f",
+    reviewPath: "/parth-shah-review"
+  }
+];
+
+const moreTestimonials = [
+  {
+    name: "Mr. Jainam Bhai",
+    role: "Ahmedabad",
+    content: "Initially, we had many doubts about how the home would turn out, but the 3D designs gave us complete clarity and confidence. Every detail was executed perfectly, and the final home looked exactly as we imagined. DSA truly understood our vision and transformed our space beautifully.",
+    rating: 4.9,
+    image: "https://lh3.googleusercontent.com/d/1pHtnhAeMf_LnI_bgzKBP9j9Uo-zqmHlG",
+    projectName: "DHS House",
+    projectId: "res-dsa-06",
+    videoLink: "https://youtu.be/wE6hgUvp0g4?si=kmE1lMVDzxxImoeY",
+    reviewPath: "/js-house-review"
+  },
+  {
+    name: "Mr. Shashan Bhai",
+    role: "Ahmedabad",
+    content: "We wanted a home that felt warm, comfortable, and exactly the way we imagined. What we loved most about DSA was the transparency throughout the process — from material selection to final execution, everything was handled honestly and professionally. The final result looked exactly like our vision.",
+    rating: 5,
+    image: "https://lh3.googleusercontent.com/d/1jYcOoT-ACzACodGSQwgxSJz1no6_ISWG",
+    projectName: "Anchor House",
+    projectId: "res-dsa-08",
+    videoLink: "https://youtu.be/OONMZxcLYus?si=KagpkB4PpsW0uqzT",
+    reviewPath: "/anchor-house",
+    style: { objectPosition: "center 65%" }
+  },
+  {
+    name: "Mr. Jayesh Patel",
+    role: "Director, JD Group",
+    content: "We love our newly designed offices at JD Office. The warm lighting and sophisticated wood detailing have turned it into an elegant corporate space for our team.",
+    rating: 4.7,
+    image: "https://lh3.googleusercontent.com/d/1Y43Nu1oD9H8ibrjbsNX1Dfu6prWNesM4",
+    projectName: "JD Office",
+    projectId: "comm-dsa-02",
+    videoLink: "https://youtu.be/PClXJVyL4sE?si=UB90B00Pgcj8Qpj1",
+    reviewPath: "https://youtu.be/PClXJVyL4sE?si=UB90B00Pgcj8Qpj1",
+    disableImageLink: true
   }
 ];
 
@@ -66,7 +108,7 @@ export const Testimonials: React.FC = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-none mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -78,88 +120,134 @@ export const Testimonials: React.FC = () => {
               className="group relative"
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-cyan/20 to-electric-purple/20 rounded-[2.5rem] blur opacity-0 group-hover:opacity-100 transition duration-500" />
-              <div className="relative glass p-10 rounded-[2.5rem] border border-white/5 bg-black/40 backdrop-blur-xl h-full flex flex-col items-center text-center">
-                <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-neon-cyan/50 transition-all duration-500 mb-6 flex-shrink-0 relative overflow-hidden group/img">
-                  <SafeImage 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover object-center"
-                    size="small"
-                  />
-                  {/* Floating Clickable Link Area inside Image */}
-                  {testimonial.videoLink && (
+              <div className="relative glass p-8 sm:p-12 lg:p-10 xl:p-12 rounded-[2.5rem] border border-white/5 bg-black/40 backdrop-blur-xl h-auto lg:h-[800px] flex flex-col justify-between items-center text-center group-hover:border-neon-cyan/25 transition-all duration-500">
+                {/* Top Section */}
+                <div className="flex flex-col items-center w-full">
+                  <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-neon-cyan/50 transition-all duration-500 mb-8 flex-shrink-0 relative overflow-hidden group/img">
+                    <SafeImage 
+                      src={testimonial.image} 
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover object-center"
+                      size="small"
+                      style={(testimonial as any).style}
+                    />
+                    {/* Floating Clickable Link Area inside Image */}
+                    {testimonial.videoLink && !(testimonial as any).disableImageLink && (
+                      <a 
+                        href={testimonial.videoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute inset-0 z-20 cursor-pointer"
+                      />
+                    )}
+                  </div>
+
+                  <div className="flex gap-1.5 mb-10">
+                    {[...Array(5)].map((_, i) => {
+                      const isFull = i < Math.floor(testimonial.rating);
+                      const isHalf = i === Math.floor(testimonial.rating) && testimonial.rating % 1 > 0;
+                      
+                      if (isFull) {
+                        return <Star key={i} className="w-[18px] h-[18px] fill-yellow-400 text-yellow-400" />;
+                      }
+                      if (isHalf) {
+                        return (
+                          <div key={i} className="relative w-[18px] h-[18px]">
+                            <Star className="absolute inset-0 w-[18px] h-[18px] text-white/20" />
+                            <div className="absolute inset-0 w-[50%] overflow-hidden">
+                              <Star className="w-[18px] h-[18px] fill-yellow-400 text-yellow-400" />
+                            </div>
+                          </div>
+                        );
+                      }
+                      return <Star key={i} className="w-[18px] h-[18px] text-white/20" />;
+                    })}
+                  </div>
+                  
+                  {/* Fixed-height testimonial content block to absorb varying length of text */}
+                  <div className="h-auto lg:h-52 flex items-center justify-center w-full mb-10">
+                    <p className="text-white/80 text-sm md:text-[16px] leading-[1.8] font-light italic max-w-[270px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[260px] xl:max-w-[295px] mx-auto overflow-y-auto">
+                      "{testimonial.content}"
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom Section */}
+                <div className="flex flex-col items-center w-full mt-auto">
+                  {/* Project Button */}
+                  <Link to={`/project/${testimonial.projectId}`} className="mb-5">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-52 h-12 rounded-full bg-white/5 border border-white/10 hover:border-neon-cyan/50 hover:bg-white/10 transition-all duration-300 flex items-center justify-center group/btn cursor-pointer"
+                    >
+                      <span className="text-white/70 text-[10px] uppercase tracking-[0.2em] font-bold group-hover/btn:text-white transition-colors">
+                        {testimonial.projectName}
+                      </span>
+                    </motion.button>
+                  </Link>
+
+                  {testimonial.reviewPath?.startsWith('http') ? (
                     <a 
-                      href={testimonial.videoLink}
+                      href={testimonial.reviewPath} 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute inset-0 z-20 cursor-pointer"
-                    />
+                      className="mb-14 block"
+                    >
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="w-52 h-12 rounded-full bg-[#FF0000] hover:bg-[#CC0000] text-white flex items-center justify-center gap-2 transition-all duration-300 shadow-lg cursor-pointer"
+                      >
+                        <div className="w-3 h-3 bg-white flex items-center justify-center" style={{ clipPath: 'polygon(20% 0%, 20% 100%, 100% 50%)' }} />
+                        <span className="text-[10px] uppercase tracking-widest font-bold">
+                          VIEW
+                        </span>
+                      </motion.button>
+                    </a>
+                  ) : (
+                    <Link 
+                      to={testimonial.reviewPath || `/project/${testimonial.projectId}`} 
+                      target={testimonial.reviewPath ? "_blank" : undefined}
+                      className="mb-14"
+                    >
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="w-52 h-12 rounded-full bg-[#FF0000] hover:bg-[#CC0000] text-white flex items-center justify-center gap-2 transition-all duration-300 shadow-lg cursor-pointer"
+                      >
+                        <div className="w-3 h-3 bg-white flex items-center justify-center" style={{ clipPath: 'polygon(20% 0%, 20% 100%, 100% 50%)' }} />
+                        <span className="text-[10px] uppercase tracking-widest font-bold">
+                          VIEW
+                        </span>
+                      </motion.button>
+                    </Link>
                   )}
-                </div>
 
-                <div className="flex gap-0.5 mb-6">
-                  {[...Array(5)].map((_, i) => {
-                    const isFull = i < Math.floor(testimonial.rating);
-                    const isHalf = i === Math.floor(testimonial.rating) && testimonial.rating % 1 > 0;
-                    
-                    if (isFull) {
-                      return <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />;
-                    }
-                    if (isHalf) {
-                      return (
-                        <div key={i} className="relative w-4 h-4">
-                          <Star className="absolute inset-0 w-4 h-4 text-white/20" />
-                          <div className="absolute inset-0 w-[50%] overflow-hidden">
-                            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          </div>
-                        </div>
-                      );
-                    }
-                    return <Star key={i} className="w-4 h-4 text-white/20" />;
-                  })}
-                </div>
-                
-                <p className="text-white/80 text-lg leading-relaxed mb-8 font-light italic">
-                  "{testimonial.content}"
-                </p>
-
-                {/* Project Button */}
-                <Link to={`/project/${testimonial.projectId}`} className="mb-4">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-52 h-12 rounded-full bg-white/5 border border-white/10 hover:border-neon-cyan/50 hover:bg-white/10 transition-all duration-300 flex items-center justify-center group/btn"
-                  >
-                    <span className="text-white/70 text-[10px] uppercase tracking-[0.2em] font-bold group-hover/btn:text-white transition-colors">
-                      {testimonial.projectName}
-                    </span>
-                  </motion.button>
-                </Link>
-
-                <Link 
-                  to={testimonial.projectName === "CP House" ? "/cp-house-review" : testimonial.projectName === "A & A Wealth" ? "/aa-wealth-review" : (testimonial.projectName === "Subtle Sanctuary" || testimonial.projectName === "SPATIAL HARMONY") ? "/parth-shah-review" : `/project/${testimonial.projectId}`} 
-                  target={(testimonial.projectName === "CP House" || testimonial.projectName === "A & A Wealth" || testimonial.projectName === "Subtle Sanctuary" || testimonial.projectName === "SPATIAL HARMONY") ? "_blank" : undefined}
-                  className="mb-10"
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-52 h-12 rounded-full bg-[#FF0000] hover:bg-[#CC0000] text-white flex items-center justify-center gap-2 transition-all duration-300 shadow-lg"
-                  >
-                    <div className="w-3 h-3 bg-white flex items-center justify-center" style={{ clipPath: 'polygon(20% 0%, 20% 100%, 100% 50%)' }} />
-                    <span className="text-[10px] uppercase tracking-widest font-bold">
-                      VIEW
-                    </span>
-                  </motion.button>
-                </Link>
-
-                <div className="mt-auto">
-                  <h4 className="text-white font-bold text-xl tracking-tight">{testimonial.name}</h4>
-                  <p className="text-white/40 text-xs uppercase tracking-[0.2em] mt-1">{testimonial.role}</p>
+                  <div className="h-16 flex flex-col justify-center">
+                    <h4 className="text-white font-bold text-xl tracking-tight leading-tight mb-2">{testimonial.name}</h4>
+                    <p className="text-white/40 text-xs uppercase tracking-[0.2em]">{testimonial.role}</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* More Testimonials Button */}
+        <div className="flex justify-center mt-16">
+          <Link to="/testimonials">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-10 py-5 h-14 rounded-full bg-white/5 border border-white/10 hover:border-neon-cyan/50 hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-black/40 group cursor-pointer"
+            >
+              <span className="text-white text-xs uppercase tracking-[0.2em] font-bold group-hover:text-neon-cyan transition-colors">
+                More Testimonials
+              </span>
+              <ChevronRight size={16} className="text-white/60 group-hover:text-neon-cyan group-hover:translate-x-1 transition-all" />
+            </motion.button>
+          </Link>
         </div>
       </div>
     </section>

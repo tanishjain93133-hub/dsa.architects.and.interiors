@@ -6,40 +6,30 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SafeImage } from '../components/SafeImage';
 
-const CP_HOUSE_REVIEW_DATA = [
+const SHELA_HOUSE_REVIEW_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1mhpz_vNze-FuV7hH9ufbbI1x5Hx4-HQu', 
-    title: 'TRANSFORMATIVE', 
-    desc: 'A complete home transformation designed with elegance, comfort, and smart space planning in mind.',
-    videoLink: 'https://youtube.com/shorts/4Ym1Dd2zYyo?si=nNcHTo8k2x_HnIuI'
+    image: 'https://lh3.googleusercontent.com/d/1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki', 
+    title: 'Serene Sanctuary', 
+    desc: 'Graceful custom paneling with soft ambient glows to soothe the senses.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1QXMPG5YtO4y0kC1CKzrB_b2GUAJ5pt0Z', 
-    title: 'WELL-PLANNED', 
-    desc: 'Thoughtfully designed interiors where every detail was planned for beauty, functionality, and daily comfort.',
-    videoLink: 'https://youtube.com/shorts/78-R4XpK6eI?si=9fH5AXETthfjDN8H'
+    image: 'https://lh3.googleusercontent.com/d/1v6qalvsM3Qea36VXgliizpmmhqogNXId', 
+    title: 'Timeless Detailing', 
+    desc: 'Uncompromising attention to linear alignment and luxury materials.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1lD0CEuLCr-nI2BGcaRcvl_X0-Z47qZSU', 
-    title: 'VISION TO REALITY', 
-    desc: 'Turning creative concepts into a beautifully crafted living experience with precision and clarity.',
-    videoLink: 'https://youtube.com/shorts/SHspUt_74-I?si=jAP3UZAye1PMoFcJ'
+    image: 'https://lh3.googleusercontent.com/d/1FpP771cL8vy2eMZZwTwtBGFve-Ip_sGU', 
+    title: 'Tactile Warmth', 
+    desc: 'A composition of natural oak, textured fabrics, and subtle lighting accents.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1btD6mutBhXw9Nbv1CmQ7P6pC4zHOUxtj', 
-    title: 'BALANCED AESTHETICS', 
-    desc: 'A perfect balance of modern luxury, warm ambiance, and practical interior solutions.',
-    videoLink: 'https://youtube.com/shorts/Al7pwYM4xJk?si=TSbKjw2_hIJ_uy5k'
-  },
-  { 
-    image: 'https://lh3.googleusercontent.com/d/1Bj5scyAh-CBR_weHmdjcECgjcmhTmFk-', 
-    title: 'FAMILY APPROVED', 
-    desc: 'A warm and elegant home designed to make every family member feel comfortable, connected, and truly at home.',
-    videoLink: 'https://youtube.com/shorts/y70IIQYpufM?si=dc5F5wJCF0AZY99j'
+    image: 'https://lh3.googleusercontent.com/d/1nZrTa5mHbMUJH8AzgkUXHcvWVAyOJ5w8', 
+    title: 'Dynamic Spaces', 
+    desc: 'Spurious layout optimized to balance social gathering and intimate comfort.' 
   }
 ];
 
-export const CPHouseReviewGalleryPage: React.FC = () => {
+export const ShelaHouseReviewGalleryPage: React.FC = () => {
   return (
     <div className="bg-obsidian min-h-screen text-white">
       <Navbar />
@@ -56,10 +46,10 @@ export const CPHouseReviewGalleryPage: React.FC = () => {
             className="text-center mb-16"
           >
             <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight uppercase">
-              CP <span className="text-gradient">House</span> Review
+              Mr. Harsh <span className="text-gradient">Vardhan</span> Review
             </h1>
             <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto font-light">
-              Experience the bespoke interior journey of CP House through this exclusive review gallery.
+              Explore the premium design journey of Shela House through this exclusive review gallery.
             </p>
           </motion.div>
 
@@ -80,7 +70,7 @@ export const CPHouseReviewGalleryPage: React.FC = () => {
                 </p>
                 
                 <motion.a
-                  href="https://youtu.be/RShwYG0Znao?si=SgVgDsSz6Eyzr0oD"
+                  href="https://www.youtube.com/results?search_query=DSA+Architects+Ahmedabad+Review"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
@@ -97,7 +87,7 @@ export const CPHouseReviewGalleryPage: React.FC = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {CP_HOUSE_REVIEW_DATA.map((item, index) => (
+            {SHELA_HOUSE_REVIEW_DATA.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -106,36 +96,13 @@ export const CPHouseReviewGalleryPage: React.FC = () => {
                 className="flex flex-col"
               >
                 <div className="relative group/card mb-6">
-                  {item.videoLink ? (
-                    <a 
-                      href={item.videoLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass shadow-2xl ring-neon-cyan/0 group-hover/card:ring-4 group-hover/card:ring-neon-cyan/20 transition-all duration-500">
-                        <SafeImage
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
-                        />
-                        {/* Video Overlay Button */}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
-                          <div className="w-16 h-16 rounded-full bg-neon-cyan text-black flex items-center justify-center shadow-[0_0_30px_rgba(0,255,255,0.4)]">
-                            <div className="ml-1 w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[12px] border-l-black" />
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  ) : (
-                    <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass shadow-2xl">
-                      <SafeImage
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
-                      />
-                    </div>
-                  )}
+                  <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 glass shadow-2xl">
+                    <SafeImage
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
+                    />
+                  </div>
                 </div>
                 <div className="px-2">
                   <h3 className="text-xl font-bold text-white mb-2 tracking-tight uppercase tracking-[0.1em]">{item.title}</h3>

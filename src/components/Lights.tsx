@@ -8,25 +8,25 @@ const lightingFeatures: BentoCardData[] = [
     title: 'Precision Craftsmanship',
     label: 'Timber',
     description: 'Each light is carefully crafted from high-quality teak wood, ensuring durability, fine detailing, and a premium finish.',
-    image: 'https://lh3.googleusercontent.com/d/1-ILs6rwqAfEtUI8AflcAxY-TsXzUaoBu'
+    image: 'https://lh3.googleusercontent.com/d/1WZuVgBKDE_f97AL27KJB7K31VocjBNXN'
   },
   {
     title: 'Smart Lighting Technology',
     label: 'Adaptive',
     description: 'Our lights are designed with modern technology to provide optimal brightness and energy efficiency.',
-    image: 'https://lh3.googleusercontent.com/d/1fHnbBfD-IH9gxBz_6pQBTUsTew3ZJxK8'
+    image: 'https://lh3.googleusercontent.com/d/1ckWSpc9gT8v06ybrmigWqKoQgonLOle6'
   },
   {
     title: 'Sustainable Wood Collection',
     label: 'Premium',
     description: 'Made from responsibly sourced wood, our designs are eco-friendly and built to age gracefully.',
-    image: 'https://lh3.googleusercontent.com/d/17NYOPkg-hZDh_UzXgDnWdyJHeMqO9FPK'
+    image: 'https://lh3.googleusercontent.com/d/1qyz8oKL6ldUULHlZs21mjWCHrNIi39wU'
   },
   {
     title: 'Atmosphere & Ambience',
     label: 'Experience',
     description: '2700K warmth for a natural architectural feel that bridges nature and home.',
-    image: 'https://lh3.googleusercontent.com/d/1Nm_L8ff0v_yIPqcLYfHRXOaanzla8d49'
+    image: 'https://lh3.googleusercontent.com/d/1ytTl_Rcei72Q7IaTf51CxOGmxm404D1m'
   },
   {
     title: 'Sculptural Form',
