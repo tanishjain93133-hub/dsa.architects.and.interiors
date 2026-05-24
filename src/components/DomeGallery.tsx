@@ -58,18 +58,28 @@ function buildItems(pool: (string | { src: string; alt?: string })[], seg: numbe
     return { src: image.src || '', alt: image.alt || '' };
   });
 
-  const usedImages = Array.from({ length: totalSlots }, (_, i) => normalizedImages[i % normalizedImages.length]);
-
-  // Shuffle the usedImages to provide a more random distribution
-  for (let i = usedImages.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [usedImages[i], usedImages[j]] = [usedImages[j], usedImages[i]];
+  const usedImagesList: { src: string; alt: string }[] = [];
+  const copiesCount = Math.ceil(totalSlots / normalizedImages.length);
+  for (let g = 0; g < copiesCount; g++) {
+    const group = [...normalizedImages];
+    // Shuffle the group
+    for (let i = group.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [group[i], group[j]] = [group[j], group[i]];
+    }
+    // Avoid boundary duplicate
+    if (usedImagesList.length > 0 && group.length > 1 && group[0].src === usedImagesList[usedImagesList.length - 1].src) {
+      [group[0], group[1]] = [group[1], group[0]];
+    }
+    usedImagesList.push(...group);
   }
+
+  const finalImages = usedImagesList.slice(0, totalSlots);
 
   return coords.map((c, i) => ({
     ...c,
-    src: usedImages[i].src,
-    alt: usedImages[i].alt
+    src: finalImages[i].src,
+    alt: finalImages[i].alt
   }));
 }
 
