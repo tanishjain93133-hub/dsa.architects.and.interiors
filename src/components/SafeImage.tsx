@@ -31,7 +31,7 @@ export const SafeImage: React.FC<SafeImageProps> = ({
       url.searchParams.set('fm', 'webp');
       url.searchParams.set('q', '75');
       
-      const width = size === 'small' ? '600' : size === 'medium' ? '1200' : size === 'large' ? '2000' : '2400';
+      const width = size === 'small' ? '600' : size === 'medium' ? '1200' : '1600';
       url.searchParams.set('w', width);
       return url.toString();
     }
@@ -39,9 +39,9 @@ export const SafeImage: React.FC<SafeImageProps> = ({
     // Optimize Google Drive for previewing
     if (src.includes('lh3.googleusercontent.com/d/')) {
         const id = src.split('/').pop()?.split('?')[0];
-        // Use higher resolution for large/hero
-        const width = size === 'small' ? '400' : size === 'medium' ? '1200' : '2400';
-        return `https://lh3.googleusercontent.com/d/${id}=w${width}`;
+        // Use optimized width and force modern WebP via -rw
+        const width = size === 'small' ? '400' : size === 'medium' ? '1000' : '1600';
+        return `https://lh3.googleusercontent.com/d/${id}=w${width}-rw`;
     }
     
     return src;
@@ -65,7 +65,7 @@ export const SafeImage: React.FC<SafeImageProps> = ({
       case 1:
         return `https://lh3.googleusercontent.com/u/0/d/${id}`;
       case 2:
-        return `https://drive.google.com/thumbnail?id=${id}&sz=w2000`;
+        return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
       case 3:
         return `https://drive.google.com/uc?id=${id}&export=view`;
       default:

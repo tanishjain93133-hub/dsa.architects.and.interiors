@@ -4,10 +4,14 @@ export const NebulaBackground: React.FC = memo(() => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Disable heavy canvas loops on mobile/tablet devices for maximum scroll performance
+    const isMobileDevice = window.innerWidth < 768 || (typeof navigator !== 'undefined' && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent));
+    if (isMobileDevice) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d', { alpha: false }); // Performance optimization
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -26,9 +30,9 @@ export const NebulaBackground: React.FC = memo(() => {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
         this.size = Math.random() * 1.5 + 0.2;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
-        this.opacity = Math.random() * 0.5 + 0.1;
+        this.speedX = (Math.random() - 0.5) * 0.2;
+        this.speedY = (Math.random() - 0.5) * 0.2;
+        this.opacity = Math.random() * 0.4 + 0.1;
         
         const colors = ['#BF5AF2', '#007AFF', '#5E5CE6', '#34C759', '#FFFFFF'];
         this.color = colors[Math.floor(Math.random() * colors.length)];
@@ -61,7 +65,8 @@ export const NebulaBackground: React.FC = memo(() => {
       canvas.height = height;
       
       particles = [];
-      const particleCount = Math.floor((width * height) / 45000);
+      // Half particle density on desktop for maximum efficiency
+      const particleCount = Math.floor((width * height) / 90000);
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle(width, height));
       }
@@ -70,16 +75,6 @@ export const NebulaBackground: React.FC = memo(() => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Add a subtle gradient background
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, canvas.width
-      );
-      gradient.addColorStop(0, '#0B0B0B');
-      gradient.addColorStop(1, '#000000');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       particles.forEach(particle => {
         particle.update(canvas.width, canvas.height);
         particle.draw(ctx);
@@ -104,10 +99,16 @@ export const NebulaBackground: React.FC = memo(() => {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 -z-10 pointer-events-none opacity-50"
-      style={{ width: '100%', height: '100%' }}
-    />
+    <div 
+      className="fixed inset-0 -z-10 pointer-events-none bg-black"
+      style={{
+        background: 'radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000000 100%)'
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 pointer-events-none opacity-40 w-full h-full hidden md:block"
+      />
+    </div>
   );
 });

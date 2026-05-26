@@ -36,6 +36,26 @@ const getDataNumber = (el: HTMLElement, name: string, fallback: number) => {
   return Number.isFinite(n) ? n : fallback;
 };
 
+const getOptimizedUrl = (url: string) => {
+  if (!url) return '';
+  if (url.includes('lh3.googleusercontent.com/d/')) {
+    const id = url.split('/').pop()?.split('?')[0];
+    return `https://lh3.googleusercontent.com/d/${id}=w600-rw`;
+  }
+  if (url.includes('unsplash.com')) {
+    try {
+      const u = new URL(url);
+      u.searchParams.set('fm', 'webp');
+      u.searchParams.set('q', '70');
+      u.searchParams.set('w', '600');
+      return u.toString();
+    } catch (e) {
+      return url;
+    }
+  }
+  return url;
+};
+
 function buildItems(pool: (string | { src: string; alt?: string })[], seg: number) {
   const xCols = Array.from({ length: seg }, (_, i) => -37 + i * 2);
   const evenYs = [-4, -2, 0, 2, 4];
@@ -634,7 +654,7 @@ export default function DomeGallery({
                   onClick={onTileClick}
                   onPointerUp={onTilePointerUp}
                 >
-                  <img src={it.src} draggable={false} alt={it.alt} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+                  <img src={getOptimizedUrl(it.src)} draggable={false} alt={it.alt} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
                 </div>
               </div>
             ))}
