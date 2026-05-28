@@ -65,15 +65,15 @@ const moreTestimonials = [
     style: { objectPosition: "center 65%" }
   },
   {
-    name: "Mr. Jayesh Patel",
-    role: "Director, JD Group",
-    content: "We love our newly designed offices at JD Office. The warm lighting and sophisticated wood detailing have turned it into an elegant corporate space for our team.",
+    name: "Mr. Japan Bhai",
+    role: "Ahmedabad",
+    content: "We truly love our newly designed office at Shlip Aaron. The DSA team completed a 15-day project in just 7 days while keeping everything within budget. From the warm lighting to the elegant wood detailing, the final office turned out modern, premium, and beautifully designed for our team.",
     rating: 4.7,
     image: "https://lh3.googleusercontent.com/d/1Y43Nu1oD9H8ibrjbsNX1Dfu6prWNesM4",
-    projectName: "JD Office",
-    projectId: "comm-dsa-02",
-    videoLink: "https://youtu.be/PClXJVyL4sE?si=UB90B00Pgcj8Qpj1",
-    reviewPath: "https://youtu.be/PClXJVyL4sE?si=UB90B00Pgcj8Qpj1",
+    projectName: "Shlip Aaron",
+    projectId: "comm-dsa-07",
+    videoLink: "",
+    reviewPath: "/project/comm-dsa-07",
     disableImageLink: true
   }
 ];
