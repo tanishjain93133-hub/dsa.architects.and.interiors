@@ -245,6 +245,28 @@ const SHLIP_AARON_GALLERY = [
   { image: 'https://lh3.googleusercontent.com/d/12vmmKtDJg-KxJPSbW3wTTg8gOxsrMFwa', text: 'Shlip Aaron 09' },
 ];
 
+const SERENE_SANCTUARY_GALLERY = [
+  { image: 'https://lh3.googleusercontent.com/d/1QsttHHUU30BpKnsi4q0B7PflkFSSS-tC', text: 'Serene Sanctuary 09' },
+  { image: 'https://lh3.googleusercontent.com/d/1mTB7CQQg8MkgoiS-Qa7h6o_tCfVlFEmf', text: 'Serene Sanctuary 05' },
+  { image: 'https://lh3.googleusercontent.com/d/17jjex-QSnNd4raemP2w1lGnXyqZVXxH2', text: 'Serene Sanctuary 04' },
+  { image: 'https://lh3.googleusercontent.com/d/1T8U7brn4ddyC2AvlBXLJe_Q6lR9r8gEB', text: 'Serene Sanctuary 06' },
+  { image: 'https://lh3.googleusercontent.com/d/1F3pCKJ3AoRscrUBLCp7lq3CuVY6H9qgW', text: 'Serene Sanctuary 16' },
+  { image: 'https://lh3.googleusercontent.com/d/1-z9QVSJHey4ihF6Pwnj26-KEnj-wKPUV', text: 'Serene Sanctuary 10' },
+  { image: 'https://lh3.googleusercontent.com/d/1ae_z_ULFQn1kTQfpqTa3Vt-_7WILK8IE', text: 'Serene Sanctuary 02' },
+  { image: 'https://lh3.googleusercontent.com/d/1ufZRa6G33BpKrYEXXOKOTHq-vQ5xN6PR', text: 'Serene Sanctuary 07' },
+  { image: 'https://lh3.googleusercontent.com/d/1NoW7gqqjOV3Dz2aODL-nmgCU9FcPWcHy', text: 'Serene Sanctuary 19' },
+  { image: 'https://lh3.googleusercontent.com/d/1kB8bKqSplggAku-hV9hXCH1--RAFnbxE', text: 'Serene Sanctuary 08' },
+  { image: 'https://lh3.googleusercontent.com/d/1sEw3qv5oIFw8YwQtmPo5Tn6BB464yj1g', text: 'Serene Sanctuary 03' },
+  { image: 'https://lh3.googleusercontent.com/d/1IxkAoyKkM9OVsFTMjLW8KPJOrCFBP9JC', text: 'Serene Sanctuary 18' },
+  { image: 'https://lh3.googleusercontent.com/d/1TBIGzQIPLtYWcfJ16sodp_0ZSuc95Zqj', text: 'Serene Sanctuary 13' },
+  { image: 'https://lh3.googleusercontent.com/d/1xa_ABORBe2sCrNePoc21R677hot-dV_a', text: 'Serene Sanctuary 11' },
+  { image: 'https://lh3.googleusercontent.com/d/1NwhwZ0nGjvRJsBdTN4cdislcgS9PApia', text: 'Serene Sanctuary 14' },
+  { image: 'https://lh3.googleusercontent.com/d/1tQ60KEteymlGcigB7chyC2Kx2_SsxPVY', text: 'Serene Sanctuary 12' },
+  { image: 'https://lh3.googleusercontent.com/d/1IG8nb4fwVTieQAbDhM1y_K1QHyDY7Dme', text: 'Serene Sanctuary 17' },
+  { image: 'https://lh3.googleusercontent.com/d/1-VJp1Hn1NrhjIisZ6Y8WI23s0HPvrdEh', text: 'Serene Sanctuary 01' },
+  { image: 'https://lh3.googleusercontent.com/d/1fRywdtBR8KPW3elUsh2gVq1DDGUKaCZO', text: 'Serene Sanctuary 15' },
+];
+
 const PROJECTS_DATA = [
   {
     id: 'res-dsa-01',
@@ -273,6 +295,20 @@ const PROJECTS_DATA = [
       { label: 'Status', value: 'Completed', icon: <ExternalLink size={16} /> },
     ],
     galleryItems: THE_WHITE_HOUSE_GALLERY
+  },
+  {
+    id: 'res-dsa-10',
+    title: 'Serene Sanctuary',
+    subtitle: 'Luxe Residential Living',
+    description: 'Serene Sanctuary is an elegant luxury residential interior showcasing magnificent spatial design, sophisticated bespoke fittings, warm lighting, and a modern minimal layout that provides the ultimate cozy and premium comfort.',
+    fullStory: 'Serene Sanctuary is designed to offer the ultimate cozy and premium comfort. Every corner is meticulously crafted to integrate warm ambient lighting with elegant material structures, premium wood bespoke accents, and highly functional layouts optimized for luxury everyday living. It represents a classic architectural balance between high-end modern sophistication and serene physical tranquility.',
+    metadata: [
+      { label: 'Location', value: 'Surat, Gujarat', icon: <MapPin size={16} /> },
+      { label: 'Year', value: '2024', icon: <Calendar size={16} /> },
+      { label: 'Area', value: '11,500 sq.ft', icon: <Layers size={16} /> },
+      { label: 'Status', value: 'Completed', icon: <ExternalLink size={16} /> },
+    ],
+    galleryItems: SERENE_SANCTUARY_GALLERY
   },
   {
     id: 'comm-dsa-01',

@@ -24,6 +24,13 @@ const PROJECTS_IMAGES = [
     description: 'The White House is a modern architectural masterpiece featuring clean lines, minimal aesthetics, and functional design tailored for luxury living.'
   },
   {
+    id: 'res-dsa-10',
+    src: 'https://lh3.googleusercontent.com/d/1-VJp1Hn1NrhjIisZ6Y8WI23s0HPvrdEh',
+    alt: 'Serene Sanctuary',
+    category: 'Residential',
+    description: 'Serene Sanctuary is an elegant luxury residential interior showcasing magnificent spatial design, sophisticated bespoke fittings, warm lighting, and a modern minimal layout that provides the ultimate cozy and premium comfort.'
+  },
+  {
     id: 'comm-dsa-06',
     src: 'https://lh3.googleusercontent.com/d/1ZfjIAL296LD5uhCuifOGUUhAAFEkFWoB',
     alt: 'iFlair',
