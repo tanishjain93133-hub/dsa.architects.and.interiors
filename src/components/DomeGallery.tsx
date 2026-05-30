@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useCallback } from 'react';
+import React, { useEffect, useMemo, useRef, useCallback, useState } from 'react';
 import { useGesture } from '@use-gesture/react';
 import './DomeGallery.css';
 
@@ -36,24 +36,118 @@ const getDataNumber = (el: HTMLElement, name: string, fallback: number) => {
   return Number.isFinite(n) ? n : fallback;
 };
 
-const getOptimizedUrl = (url: string) => {
-  if (!url) return '';
-  if (url.includes('lh3.googleusercontent.com/d/')) {
-    const id = url.split('/').pop()?.split('?')[0];
-    return `https://lh3.googleusercontent.com/d/${id}=w600-rw`;
-  }
-  if (url.includes('unsplash.com')) {
-    try {
-      const u = new URL(url);
-      u.searchParams.set('fm', 'webp');
-      u.searchParams.set('q', '70');
-      u.searchParams.set('w', '600');
-      return u.toString();
-    } catch (e) {
-      return url;
+const ARCHITECTURAL_FALLBACKS = [
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1000&auto=format&fit=crop'
+];
+
+const DomeImage: React.FC<{ src: string; alt?: string; className?: string }> = ({ src, alt, className }) => {
+  const fallbackSrc = ARCHITECTURAL_FALLBACKS[0];
+
+  const getInitialUrl = (originalUrl: string) => {
+    if (!originalUrl) return fallbackSrc;
+    if (originalUrl.includes('lh3.googleusercontent.com/d/')) {
+      const id = originalUrl.split('/').pop()?.split('?')[0];
+      return `https://lh3.googleusercontent.com/d/${id}=w600-rw`;
     }
+    if (originalUrl.includes('unsplash.com')) {
+      try {
+        const u = new URL(originalUrl);
+        u.searchParams.set('fm', 'webp');
+        u.searchParams.set('q', '70');
+        u.searchParams.set('w', '600');
+        return u.toString();
+      } catch (e) {
+        return originalUrl;
+      }
+    }
+    return originalUrl;
+  };
+
+  const [currentSrc, setCurrentSrc] = useState(() => getInitialUrl(src || ''));
+  const [lastSrc, setLastSrc] = useState(src);
+  const [retryCount, setRetryCount] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Sync state if src changes
+  if (src !== lastSrc) {
+    setLastSrc(src);
+    setCurrentSrc(getInitialUrl(src || ''));
+    setRetryCount(0);
+    setIsLoaded(false);
   }
-  return url;
+
+  const getStableDriveUrl = (originalUrl: string, attempt: number) => {
+    if (!originalUrl) return fallbackSrc;
+    if (originalUrl.includes('unsplash.com')) return fallbackSrc;
+    if (!originalUrl.includes('lh3.googleusercontent.com/d/') && 
+        !originalUrl.includes('lh3.googleusercontent.com/u/0/d/')) return originalUrl;
+
+    const id = originalUrl.split('/').pop()?.split('?')[0];
+    if (!id) return originalUrl;
+
+    switch (attempt) {
+      case 1:
+        // Attempt 1: Remove "-rw" parameter for older clients
+        return `https://lh3.googleusercontent.com/d/${id}=w600`;
+      case 2:
+        return `https://drive.google.com/thumbnail?id=${id}&sz=w600`;
+      case 3:
+        return `https://drive.google.com/uc?id=${id}&export=view`;
+      default:
+        return fallbackSrc;
+    }
+  };
+
+  const handleError = () => {
+    if (retryCount < 3) {
+      const nextAttempt = retryCount + 1;
+      const nextSrc = getStableDriveUrl(src || '', nextAttempt);
+      setRetryCount(nextAttempt);
+      setCurrentSrc(nextSrc);
+    } else {
+      setCurrentSrc(fallbackSrc);
+    }
+  };
+
+  const handleLoad = () => {
+    const img = imgRef.current;
+    if (img && img.naturalWidth > 0 && img.naturalWidth < 10) {
+      handleError();
+      return;
+    }
+    setIsLoaded(true);
+  };
+
+  // Immediate assessment of cached items
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    if (img.complete) {
+      if (img.naturalWidth >= 10) {
+        setIsLoaded(true);
+      } else {
+        handleError();
+      }
+    }
+  }, [currentSrc]);
+
+  return (
+    <img
+      ref={imgRef}
+      src={currentSrc}
+      draggable={false}
+      alt={alt}
+      onLoad={handleLoad}
+      onError={handleError}
+      loading="lazy"
+      decoding="async"
+      referrerPolicy="no-referrer"
+      className={`${className} transition-all duration-700 ${!isLoaded ? "opacity-0 scale-105 blur-md" : "opacity-100 scale-100 blur-0"}`}
+    />
+  );
 };
 
 function buildItems(pool: (string | { src: string; alt?: string })[], seg: number) {
@@ -654,7 +748,7 @@ export default function DomeGallery({
                   onClick={onTileClick}
                   onPointerUp={onTilePointerUp}
                 >
-                  <img src={getOptimizedUrl(it.src)} draggable={false} alt={it.alt} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+                  <DomeImage src={it.src} alt={it.alt || ''} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
                 </div>
               </div>
             ))}
