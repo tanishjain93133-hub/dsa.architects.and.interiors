@@ -25,7 +25,7 @@ const PROJECTS_IMAGES = [
   },
   {
     id: 'res-dsa-10',
-    src: 'https://lh3.googleusercontent.com/d/1-VJp1Hn1NrhjIisZ6Y8WI23s0HPvrdEh',
+    src: 'https://lh3.googleusercontent.com/d/1T8U7brn4ddyC2AvlBXLJe_Q6lR9r8gEB',
     alt: 'Serene Sanctuary',
     category: 'Residential',
     description: 'Serene Sanctuary is an elegant luxury residential interior showcasing magnificent spatial design, sophisticated bespoke fittings, warm lighting, and a modern minimal layout that provides the ultimate cozy and premium comfort.'
@@ -414,6 +414,12 @@ export const ProjectsPage: React.FC = () => {
                 'https://lh3.googleusercontent.com/d/1i2Yqp-lSj_-Jjv7UUTPNFJDn0OhmvOr2',
                 'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor',
                 'https://lh3.googleusercontent.com/d/1x4dXgc6hRFY3orI353oZn6N5aqjmkWRt',
+                'https://lh3.googleusercontent.com/d/1-z9QVSJHey4ihF6Pwnj26-KEnj-wKPUV',
+                'https://lh3.googleusercontent.com/d/13nXjHCUV7Xwp08vBD9hlm7_OuAj5ojeA',
+                'https://lh3.googleusercontent.com/d/16DTIb9D_Uc7F_EZNe2bUHR8Ho1yNrEia',
+                'https://lh3.googleusercontent.com/d/18SLksv2YuecX-2m5uf_0RjLZhSrBaF7P',
+                'https://lh3.googleusercontent.com/d/1KVLAxgv8m7HbwmUkQyjXAR1mYoWGRZyP',
+                'https://lh3.googleusercontent.com/d/1fRywdtBR8KPW3elUsh2gVq1DDGUKaCZO',
               ]}
               fit={0.8}
               fitBasis="height"

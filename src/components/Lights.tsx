@@ -116,25 +116,14 @@ export const Lights: React.FC = () => {
                 <div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-400/15 via-transparent to-black/30 mix-blend-color-dodge transition-opacity duration-500 group-hover:opacity-95" />
                 
                 {/* High-quality optimized image that preserves 100% of the natural aspect ratio */}
-                <img
+                <SafeImage
                   src="https://lh3.googleusercontent.com/d/14vWYwDCMoQEcmeXOm2ggKXDszMM9EBL_"
                   alt="The Timber Lights Premium Showcase"
                   loading="lazy"
                   decoding="async"
-                  referrerPolicy="no-referrer"
-                  onLoad={() => setIsImageLoaded(true)}
-                  className={`w-full h-auto object-contain rounded-[20px] select-none block transition-all duration-[1.2s] ease-[0.16,1,0.3,1] ${
-                    isImageLoaded ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-lg scale-[0.98]'
-                  } group-hover:scale-[1.01]`}
-                  onError={(e) => {
-                    const id = "14vWYwDCMoQEcmeXOm2ggKXDszMM9EBL_";
-                    const current = e.currentTarget.src;
-                    if (current.includes('lh3.googleusercontent.com')) {
-                      e.currentTarget.src = `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
-                    } else if (current.includes('drive.google.com/thumbnail')) {
-                      e.currentTarget.src = `https://drive.google.com/uc?id=${id}&export=view`;
-                    }
-                  }}
+                  size="large"
+                  objectFit="contain"
+                  className="w-full h-auto rounded-[20px] select-none block group-hover:scale-[1.01] transition-transform duration-[1.2s]"
                 />
 
                 {/* Ambient Warm Golden Overlay Dust & Dust Particles */}

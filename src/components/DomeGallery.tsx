@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useCallback, useState } from 'react';
 import { useGesture } from '@use-gesture/react';
+import { extractDriveId } from './SafeImage';
 import './DomeGallery.css';
 
 const DEFAULT_IMAGES = [
@@ -42,97 +43,159 @@ const ARCHITECTURAL_FALLBACKS = [
   'https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1000&auto=format&fit=crop'
 ];
 
-const DomeImage: React.FC<{ src: string; alt?: string; className?: string }> = ({ src, alt, className }) => {
+const LOADED_HIGH_RES_CACHE = new Set<string>();
+
+const DomeImageComponent: React.FC<{ src: string; alt?: string; className?: string }> = ({ src, alt, className }) => {
   const fallbackSrc = ARCHITECTURAL_FALLBACKS[0];
 
-  const getInitialUrl = (originalUrl: string) => {
+  const getLowResUrl = (originalUrl: string) => {
     if (!originalUrl) return fallbackSrc;
-    if (originalUrl.includes('lh3.googleusercontent.com/d/')) {
-      const id = originalUrl.split('/').pop()?.split('?')[0];
-      return `https://lh3.googleusercontent.com/d/${id}=w600-rw`;
-    }
     if (originalUrl.includes('unsplash.com')) {
       try {
         const u = new URL(originalUrl);
         u.searchParams.set('fm', 'webp');
-        u.searchParams.set('q', '70');
-        u.searchParams.set('w', '600');
+        u.searchParams.set('q', '35');
+        u.searchParams.set('w', '60');
         return u.toString();
       } catch (e) {
         return originalUrl;
       }
     }
+    const driveId = extractDriveId(originalUrl);
+    if (driveId) {
+      return `https://lh3.googleusercontent.com/d/${driveId}=w60-rw`;
+    }
     return originalUrl;
   };
 
-  const [currentSrc, setCurrentSrc] = useState(() => getInitialUrl(src || ''));
-  const [lastSrc, setLastSrc] = useState(src);
+  const getHighResUrl = (originalUrl: string) => {
+    if (!originalUrl) return fallbackSrc;
+    if (originalUrl.includes('unsplash.com')) {
+      try {
+        const u = new URL(originalUrl);
+        u.searchParams.set('fm', 'webp');
+        u.searchParams.set('q', '70');
+        u.searchParams.set('w', '180');
+        return u.toString();
+      } catch (e) {
+        return originalUrl;
+      }
+    }
+    const driveId = extractDriveId(originalUrl);
+    if (driveId) {
+      return `https://lh3.googleusercontent.com/d/${driveId}=w180-rw`;
+    }
+    return originalUrl;
+  };
+
+  const hasLoadedHighRes = src ? LOADED_HIGH_RES_CACHE.has(src) : false;
+
+  const [currentSrc, setCurrentSrc] = useState(() => {
+    if (hasLoadedHighRes) {
+      return getHighResUrl(src);
+    }
+    return getLowResUrl(src);
+  });
+  const [isHighRes, setIsHighRes] = useState(hasLoadedHighRes);
+  const [isLoaded, setIsLoaded] = useState(hasLoadedHighRes);
+  const [isVisible, setIsVisible] = useState(hasLoadedHighRes);
   const [retryCount, setRetryCount] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const imgRef = useRef<HTMLImageElement>(null);
 
   // Sync state if src changes
-  if (src !== lastSrc) {
-    setLastSrc(src);
-    setCurrentSrc(getInitialUrl(src || ''));
+  useEffect(() => {
+    const cached = src ? LOADED_HIGH_RES_CACHE.has(src) : false;
+    setIsHighRes(cached);
+    setIsLoaded(cached);
+    setIsVisible(cached);
     setRetryCount(0);
-    setIsLoaded(false);
-  }
+    setCurrentSrc(cached ? getHighResUrl(src) : getLowResUrl(src));
+  }, [src]);
 
-  const getStableDriveUrl = (originalUrl: string, attempt: number) => {
-    if (!originalUrl) return fallbackSrc;
-    if (originalUrl.includes('unsplash.com')) return fallbackSrc;
-    if (!originalUrl.includes('lh3.googleusercontent.com/d/') && 
-        !originalUrl.includes('lh3.googleusercontent.com/u/0/d/')) return originalUrl;
+  // Subscribe to 'dg-visible' event on the closest .item parent
+  useEffect(() => {
+    const imgEl = imgRef.current;
+    if (!imgEl || isVisible || !src) return;
 
-    const id = originalUrl.split('/').pop()?.split('?')[0];
-    if (!id) return originalUrl;
+    const itemEl = imgEl.closest('.item');
+    if (!itemEl) return;
 
-    switch (attempt) {
-      case 1:
-        // Attempt 1: Remove "-rw" parameter for older clients
-        return `https://lh3.googleusercontent.com/d/${id}=w600`;
-      case 2:
-        return `https://drive.google.com/thumbnail?id=${id}&sz=w600`;
-      case 3:
-        return `https://drive.google.com/uc?id=${id}&export=view`;
-      default:
-        return fallbackSrc;
-    }
-  };
-
-  const handleError = () => {
-    if (retryCount < 3) {
-      const nextAttempt = retryCount + 1;
-      const nextSrc = getStableDriveUrl(src || '', nextAttempt);
-      setRetryCount(nextAttempt);
-      setCurrentSrc(nextSrc);
-    } else {
-      setCurrentSrc(fallbackSrc);
-    }
-  };
-
-  const handleLoad = () => {
-    const img = imgRef.current;
-    if (img && img.naturalWidth > 0 && img.naturalWidth < 10) {
-      handleError();
+    if (itemEl.getAttribute('data-visible') === 'true') {
+      setIsVisible(true);
       return;
     }
+
+    const onVisible = () => {
+      setIsVisible(true);
+    };
+
+    itemEl.addEventListener('dg-visible', onVisible);
+    return () => {
+      itemEl.removeEventListener('dg-visible', onVisible);
+    };
+  }, [src, isVisible]);
+
+  // Handle progressive high-res loading in the background once visible
+  useEffect(() => {
+    if (!isVisible || isHighRes || !src) return;
+
+    const highResUrl = getHighResUrl(src);
+    const img = new Image();
+    img.referrerPolicy = 'no-referrer';
+    img.src = highResUrl;
+
+    const handleSuccess = () => {
+      LOADED_HIGH_RES_CACHE.add(src);
+      setIsHighRes(true);
+      setCurrentSrc(highResUrl);
+    };
+
+    const handleFail = () => {
+      if (retryCount < 3) {
+        const nextAttempt = retryCount + 1;
+        const driveId = extractDriveId(src);
+        if (driveId) {
+          let fallbackUrl = '';
+          if (nextAttempt === 1) {
+            fallbackUrl = `https://lh3.googleusercontent.com/d/${driveId}=w180`;
+          } else if (nextAttempt === 2) {
+            fallbackUrl = `https://drive.google.com/thumbnail?id=${driveId}&sz=w180`;
+          } else {
+            fallbackUrl = `https://drive.google.com/uc?id=${driveId}&export=view`;
+          }
+          setRetryCount(nextAttempt);
+          img.src = fallbackUrl;
+        } else {
+          setCurrentSrc(fallbackSrc);
+        }
+      } else {
+        setCurrentSrc(fallbackSrc);
+      }
+    };
+
+    img.onload = () => {
+      if (img.naturalWidth > 0 && img.naturalWidth < 10) {
+        handleFail();
+      } else {
+        handleSuccess();
+      }
+    };
+    img.onerror = handleFail;
+
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [src, isVisible, isHighRes, retryCount]);
+
+  const handleInitialLoad = () => {
     setIsLoaded(true);
   };
 
-  // Immediate assessment of cached items
-  useEffect(() => {
-    const img = imgRef.current;
-    if (!img) return;
-    if (img.complete) {
-      if (img.naturalWidth >= 10) {
-        setIsLoaded(true);
-      } else {
-        handleError();
-      }
-    }
-  }, [currentSrc]);
+  const handleInitialError = () => {
+    setIsLoaded(true); // Don't block display if low-res breaks
+  };
 
   return (
     <img
@@ -140,15 +203,23 @@ const DomeImage: React.FC<{ src: string; alt?: string; className?: string }> = (
       src={currentSrc}
       draggable={false}
       alt={alt}
-      onLoad={handleLoad}
-      onError={handleError}
+      onLoad={handleInitialLoad}
+      onError={handleInitialError}
       loading="lazy"
       decoding="async"
       referrerPolicy="no-referrer"
-      className={`${className} transition-all duration-700 ${!isLoaded ? "opacity-0 scale-105 blur-md" : "opacity-100 scale-100 blur-0"}`}
+      className={`${className} transition-all duration-500 ${
+        !isLoaded 
+          ? "opacity-0 scale-105 blur-sm" 
+          : isHighRes 
+            ? "opacity-100 scale-100 blur-0" 
+            : "opacity-80 scale-100 blur-[1px]"
+      }`}
     />
   );
 };
+
+const DomeImage = React.memo(DomeImageComponent);
 
 function buildItems(pool: (string | { src: string; alt?: string })[], seg: number) {
   const xCols = Array.from({ length: seg }, (_, i) => -37 + i * 2);
@@ -161,27 +232,55 @@ function buildItems(pool: (string | { src: string; alt?: string })[], seg: numbe
   });
 
   const totalSlots = coords.length;
-  if (pool.length === 0) {
+  if (!pool || pool.length === 0) {
     return coords.map(c => ({ ...c, src: '', alt: '' }));
   }
 
-  const normalizedImages = pool.map(image => {
+  // Automatic duplicate detection and extraction based on URL / Google Drive ID
+  const uniqueImagesMap = new Map<string, { src: string; alt: string }>();
+  pool.forEach(image => {
+    let src = '';
+    let alt = '';
     if (typeof image === 'string') {
-      return { src: image, alt: '' };
+      src = image;
+    } else if (image && typeof image === 'object') {
+      src = image.src || '';
+      alt = image.alt || '';
     }
-    return { src: image.src || '', alt: image.alt || '' };
+    if (!src) return;
+    
+    const driveId = extractDriveId(src);
+    const key = driveId ? driveId.toLowerCase() : src.trim().toLowerCase();
+    if (!uniqueImagesMap.has(key)) {
+      uniqueImagesMap.set(key, { src, alt });
+    }
   });
+  
+  const uniqueImages = Array.from(uniqueImagesMap.values());
+  const N = uniqueImages.length;
+  if (N === 0) {
+    return coords.map(c => ({ ...c, src: '', alt: '' }));
+  }
+
+  // To meet the requirement of keeping the dome fully populated and rich 
+  // without visual blank holes, we repeat the unique merged image set across all coordinates.
+  // We use a deterministic pseudo-random seed to keep the layout 100% stable across renders.
+  let seed = 987654;
+  const random = () => {
+    const x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+  };
 
   const usedImagesList: { src: string; alt: string }[] = [];
-  const copiesCount = Math.ceil(totalSlots / normalizedImages.length);
+  const copiesCount = Math.ceil(totalSlots / N);
   for (let g = 0; g < copiesCount; g++) {
-    const group = [...normalizedImages];
-    // Shuffle the group
+    const group = [...uniqueImages];
+    // Shuffle deterministically based on seed
     for (let i = group.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(random() * (i + 1));
       [group[i], group[j]] = [group[j], group[i]];
     }
-    // Avoid boundary duplicate
+    // Avoid boundary duplicate if possible
     if (usedImagesList.length > 0 && group.length > 1 && group[0].src === usedImagesList[usedImagesList.length - 1].src) {
       [group[0], group[1]] = [group[1], group[0]];
     }
@@ -275,14 +374,68 @@ export default function DomeGallery({
     document.body.classList.remove('dg-scroll-lock');
   }, []);
 
-  const items = useMemo(() => buildItems(images, segments), [images, segments]);
+  const serializedImages = useMemo(() => JSON.stringify(images), [images]);
+  const items = useMemo(() => buildItems(images, segments), [serializedImages, segments]);
+
+  const itemElementsRef = useRef<{ el: HTMLElement; rotateY: number; src: string }[]>([]);
+
+  // Update visibility based on current sphere rotation Y with 3D horizontal culling
+  const updateVisibility = (sphereRotY: number) => {
+    const itemsList = itemElementsRef.current;
+    if (itemsList.length === 0) return;
+
+    for (let i = 0; i < itemsList.length; i++) {
+      const item = itemsList[i];
+      // Compute the absolute horizontal direction of this item relative to the front view
+      const worldYawDeg = item.rotateY + sphereRotY;
+      const rad = (worldYawDeg * Math.PI) / 180;
+      const cosVal = Math.cos(rad);
+
+      // We use a safe threshold (-0.28) to cull items on the back side of the sphere.
+      // This completely relieves the GPU & browser rendering engine from processing invisible off-screen items.
+      if (cosVal >= -0.28) {
+        if (item.el.style.visibility !== 'visible') {
+          item.el.style.visibility = 'visible';
+          item.el.style.pointerEvents = 'auto';
+        }
+        // Emit event to trigger high-res image preloading for this visible item
+        if (item.el.getAttribute('data-visible') !== 'true') {
+          item.el.setAttribute('data-visible', 'true');
+          item.el.dispatchEvent(new CustomEvent('dg-visible'));
+        }
+      } else {
+        if (item.el.style.visibility !== 'hidden') {
+          item.el.style.visibility = 'hidden';
+          item.el.style.pointerEvents = 'none';
+        }
+      }
+    }
+  };
 
   const applyTransform = (xDeg: number, yDeg: number) => {
     const el = sphereRef.current;
     if (el) {
       el.style.transform = `translateZ(calc(var(--radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
     }
+    updateVisibility(yDeg);
   };
+
+  // Build the list of active items once after they are rendered in the DOM
+  useEffect(() => {
+    const sphere = sphereRef.current;
+    if (!sphere) return;
+    const elements = Array.from(sphere.querySelectorAll('.item')) as HTMLElement[];
+    const unit = 360 / segments / 2;
+    itemElementsRef.current = elements.map(el => {
+      const x = getDataNumber(el, 'offsetX', 0);
+      const sizeX = getDataNumber(el, 'sizeX', 2);
+      const rotateY = unit * (x + (sizeX - 1) / 2);
+      const src = el.getAttribute('data-src') || '';
+      return { el, rotateY, src };
+    });
+    // Immediately calculate visibility after constructing the DOM list
+    updateVisibility(rotationRef.current.y);
+  }, [items, segments]);
 
   const lockedRadiusRef = useRef<number | null>(null);
 
@@ -623,7 +776,27 @@ export default function DomeGallery({
       overlay.style.transition = `transform ${enlargeTransitionMs}ms ease, opacity ${enlargeTransitionMs}ms ease`;
       const rawSrc = parent.dataset.src || el.querySelector('img')?.src || '';
       const img = document.createElement('img');
-      img.src = rawSrc;
+      img.referrerPolicy = 'no-referrer';
+      
+      const driveId = extractDriveId(rawSrc);
+      if (driveId) {
+        img.src = `https://lh3.googleusercontent.com/d/${driveId}=w1200-rw`;
+        let attempt = 1;
+        img.onerror = () => {
+          if (attempt === 1) {
+            img.src = `https://lh3.googleusercontent.com/d/${driveId}=w1200`;
+            attempt = 2;
+          } else if (attempt === 2) {
+            img.src = `https://drive.google.com/thumbnail?id=${driveId}&sz=w1200`;
+            attempt = 3;
+          } else if (attempt === 3) {
+            img.src = `https://drive.google.com/uc?id=${driveId}&export=view`;
+            attempt = 4;
+          }
+        };
+      } else {
+        img.src = rawSrc;
+      }
       overlay.appendChild(img);
       viewerRef.current.appendChild(overlay);
       const tx0 = tileR.left - frameR.left;

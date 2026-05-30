@@ -300,6 +300,7 @@ const PROJECTS_DATA = [
     id: 'res-dsa-10',
     title: 'Serene Sanctuary',
     subtitle: 'Luxe Residential Living',
+    heroImage: 'https://lh3.googleusercontent.com/d/1T8U7brn4ddyC2AvlBXLJe_Q6lR9r8gEB',
     description: 'Serene Sanctuary is an elegant luxury residential interior showcasing magnificent spatial design, sophisticated bespoke fittings, warm lighting, and a modern minimal layout that provides the ultimate cozy and premium comfort.',
     fullStory: 'Serene Sanctuary is designed to offer the ultimate cozy and premium comfort. Every corner is meticulously crafted to integrate warm ambient lighting with elegant material structures, premium wood bespoke accents, and highly functional layouts optimized for luxury everyday living. It represents a classic architectural balance between high-end modern sophistication and serene physical tranquility.',
     metadata: [
@@ -577,7 +578,7 @@ export const ProjectDetailPage: React.FC = () => {
               className="aspect-square rounded-3xl overflow-hidden glass border border-white/10"
             >
               <SafeImage 
-                src={project.galleryItems[0].image} 
+                src={(project as any).heroImage || project.galleryItems[0].image} 
                 alt={project.title} 
                 loading="lazy"
                 objectFit="cover"

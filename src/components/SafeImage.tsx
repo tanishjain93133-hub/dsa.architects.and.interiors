@@ -14,6 +14,46 @@ const ARCHITECTURAL_FALLBACKS = [
   'https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1000&auto=format&fit=crop'
 ];
 
+export const extractDriveId = (url: string): string | null => {
+  if (!url) return null;
+  
+  if (url.includes('lh3.googleusercontent.com/d/') || url.includes('lh3.googleusercontent.com/u/0/d/')) {
+    const parts = url.split('/d/');
+    if (parts.length > 1) {
+      return parts[1].split('=')[0].split('?')[0];
+    }
+  }
+  
+  if (url.includes('drive.google.com/file/d/')) {
+    const parts = url.split('/file/d/');
+    if (parts.length > 1) {
+      return parts[1].split('/')[0].split('?')[0];
+    }
+  }
+  
+  // Try parsing queries standardly
+  if (url.includes('id=')) {
+    try {
+      const u = new URL(url);
+      const id = u.searchParams.get('id');
+      if (id) return id;
+    } catch {
+      const match = url.match(/[?&]id=([^&]+)/);
+      if (match) return match[1];
+    }
+  }
+  
+  // General check for anything resembling secondary subdirectories or IDs in lh3 links
+  if (url.includes('lh3.googleusercontent.com')) {
+    const lastPart = url.split('/').pop();
+    if (lastPart) {
+      return lastPart.split('=')[0].split('?')[0];
+    }
+  }
+  
+  return null;
+};
+
 export const SafeImage: React.FC<SafeImageProps> = ({ 
   src, 
   alt, 
@@ -40,11 +80,10 @@ export const SafeImage: React.FC<SafeImageProps> = ({
     }
     
     // Optimize Google Drive for previewing
-    if (originalUrl.includes('lh3.googleusercontent.com/d/')) {
-        const id = originalUrl.split('/').pop()?.split('?')[0];
-        // Use optimized width and force modern WebP via -rw
-        const width = size === 'small' ? '400' : size === 'medium' ? '1000' : '1600';
-        return `https://lh3.googleusercontent.com/d/${id}=w${width}-rw`;
+    const driveId = extractDriveId(originalUrl);
+    if (driveId) {
+      const width = size === 'small' ? '400' : size === 'medium' ? '1000' : '1600';
+      return `https://lh3.googleusercontent.com/d/${driveId}=w${width}-rw`;
     }
     
     return originalUrl;
@@ -65,24 +104,19 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   }
 
   const getStableDriveUrl = (originalUrl: string, attempt: number) => {
-    if (!originalUrl) return fallbackSrc;
-    if (originalUrl.includes('unsplash.com')) return fallbackSrc;
-    if (!originalUrl.includes('lh3.googleusercontent.com/d/') && 
-        !originalUrl.includes('lh3.googleusercontent.com/u/0/d/')) return originalUrl;
-
-    const id = originalUrl.split('/').pop()?.split('?')[0];
-    if (!id) return originalUrl;
+    const driveId = extractDriveId(originalUrl);
+    if (!driveId) return fallbackSrc;
 
     const width = size === 'small' ? '400' : size === 'medium' ? '1000' : '1600';
 
     switch (attempt) {
       case 1:
         // Attempt 1: Remove "-rw" suffix (requests default JPEG/PNG version to bypass newer WebP loading errors)
-        return `https://lh3.googleusercontent.com/d/${id}=w${width}`;
+        return `https://lh3.googleusercontent.com/d/${driveId}=w${width}`;
       case 2:
-        return `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
+        return `https://drive.google.com/thumbnail?id=${driveId}&sz=w${width}`;
       case 3:
-        return `https://drive.google.com/uc?id=${id}&export=view`;
+        return `https://drive.google.com/uc?id=${driveId}&export=view`;
       default:
         return fallbackSrc;
     }
@@ -131,15 +165,15 @@ export const SafeImage: React.FC<SafeImageProps> = ({
              style={{ backgroundSize: '200% 100%' }} />
       )}
       <img
+        referrerPolicy="no-referrer"
+        loading="lazy"
+        decoding="async"
         {...props}
         ref={imgRef}
         src={currentSrc}
         alt={alt}
         onError={handleError}
         onLoad={handleLoad}
-        referrerPolicy="no-referrer"
-        loading="lazy"
-        decoding="async"
         className={cn(
           "transition-all duration-700 w-full h-full optimize-gpu",
           !isLoaded ? "opacity-0 scale-105 blur-lg" : "opacity-100 scale-100 blur-0",

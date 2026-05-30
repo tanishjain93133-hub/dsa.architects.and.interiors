@@ -5,6 +5,26 @@ import './index.css';
 
 // Automated recovery & refresh for new deployments (handles caching/stale chunks)
 if (typeof window !== 'undefined') {
+  // Preload crucial above-the-fold hero images for instant First Contentful Paint (FCP)
+  const criticalImages = [
+    'https://lh3.googleusercontent.com/d/1X6xG-7r6aVJJEwqXFfLno2nZ6v7rLz21=w1600-rw', // Home hero background
+    'https://lh3.googleusercontent.com/d/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE=w1600-rw', // Projects hero background
+    'https://lh3.googleusercontent.com/d/14vWYwDCMoQEcmeXOm2ggKXDszMM9EBL_=w1600-rw'  // Timber Lights showcase
+  ];
+
+  const preloadImages = () => {
+    criticalImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  };
+
+  if (typeof (window as any).requestIdleCallback === 'function') {
+    (window as any).requestIdleCallback(preloadImages);
+  } else {
+    window.addEventListener('load', () => setTimeout(preloadImages, 100));
+  }
+
   window.addEventListener('error', (e) => {
     const message = e.message || '';
     const isChunkError = 
