@@ -148,15 +148,10 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   // Immediate layout evaluation for cached images (safeguard for Safari page-load caching)
   useEffect(() => {
     const img = imgRef.current;
-    if (!img) return;
-    if (img.complete) {
-      if (img.naturalWidth >= 10) {
-        setIsLoaded(true);
-      } else {
-        handleError();
-      }
+    if (img && img.complete && img.naturalWidth >= 10) {
+      setIsLoaded(true);
     }
-  }, [currentSrc]);
+  }, []);
 
   return (
     <div className={cn("relative overflow-hidden bg-white/5", className)}>

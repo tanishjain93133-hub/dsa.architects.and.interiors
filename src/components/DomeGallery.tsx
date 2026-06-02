@@ -46,44 +46,22 @@ const ARCHITECTURAL_FALLBACKS = [
 const LOADED_HIGH_RES_CACHE = new Set<string>();
 
 const DomeImageComponent: React.FC<{ src: string; alt?: string; className?: string }> = ({ src, alt, className }) => {
-  const fallbackSrc = ARCHITECTURAL_FALLBACKS[0];
+  const fallbackSrc = src;
 
   const getLowResUrl = (originalUrl: string) => {
-    if (!originalUrl) return fallbackSrc;
-    if (originalUrl.includes('unsplash.com')) {
-      try {
-        const u = new URL(originalUrl);
-        u.searchParams.set('fm', 'webp');
-        u.searchParams.set('q', '35');
-        u.searchParams.set('w', '60');
-        return u.toString();
-      } catch (e) {
-        return originalUrl;
-      }
-    }
+    if (!originalUrl) return '';
     const driveId = extractDriveId(originalUrl);
     if (driveId) {
-      return `https://lh3.googleusercontent.com/d/${driveId}=w60-rw`;
+      return `https://lh3.googleusercontent.com/d/${driveId}=w300`;
     }
     return originalUrl;
   };
 
   const getHighResUrl = (originalUrl: string) => {
-    if (!originalUrl) return fallbackSrc;
-    if (originalUrl.includes('unsplash.com')) {
-      try {
-        const u = new URL(originalUrl);
-        u.searchParams.set('fm', 'webp');
-        u.searchParams.set('q', '70');
-        u.searchParams.set('w', '180');
-        return u.toString();
-      } catch (e) {
-        return originalUrl;
-      }
-    }
+    if (!originalUrl) return '';
     const driveId = extractDriveId(originalUrl);
     if (driveId) {
-      return `https://lh3.googleusercontent.com/d/${driveId}=w180-rw`;
+      return `https://lh3.googleusercontent.com/d/${driveId}=w800`;
     }
     return originalUrl;
   };
@@ -158,9 +136,9 @@ const DomeImageComponent: React.FC<{ src: string; alt?: string; className?: stri
         if (driveId) {
           let fallbackUrl = '';
           if (nextAttempt === 1) {
-            fallbackUrl = `https://lh3.googleusercontent.com/d/${driveId}=w180`;
+            fallbackUrl = `https://lh3.googleusercontent.com/d/${driveId}=w800`;
           } else if (nextAttempt === 2) {
-            fallbackUrl = `https://drive.google.com/thumbnail?id=${driveId}&sz=w180`;
+            fallbackUrl = `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`;
           } else {
             fallbackUrl = `https://drive.google.com/uc?id=${driveId}&export=view`;
           }
@@ -262,38 +240,21 @@ function buildItems(pool: (string | { src: string; alt?: string })[], seg: numbe
     return coords.map(c => ({ ...c, src: '', alt: '' }));
   }
 
-  // To meet the requirement of keeping the dome fully populated and rich 
-  // without visual blank holes, we repeat the unique merged image set across all coordinates.
-  // We use a deterministic pseudo-random seed to keep the layout 100% stable across renders.
-  let seed = 987654;
-  const random = () => {
-    const x = Math.sin(seed++) * 10000;
-    return x - Math.floor(x);
-  };
-
-  const usedImagesList: { src: string; alt: string }[] = [];
-  const copiesCount = Math.ceil(totalSlots / N);
-  for (let g = 0; g < copiesCount; g++) {
-    const group = [...uniqueImages];
-    // Shuffle deterministically based on seed
-    for (let i = group.length - 1; i > 0; i--) {
-      const j = Math.floor(random() * (i + 1));
-      [group[i], group[j]] = [group[j], group[i]];
-    }
-    // Avoid boundary duplicate if possible
-    if (usedImagesList.length > 0 && group.length > 1 && group[0].src === usedImagesList[usedImagesList.length - 1].src) {
-      [group[0], group[1]] = [group[1], group[0]];
-    }
-    usedImagesList.push(...group);
+  // To meet the requirements: "Remove repeated duplicate images", "Every image should be unique",
+  // and "Maintain balanced distribution", we map each unique image to coordinates spaced
+  // evenly across the total slot count. This results in exactly N unique floating tiles with 0 empty frames or duplicate copies.
+  const selectedCoords: { x: number; y: number; sizeX: number; sizeY: number; src: string; alt: string }[] = [];
+  for (let i = 0; i < N; i++) {
+    const coordIdx = Math.floor((i * totalSlots) / N);
+    const c = coords[coordIdx];
+    selectedCoords.push({
+      ...c,
+      src: uniqueImages[i].src,
+      alt: uniqueImages[i].alt
+    });
   }
 
-  const finalImages = usedImagesList.slice(0, totalSlots);
-
-  return coords.map((c, i) => ({
-    ...c,
-    src: finalImages[i].src,
-    alt: finalImages[i].alt
-  }));
+  return selectedCoords;
 }
 
 function computeItemBaseRotation(offsetX: number, offsetY: number, sizeX: number, sizeY: number, segments: number) {
