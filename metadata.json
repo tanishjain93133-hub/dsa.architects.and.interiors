@@ -2,5 +2,7 @@
   "name": "DSA - Architecture & Interior Design",
   "description": "A premium architectural and interior design studio blending sustainable biophilic design with modern aesthetics.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

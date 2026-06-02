@@ -52,7 +52,7 @@ const DomeImageComponent: React.FC<{ src: string; alt?: string; className?: stri
     if (!originalUrl) return '';
     const driveId = extractDriveId(originalUrl);
     if (driveId) {
-      return `https://lh3.googleusercontent.com/d/${driveId}=w300`;
+      return `/api/image-proxy?id=${driveId}&w=300`;
     }
     return originalUrl;
   };
@@ -61,7 +61,7 @@ const DomeImageComponent: React.FC<{ src: string; alt?: string; className?: stri
     if (!originalUrl) return '';
     const driveId = extractDriveId(originalUrl);
     if (driveId) {
-      return `https://lh3.googleusercontent.com/d/${driveId}=w800`;
+      return `/api/image-proxy?id=${driveId}&w=800`;
     }
     return originalUrl;
   };
@@ -134,16 +134,9 @@ const DomeImageComponent: React.FC<{ src: string; alt?: string; className?: stri
         const nextAttempt = retryCount + 1;
         const driveId = extractDriveId(src);
         if (driveId) {
-          let fallbackUrl = '';
-          if (nextAttempt === 1) {
-            fallbackUrl = `https://lh3.googleusercontent.com/d/${driveId}=w800`;
-          } else if (nextAttempt === 2) {
-            fallbackUrl = `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`;
-          } else {
-            fallbackUrl = `https://drive.google.com/uc?id=${driveId}&export=view`;
-          }
+          const width = nextAttempt === 1 ? '800' : '1200';
           setRetryCount(nextAttempt);
-          img.src = fallbackUrl;
+          img.src = `/api/image-proxy?id=${driveId}&w=${width}`;
         } else {
           setCurrentSrc(fallbackSrc);
         }
@@ -741,19 +734,9 @@ export default function DomeGallery({
       
       const driveId = extractDriveId(rawSrc);
       if (driveId) {
-        img.src = `https://lh3.googleusercontent.com/d/${driveId}=w1200-rw`;
-        let attempt = 1;
+        img.src = `/api/image-proxy?id=${driveId}&w=1200`;
         img.onerror = () => {
-          if (attempt === 1) {
-            img.src = `https://lh3.googleusercontent.com/d/${driveId}=w1200`;
-            attempt = 2;
-          } else if (attempt === 2) {
-            img.src = `https://drive.google.com/thumbnail?id=${driveId}&sz=w1200`;
-            attempt = 3;
-          } else if (attempt === 3) {
-            img.src = `https://drive.google.com/uc?id=${driveId}&export=view`;
-            attempt = 4;
-          }
+          img.src = `/api/image-proxy?id=${driveId}`;
         };
       } else {
         img.src = rawSrc;
