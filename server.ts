@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import https from "https";
 import http from "http";
+import fs from "fs";
 
 interface HttpsGetResponse {
   ok: boolean;
@@ -45,167 +46,126 @@ function httpsGet(url: string): Promise<HttpsGetResponse> {
   });
 }
 
+const BEAUTIFUL_ARCHITECTURAL_IMAGES = [
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200", // Modern Residence Exterior
+  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200", // Luxury Modern House Exterior
+  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200", // Elegant Interior Living Room
+  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200", // Minimalist Modern Living Room
+  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1200", // High-End Luxurious Sofa/Interior
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200", // Minimalist Concrete House/Detail
+  "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200", // Premium Concrete & Timber Office
+  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1200", // Glass & Steel Building Facade
+  "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200", // Nordic Style Workspace
+  "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200", // Luxury Bedroom
+  "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200", // Cozy Minimalist Bedroom
+  "https://images.unsplash.com/photo-1617806118233-18e1db207f62?q=80&w=1200", // Elegant Dining Room
+  "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200", // Minimalist Modern Kitchen
+  "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1200", // Modern Staircase
+  "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200", // Architectural Concrete Curve
+  "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=80&w=1200"  // Warm Wooden Interior detail
+];
+
+function getDeterministicUnsplashUrl(id: string): string {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = id.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const index = Math.abs(hash) % BEAUTIFUL_ARCHITECTURAL_IMAGES.length;
+  return BEAUTIFUL_ARCHITECTURAL_IMAGES[index];
+}
+
+function getLocalValidImagePath(fileId: string): string | null {
+  const possibleNames = [
+    `drive_${fileId}`,
+    `drive_${fileId}.jpg`,
+    `drive_${fileId}.png`,
+    `${fileId}`,
+    `${fileId}.jpg`,
+    `${fileId}.png`
+  ];
+  
+  const possibleDirs = [
+    path.join(process.cwd(), "public", "images"),
+    path.join(process.cwd(), "dist", "images")
+  ];
+
+  for (const dir of possibleDirs) {
+    for (const name of possibleNames) {
+      const fullPath = path.join(dir, name);
+      if (fs.existsSync(fullPath)) {
+        try {
+          const fd = fs.openSync(fullPath, "r");
+          const buffer = Buffer.alloc(100);
+          fs.readSync(fd, buffer, 0, 100, 0);
+          fs.closeSync(fd);
+          const snippet = buffer.toString("utf8");
+          if (!snippet.includes("<html") && !snippet.includes("<!DOCTYPE") && !snippet.includes("<HTML")) {
+            return fullPath;
+          }
+        } catch (err) {
+          // If read fails, continue
+        }
+      }
+    }
+  }
+  return null;
+}
+
 async function startServer() {
   const app = express();
   const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
-  // Cache object for local in-memory caching of images so they are super-fast on repeat visits
+  // Cache object (kept as fallback representation)
   const imageCache = new Map<string, { buffer: Buffer; contentType: string; timestamp: number }>();
-  const CACHE_TTL = 1000 * 60 * 60 * 24; // 24 hours
-
-  // Clean stale cache items occasionally
-  setInterval(() => {
-    const now = Date.now();
-    for (const [key, val] of imageCache.entries()) {
-      if (now - val.timestamp > CACHE_TTL) {
-        imageCache.delete(key);
-      }
-    }
-  }, 1000 * 60 * 60);
 
   // API Route: Local file-path interceptor for /images/drive_... filenames
-  // This guarantees that any client image tags requesting /images/drive_... on the disk are
-  // intercepted, dynamically proxied and streamed from public Google Drive CDN, ignoring the broken HTML files.
-  app.get("/images/drive_:fileId", async (req, res, next) => {
+  app.get("/images/drive_:fileId", (req, res, next) => {
     try {
       const fileIdWithExt = req.params.fileId;
       if (!fileIdWithExt) return next();
       
       const id = fileIdWithExt.split(".")[0];
       if (!id) return next();
-      
-      const width = "1000";
-      const cacheKey = `${id}_${width}`;
-      
-      if (imageCache.has(cacheKey)) {
-        const cached = imageCache.get(cacheKey)!;
-        res.setHeader("Content-Type", cached.contentType);
+
+      const localPath = getLocalValidImagePath(id);
+      if (localPath) {
         res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-        return res.send(cached.buffer);
-      }
-      
-      const targetUrls = [
-        `https://lh3.googleusercontent.com/d/${id}=w${width}`,
-        `https://lh3.googleusercontent.com/d/${id}`,
-        `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`,
-        `https://drive.google.com/uc?id=${id}&export=download`
-      ];
-
-      let response: HttpsGetResponse | null = null;
-      let errorMsg = "";
-
-      for (const url of targetUrls) {
-        try {
-          const fetchPromise = httpsGet(url);
-          const timeoutPromise = new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout")), 10000));
-          const resObj = await Promise.race([fetchPromise, timeoutPromise]);
-
-          if (resObj.ok) {
-            response = resObj;
-            break;
-          } else {
-            errorMsg = `Status ${resObj.status} from ${url}`;
-          }
-        } catch (err: any) {
-          errorMsg = err.message || "Unknown proxy error";
-        }
+        return res.sendFile(localPath);
       }
 
-      if (!response) {
-        throw new Error(`Failed to fetch image from Google Drive CDN: ${errorMsg}`);
-      }
-
-      const contentType = response.headers["content-type"] || "image/jpeg";
-      const buffer = response.buffer;
-
-      imageCache.set(cacheKey, {
-        buffer,
-        contentType,
-        timestamp: Date.now()
-      });
-
-      res.setHeader("Content-Type", contentType);
-      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-      return res.send(buffer);
+      // Since the user has shared the folders publicly, redirecting to Google Drive CDN allows
+      // the browser of any user on any device to retrieve the real image smoothly.
+      const driveUrl = `https://lh3.googleusercontent.com/d/${id}=w1000`;
+      return res.redirect(driveUrl);
     } catch (err) {
       console.error(`Local Image Proxy Route Error [file=${req.params.fileId}]:`, err);
-      // Fallback redirect to a high-quality building photo on Unsplash
-      return res.redirect("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000");
+      const id = req.params.fileId ? req.params.fileId.split(".")[0] : "default";
+      return res.redirect(getDeterministicUnsplashUrl(id));
     }
   });
 
-  // API Route: Image Proxy for Google Drive to bypass Third-Party Cookie blocking (Incognito Mode, Safari etc.)
-  app.get("/api/image-proxy", async (req, res) => {
+  // API Route: Image Proxy for Google Drive to bypass Third-Party Cookie blocking
+  app.get("/api/image-proxy", (req, res) => {
     const { id, w } = req.query;
     if (!id || typeof id !== "string") {
       return res.status(400).send("Missing image id parameter");
     }
 
-    const width = w && typeof w === "string" ? w : "1000";
-    const cacheKey = `${id}_${width}`;
-
-    // Return from in-memory cache if hit to make load times instant
-    if (imageCache.has(cacheKey)) {
-      const cached = imageCache.get(cacheKey)!;
-      res.setHeader("Content-Type", cached.contentType);
-      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-      return res.send(cached.buffer);
-    }
-
     try {
-      // 1. Construct target Google Drive hosting URLs
-      // In Node.js, fetch is unauthenticated so it request-proxies cleanly as an anonymous agent
-      const targetUrls = [
-        `https://lh3.googleusercontent.com/d/${id}=w${width}`,
-        `https://lh3.googleusercontent.com/d/${id}`,
-        `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`,
-        `https://drive.google.com/uc?id=${id}&export=download`
-      ];
-
-      let response: HttpsGetResponse | null = null;
-      let errorMsg = "";
-
-      for (const url of targetUrls) {
-        try {
-          const fetchPromise = httpsGet(url);
-          
-          // Timeout fetch after 10s
-          const timeoutPromise = new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout")), 10000));
-          const resObj = await Promise.race([fetchPromise, timeoutPromise]);
-
-          if (resObj.ok) {
-            response = resObj;
-            break;
-          } else {
-            errorMsg = `Status ${resObj.status} from ${url}`;
-          }
-        } catch (err: any) {
-          errorMsg = err.message || "Unknown proxy error";
-        }
+      const localPath = getLocalValidImagePath(id);
+      if (localPath) {
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        return res.sendFile(localPath);
       }
 
-      if (!response) {
-        throw new Error(`Failed to fetch image from Google Drive CDN: ${errorMsg}`);
-      }
-
-      const contentType = response.headers["content-type"] || "image/jpeg";
-      const buffer = response.buffer;
-
-      // Save to cache
-      imageCache.set(cacheKey, {
-        buffer,
-        contentType,
-        timestamp: Date.now()
-      });
-
-      // Send to browser with aggressive caching headers
-      res.setHeader("Content-Type", contentType);
-      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-      return res.send(buffer);
+      // Direct redirection to the Google Drive direct file rendering endpoint
+      // This retrieves the genuine project image since the folder permissions are now set to public.
+      const width = w && typeof w === "string" ? w : "1000";
+      const driveUrl = `https://lh3.googleusercontent.com/d/${id}=w${width}`;
+      return res.redirect(driveUrl);
     } catch (err: any) {
       console.error(`GP Proxy Error [id=${id}]:`, err);
-      // Fallback redirect to a high-quality building photo on Unsplash
-      return res.redirect("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000");
+      return res.redirect(getDeterministicUnsplashUrl(id));
     }
   });
 
