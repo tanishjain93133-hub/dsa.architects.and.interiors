@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Instagram, Facebook, Linkedin } from 'lucide-react';
 import { SafeImage } from './SafeImage';
@@ -77,6 +78,13 @@ export const Footer: React.FC = () => {
               <p className="text-[10px] tracking-[0.4em] text-white/70 uppercase font-medium text-center md:text-right">
                 ALL RIGHTS RESERVED.
               </p>
+              <Link 
+                to="/sync" 
+                className="text-[9px] tracking-[0.4em] text-white/20 uppercase font-medium text-center md:text-right mt-2 hover:text-neon-cyan transition-colors"
+                title="Google Drive Local Asset Synchronizer"
+              >
+                Sync Assets
+              </Link>
             </div>
           </div>
         </div>

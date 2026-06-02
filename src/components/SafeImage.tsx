@@ -153,7 +153,7 @@ export const SafeImage: React.FC<SafeImageProps> = ({
     // Self-healing check: if the image loaded successfully from Google CDN directly but not from our proxy,
     // let's capture it and upload it to our server to heal the public cache!
     const driveId = extractDriveId(src || '');
-    if (driveId && currentSrc && !currentSrc.startsWith('/') && !currentSrc.includes('image-proxy')) {
+    if (driveId && currentSrc && !currentSrc.startsWith('/') && !currentSrc.includes('image-proxy') && !currentSrc.includes('unsplash.com')) {
       // It loaded from Google directly! Let's try to capture it. We run after a short delay to ensure rendering is complete.
       setTimeout(() => {
         try {

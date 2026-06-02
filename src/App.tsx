@@ -25,6 +25,7 @@ import { JSHouseReviewGalleryPage } from './pages/JSHouseReviewGalleryPage';
 import { ShelaHouseReviewGalleryPage } from './pages/ShelaHouseReviewGalleryPage';
 import { JDOfficeReviewGalleryPage } from './pages/JDOfficeReviewGalleryPage';
 import { TestimonialsPage } from './pages/TestimonialsPage';
+import { SyncPage } from './pages/SyncPage';
 
 const HomePage: React.FC = () => (
   <>
@@ -64,6 +65,7 @@ export default function App() {
           <Route path="/shela-house-review" element={<ShelaHouseReviewGalleryPage />} />
           <Route path="/jd-office-review" element={<JDOfficeReviewGalleryPage />} />
           <Route path="/testimonials" element={<TestimonialsPage />} />
+          <Route path="/sync" element={<SyncPage />} />
         </Routes>
       </div>
     </Router>

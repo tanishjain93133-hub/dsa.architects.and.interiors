@@ -184,14 +184,90 @@ async function validateAndProxyAndSaveImage(id: string, width: string, res: expr
     return res.send(buffer);
   }
 
-  // Return 404 to let client-side SafeImage handle CDN error and try next backup CDN
-  console.warn(`[Proxy Fallback] Failed proxy load for ID: ${id}. Error: ${lastError}`);
-  return res.status(404).send("Google Drive image fetch failed or permission blocked");
+  // Return deterministic Unsplash fallback redirect to make sure guest/incognito users never see broken images!
+  console.warn(`[Proxy Fallback] Failed proxy load for ID: ${id}. Redirecting to Unsplash fallback.`);
+  return res.redirect(getDeterministicUnsplashUrl(id));
+}
+
+function scanSrcForDriveIds(): string[] {
+  const ids = new Set<string>();
+  const scanDir = (dirPath: string) => {
+    if (!fs.existsSync(dirPath)) return;
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dirPath, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== "node_modules" && entry.name !== ".git" && entry.name !== "dist") {
+          scanDir(fullPath);
+        }
+      } else if (entry.isFile()) {
+        const ext = path.extname(entry.name);
+        if ([".tsx", ".ts", ".json", ".js", ".jsx"].includes(ext)) {
+          try {
+            const content = fs.readFileSync(fullPath, "utf8");
+            
+            // Look for lh3.googleusercontent.com/d/ID
+            const lh3Regex = /lh3\.googleusercontent\.com\/d\/([a-zA-Z0-9_-]+)/g;
+            let match;
+            while ((match = lh3Regex.exec(content)) !== null) {
+              if (match[1] && match[1].length > 20) {
+                ids.add(match[1]);
+              }
+            }
+            
+            // Look for drive.google.com/file/d/ID
+            const driveFileRegex = /drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/g;
+            while ((match = driveFileRegex.exec(content)) !== null) {
+              if (match[1] && match[1].length > 20) {
+                ids.add(match[1]);
+              }
+            }
+          } catch (e) {
+            // Ignore single file read errors
+          }
+        }
+      }
+    }
+  };
+
+  scanDir(path.join(process.cwd(), "src"));
+  return Array.from(ids);
 }
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
+
+  // API Route: Scan and return all unique Google Drive IDs used in components
+  app.get("/api/list-drive-ids", (req, res) => {
+    try {
+      const ids = scanSrcForDriveIds();
+      
+      // Determine which are cached
+      const cachedList: string[] = [];
+      const pendingList: string[] = [];
+      
+      for (const id of ids) {
+        if (getLocalValidImagePath(id)) {
+          cachedList.push(id);
+        } else {
+          pendingList.push(id);
+        }
+      }
+      
+      return res.json({
+        totalCount: ids.length,
+        cachedCount: cachedList.length,
+        pendingCount: pendingList.length,
+        ids,
+        cached: cachedList,
+        pending: pendingList
+      });
+    } catch (err: any) {
+      console.error("List Drive IDs Error:", err);
+      return res.status(500).send(err.message || "Failed to scan files");
+    }
+  });
 
   // API Route: Local file-path interceptor for /images/drive_... filenames
   app.get("/images/drive_:fileId", async (req, res, next) => {

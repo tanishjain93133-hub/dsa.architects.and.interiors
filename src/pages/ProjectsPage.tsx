@@ -437,7 +437,7 @@ export const ProjectsPage: React.FC = () => {
           </motion.section>
         ) : (
           <section 
-            className="relative z-20 px-6 py-16 bg-obsidian/40 backdrop-blur-3xl border-y border-white/5 content-visibility-auto"
+            className="relative z-20 px-6 py-16 bg-obsidian/40 backdrop-blur-3xl border-y border-white/5"
           >
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col gap-32">
