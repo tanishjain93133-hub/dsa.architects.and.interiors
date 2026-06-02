@@ -111,15 +111,90 @@ function getLocalValidImagePath(fileId: string): string | null {
   return null;
 }
 
+async function validateAndProxyAndSaveImage(id: string, width: string, res: express.Response) {
+  // Try to load local valid image first
+  const localPath = getLocalValidImagePath(id);
+  if (localPath) {
+    res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    return res.sendFile(localPath);
+  }
+
+  // Target Google Drive URLs to fetch from in order
+  const targetUrls = [
+    `https://lh3.googleusercontent.com/d/${id}=w${width}`,
+    `https://lh3.googleusercontent.com/d/${id}`,
+    `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`,
+    `https://drive.google.com/uc?id=${id}&export=download`
+  ];
+
+  let fetchResponse: HttpsGetResponse | null = null;
+  let lastError = "";
+
+  for (const url of targetUrls) {
+    try {
+      const resp = await httpsGet(url);
+      if (resp.ok && resp.buffer.length > 5000) { // minimum image size limit
+        const snippet = resp.buffer.toString("utf8", 0, 150);
+        const isHtml = snippet.includes("<html") || snippet.includes("<!doctype html") || snippet.includes("<HTML") || snippet.includes("<!DOCTYPE");
+        if (!isHtml) {
+          fetchResponse = resp;
+          break;
+        } else {
+          lastError = "Response was HTML login screen redirect";
+        }
+      } else {
+        lastError = `Status ${resp.status}, size ${resp.buffer.length}`;
+      }
+    } catch (err: any) {
+      lastError = err.message || "Unknown error";
+    }
+  }
+
+  if (fetchResponse) {
+    const contentType = fetchResponse.headers["content-type"] || "image/jpeg";
+    const buffer = fetchResponse.buffer;
+
+    // Save fetched image to disk to heal the broken local files!
+    const ext = contentType.includes("png") ? ".png" : ".jpg";
+    const names = [
+      `drive_${id}`,
+      `drive_${id}${ext}`,
+      `drive_${id}.jpg`,
+      `drive_${id}.png`
+    ];
+    const dirs = [
+      path.join(process.cwd(), "public", "images"),
+      path.join(process.cwd(), "dist", "images")
+    ];
+    
+    for (const dir of dirs) {
+      if (fs.existsSync(dir)) {
+        for (const name of names) {
+          try {
+            fs.writeFileSync(path.join(dir, name), buffer);
+          } catch (e) {
+            // Silence write error (e.g. disk read-only or intermediate path issues)
+          }
+        }
+      }
+    }
+
+    res.setHeader("Content-Type", contentType);
+    res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    return res.send(buffer);
+  }
+
+  // Return 404 to let client-side SafeImage handle CDN error and try next backup CDN
+  console.warn(`[Proxy Fallback] Failed proxy load for ID: ${id}. Error: ${lastError}`);
+  return res.status(404).send("Google Drive image fetch failed or permission blocked");
+}
+
 async function startServer() {
   const app = express();
-  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
-
-  // Cache object (kept as fallback representation)
-  const imageCache = new Map<string, { buffer: Buffer; contentType: string; timestamp: number }>();
+  const PORT = 3000;
 
   // API Route: Local file-path interceptor for /images/drive_... filenames
-  app.get("/images/drive_:fileId", (req, res, next) => {
+  app.get("/images/drive_:fileId", async (req, res, next) => {
     try {
       const fileIdWithExt = req.params.fileId;
       if (!fileIdWithExt) return next();
@@ -127,16 +202,7 @@ async function startServer() {
       const id = fileIdWithExt.split(".")[0];
       if (!id) return next();
 
-      const localPath = getLocalValidImagePath(id);
-      if (localPath) {
-        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-        return res.sendFile(localPath);
-      }
-
-      // Since the user has shared the folders publicly, redirecting to Google Drive CDN allows
-      // the browser of any user on any device to retrieve the real image smoothly.
-      const driveUrl = `https://lh3.googleusercontent.com/d/${id}=w1000`;
-      return res.redirect(driveUrl);
+      await validateAndProxyAndSaveImage(id, "1000", res);
     } catch (err) {
       console.error(`Local Image Proxy Route Error [file=${req.params.fileId}]:`, err);
       const id = req.params.fileId ? req.params.fileId.split(".")[0] : "default";
@@ -145,24 +211,15 @@ async function startServer() {
   });
 
   // API Route: Image Proxy for Google Drive to bypass Third-Party Cookie blocking
-  app.get("/api/image-proxy", (req, res) => {
+  app.get("/api/image-proxy", async (req, res) => {
     const { id, w } = req.query;
     if (!id || typeof id !== "string") {
       return res.status(400).send("Missing image id parameter");
     }
 
     try {
-      const localPath = getLocalValidImagePath(id);
-      if (localPath) {
-        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-        return res.sendFile(localPath);
-      }
-
-      // Direct redirection to the Google Drive direct file rendering endpoint
-      // This retrieves the genuine project image since the folder permissions are now set to public.
       const width = w && typeof w === "string" ? w : "1000";
-      const driveUrl = `https://lh3.googleusercontent.com/d/${id}=w${width}`;
-      return res.redirect(driveUrl);
+      await validateAndProxyAndSaveImage(id, width, res);
     } catch (err: any) {
       console.error(`GP Proxy Error [id=${id}]:`, err);
       return res.redirect(getDeterministicUnsplashUrl(id));

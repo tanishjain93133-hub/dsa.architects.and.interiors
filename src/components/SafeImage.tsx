@@ -88,7 +88,7 @@ export const SafeImage: React.FC<SafeImageProps> = ({
     const driveId = extractDriveId(originalUrl);
     if (driveId) {
       const width = size === 'small' ? '400' : size === 'medium' ? '1000' : '1600';
-      return `/api/image-proxy?id=${driveId}&w=${width}`;
+      return `https://lh3.googleusercontent.com/d/${driveId}=w${width}`;
     }
     
     return originalUrl;
@@ -116,11 +116,14 @@ export const SafeImage: React.FC<SafeImageProps> = ({
 
     switch (attempt) {
       case 1:
-        return `/api/image-proxy?id=${driveId}&w=${width}`;
+        // Attempt 1: Try alternate direct Google thumbnail endpoint
+        return `https://drive.google.com/thumbnail?id=${driveId}&sz=w${width}`;
       case 2:
-        return `/images/drive_${driveId}`;
+        // Attempt 2: Try standard direct download endpoint
+        return `https://drive.google.com/uc?id=${driveId}&export=download`;
       case 3:
-        return `https://lh3.googleusercontent.com/d/${driveId}=w${width}`;
+        // Attempt 3: Try proxy server-side as ultimate backup
+        return `/api/image-proxy?id=${driveId}&w=${width}`;
       default:
         return fallbackSrc;
     }
