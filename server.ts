@@ -226,6 +226,62 @@ async function startServer() {
     }
   });
 
+  // API Route: Client-side self-healing endpoint to cache authenticated images
+  app.post("/api/heal-image", express.json({ limit: "15mb" }), async (req: express.Request, res: express.Response) => {
+    const { id, base64 } = req.body;
+    if (!id || typeof id !== "string" || !base64 || typeof base64 !== "string") {
+      return res.status(400).send("Missing parameters");
+    }
+
+    try {
+      const base64Data = base64.replace(/^data:image\/\w+;base64,/, "");
+      const buffer = Buffer.from(base64Data, "base64");
+
+      if (buffer.length < 5000) {
+        return res.status(400).send("Image too small or invalid");
+      }
+
+      // Check if it's HTML
+      const snippet = buffer.toString("utf8", 0, 150);
+      const isHtml = snippet.includes("<html") || snippet.includes("<!doctype") || snippet.includes("<HTML") || snippet.includes("<!DOCTYPE");
+      if (isHtml) {
+        return res.status(400).send("Payload is HTML, not a valid image");
+      }
+
+      const dirs = [
+        path.join(process.cwd(), "public", "images"),
+        path.join(process.cwd(), "dist", "images")
+      ];
+      
+      const ext = base64.includes("png") ? ".png" : ".jpg";
+      const names = [
+        `drive_${id}`,
+        `drive_${id}${ext}`,
+        `drive_${id}.jpg`,
+        `drive_${id}.png`
+      ];
+
+      for (const dir of dirs) {
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
+        for (const name of names) {
+          try {
+            fs.writeFileSync(path.join(dir, name), buffer);
+          } catch (e) {
+            // Squelch single directory file writes (like dist not built yet)
+          }
+        }
+      }
+
+      console.log(`[Self-Healing] Successfully cached and healed image ID: ${id} (${buffer.length} bytes)`);
+      return res.json({ success: true, size: buffer.length });
+    } catch (err: any) {
+      console.error(`[Self-Healing] Failed to save healed image ID: ${id}:`, err);
+      return res.status(500).send(err.message || "Internal server error");
+    }
+  });
+
   // Client SPA routing
   if (process.env.NODE_ENV !== "production") {
     const { createServer: createViteServer } = await import("vite");

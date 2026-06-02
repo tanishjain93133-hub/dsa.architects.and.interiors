@@ -84,11 +84,11 @@ export const SafeImage: React.FC<SafeImageProps> = ({
       }
     }
     
-    // Optimize Google Drive for previewing
+    // Optimize Google Drive for previewing - prefer our server proxy to leverage local caches
     const driveId = extractDriveId(originalUrl);
     if (driveId) {
       const width = size === 'small' ? '400' : size === 'medium' ? '1000' : '1600';
-      return `https://lh3.googleusercontent.com/d/${driveId}=w${width}`;
+      return `/api/image-proxy?id=${driveId}&w=${width}`;
     }
     
     return originalUrl;
@@ -149,6 +149,50 @@ export const SafeImage: React.FC<SafeImageProps> = ({
       return;
     }
     setIsLoaded(true);
+
+    // Self-healing check: if the image loaded successfully from Google CDN directly but not from our proxy,
+    // let's capture it and upload it to our server to heal the public cache!
+    const driveId = extractDriveId(src || '');
+    if (driveId && currentSrc && !currentSrc.startsWith('/') && !currentSrc.includes('image-proxy')) {
+      // It loaded from Google directly! Let's try to capture it. We run after a short delay to ensure rendering is complete.
+      setTimeout(() => {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+            // Verify we got a valid base64 representation of a JPEG and not transparent spacer
+            if (dataUrl && dataUrl.startsWith('data:image/jpeg;base64,') && dataUrl.length > 5000) {
+              fetch('/api/heal-image', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  id: driveId,
+                  base64: dataUrl
+                })
+              })
+              .then(res => res.json())
+              .then(data => {
+                if (data && data.success) {
+                  console.log(`[Self-Healing] Successfully cached and healed file ID: ${driveId}`);
+                }
+              })
+              .catch(() => {
+                // Ignore silent upload errors
+              });
+            }
+          }
+        } catch (err) {
+          // Ignore CORS/tainting security errors gracefully
+        }
+      }, 500);
+    }
+
     if (props.onLoad) props.onLoad(e);
   };
 
