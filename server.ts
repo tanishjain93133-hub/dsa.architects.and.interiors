@@ -1,6 +1,49 @@
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
+import https from "https";
+import http from "http";
+
+interface HttpsGetResponse {
+  ok: boolean;
+  status: number;
+  headers: Record<string, string>;
+  buffer: Buffer;
+}
+
+function httpsGet(url: string): Promise<HttpsGetResponse> {
+  return new Promise((resolve, reject) => {
+    const client = url.startsWith("https") ? https : http;
+    client.get(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/437.36",
+      }
+    }, (res) => {
+      if (res.statusCode && res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        httpsGet(res.headers.location).then(resolve).catch(reject);
+        return;
+      }
+      
+      const chunks: Buffer[] = [];
+      res.on("data", (chunk) => chunks.push(chunk));
+      res.on("end", () => {
+        const headers: Record<string, string> = {};
+        for (const [key, val] of Object.entries(res.headers)) {
+          if (val !== undefined) {
+            headers[key.toLowerCase()] = Array.isArray(val) ? val.join(", ") : val;
+          }
+        }
+        resolve({
+          ok: (res.statusCode || 0) >= 200 && (res.statusCode || 0) < 300,
+          status: res.statusCode || 0,
+          headers,
+          buffer: Buffer.concat(chunks)
+        });
+      });
+    }).on("error", (err) => {
+      reject(err);
+    });
+  });
+}
 
 async function startServer() {
   const app = express();
@@ -48,21 +91,17 @@ async function startServer() {
         `https://drive.google.com/uc?id=${id}&export=download`
       ];
 
-      let response: Response | null = null;
+      let response: HttpsGetResponse | null = null;
       let errorMsg = "";
 
       for (const url of targetUrls) {
         try {
-          const fetchPromise = fetch(url, {
-            headers: {
-              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/437.36",
-            }
-          });
+          const fetchPromise = httpsGet(url);
           const timeoutPromise = new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout")), 10000));
           const resObj = await Promise.race([fetchPromise, timeoutPromise]);
 
           if (resObj.ok) {
-            response = resObj as Response;
+            response = resObj;
             break;
           } else {
             errorMsg = `Status ${resObj.status} from ${url}`;
@@ -76,9 +115,8 @@ async function startServer() {
         throw new Error(`Failed to fetch image from Google Drive CDN: ${errorMsg}`);
       }
 
-      const contentType = response.headers.get("Content-Type") || "image/jpeg";
-      const arrayBuffer = await response.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
+      const contentType = response.headers["content-type"] || "image/jpeg";
+      const buffer = response.buffer;
 
       imageCache.set(cacheKey, {
         buffer,
@@ -124,23 +162,19 @@ async function startServer() {
         `https://drive.google.com/uc?id=${id}&export=download`
       ];
 
-      let response: Response | null = null;
+      let response: HttpsGetResponse | null = null;
       let errorMsg = "";
 
       for (const url of targetUrls) {
         try {
-          const fetchPromise = fetch(url, {
-            headers: {
-              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/437.36",
-            }
-          });
+          const fetchPromise = httpsGet(url);
           
           // Timeout fetch after 10s
           const timeoutPromise = new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout")), 10000));
           const resObj = await Promise.race([fetchPromise, timeoutPromise]);
 
           if (resObj.ok) {
-            response = resObj as Response;
+            response = resObj;
             break;
           } else {
             errorMsg = `Status ${resObj.status} from ${url}`;
@@ -154,9 +188,8 @@ async function startServer() {
         throw new Error(`Failed to fetch image from Google Drive CDN: ${errorMsg}`);
       }
 
-      const contentType = response.headers.get("Content-Type") || "image/jpeg";
-      const arrayBuffer = await response.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
+      const contentType = response.headers["content-type"] || "image/jpeg";
+      const buffer = response.buffer;
 
       // Save to cache
       imageCache.set(cacheKey, {
@@ -178,6 +211,7 @@ async function startServer() {
 
   // Client SPA routing
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
