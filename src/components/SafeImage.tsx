@@ -51,6 +51,11 @@ export const extractDriveId = (url: string): string | null => {
     }
   }
   
+  if (url.includes('drive_')) {
+    const match = url.match(/drive_([a-zA-Z0-9_-]+)/);
+    if (match) return match[1];
+  }
+  
   return null;
 };
 
@@ -83,7 +88,7 @@ export const SafeImage: React.FC<SafeImageProps> = ({
     const driveId = extractDriveId(originalUrl);
     if (driveId) {
       const width = size === 'small' ? '400' : size === 'medium' ? '1000' : '1600';
-      return `/api/image-proxy?id=${driveId}&w=${width}`;
+      return `https://lh3.googleusercontent.com/d/${driveId}=w${width}`;
     }
     
     return originalUrl;
@@ -111,11 +116,11 @@ export const SafeImage: React.FC<SafeImageProps> = ({
 
     switch (attempt) {
       case 1:
-        return `/api/image-proxy?id=${driveId}&w=${width}`;
+        return `https://lh3.googleusercontent.com/d/${driveId}=w${width}`;
       case 2:
-        return `/api/image-proxy?id=${driveId}&w=1600`;
+        return `https://lh3.googleusercontent.com/d/${driveId}`;
       case 3:
-        return `/api/image-proxy?id=${driveId}`;
+        return `https://drive.google.com/thumbnail?id=${driveId}&sz=w${width}`;
       default:
         return fallbackSrc;
     }

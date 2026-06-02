@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var currentFetch = originalFetch;
+          
+          function defineOn(obj) {
+            Object.defineProperty(obj, 'fetch', {
+              get: function() { return currentFetch; },
+              set: function(val) { currentFetch = val; },
+              configurable: true,
+              enumerable: true
+            });
+          }
+          
+          try { defineOn(window); } catch(e1) {
+            try { defineOn(Window.prototype); } catch(e2) {
+              try { defineOn(globalThis); } catch(e3) {
+                console.warn('Fetch proxy could not be defined:', e3);
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('Setup fetch proxy error:', e);
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />

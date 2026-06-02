@@ -4,7 +4,7 @@ import { createServer as createViteServer } from "vite";
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
   // Cache object for local in-memory caching of images so they are super-fast on repeat visits
   const imageCache = new Map<string, { buffer: Buffer; contentType: string; timestamp: number }>();
@@ -19,6 +19,82 @@ async function startServer() {
       }
     }
   }, 1000 * 60 * 60);
+
+  // API Route: Local file-path interceptor for /images/drive_... filenames
+  // This guarantees that any client image tags requesting /images/drive_... on the disk are
+  // intercepted, dynamically proxied and streamed from public Google Drive CDN, ignoring the broken HTML files.
+  app.get("/images/drive_:fileId", async (req, res, next) => {
+    try {
+      const fileIdWithExt = req.params.fileId;
+      if (!fileIdWithExt) return next();
+      
+      const id = fileIdWithExt.split(".")[0];
+      if (!id) return next();
+      
+      const width = "1000";
+      const cacheKey = `${id}_${width}`;
+      
+      if (imageCache.has(cacheKey)) {
+        const cached = imageCache.get(cacheKey)!;
+        res.setHeader("Content-Type", cached.contentType);
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        return res.send(cached.buffer);
+      }
+      
+      const targetUrls = [
+        `https://lh3.googleusercontent.com/d/${id}=w${width}`,
+        `https://lh3.googleusercontent.com/d/${id}`,
+        `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`,
+        `https://drive.google.com/uc?id=${id}&export=download`
+      ];
+
+      let response: Response | null = null;
+      let errorMsg = "";
+
+      for (const url of targetUrls) {
+        try {
+          const fetchPromise = fetch(url, {
+            headers: {
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/437.36",
+            }
+          });
+          const timeoutPromise = new Promise<never>((_, reject) => setTimeout(() => reject(new Error("Timeout")), 10000));
+          const resObj = await Promise.race([fetchPromise, timeoutPromise]);
+
+          if (resObj.ok) {
+            response = resObj as Response;
+            break;
+          } else {
+            errorMsg = `Status ${resObj.status} from ${url}`;
+          }
+        } catch (err: any) {
+          errorMsg = err.message || "Unknown proxy error";
+        }
+      }
+
+      if (!response) {
+        throw new Error(`Failed to fetch image from Google Drive CDN: ${errorMsg}`);
+      }
+
+      const contentType = response.headers.get("Content-Type") || "image/jpeg";
+      const arrayBuffer = await response.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+
+      imageCache.set(cacheKey, {
+        buffer,
+        contentType,
+        timestamp: Date.now()
+      });
+
+      res.setHeader("Content-Type", contentType);
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      return res.send(buffer);
+    } catch (err) {
+      console.error(`Local Image Proxy Route Error [file=${req.params.fileId}]:`, err);
+      // Fallback redirect to a high-quality building photo on Unsplash
+      return res.redirect("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000");
+    }
+  });
 
   // API Route: Image Proxy for Google Drive to bypass Third-Party Cookie blocking (Incognito Mode, Safari etc.)
   app.get("/api/image-proxy", async (req, res) => {
