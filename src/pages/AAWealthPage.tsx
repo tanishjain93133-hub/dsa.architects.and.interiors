@@ -91,12 +91,12 @@ export const AAWealthPage: React.FC = () => {
       
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6">
-          <button 
-            onClick={() => navigate(-1)} 
+          <a 
+            href="https://projects-rho-dun.vercel.app/" 
             className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform cursor-pointer"
           >
             <ArrowLeft size={16} /> Back to Projects
-          </button>
+          </a>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

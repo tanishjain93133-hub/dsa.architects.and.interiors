@@ -75,12 +75,12 @@ export const Hero: React.FC = () => {
             transition={{ delay: 2, duration: 0.8 }}
             className="flex justify-center"
           >
-            <Link to="/portfolio" className="group relative px-12 py-5 rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg">
+            <a href="https://projects-rho-dun.vercel.app/" className="group relative px-12 py-5 rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-lg">
               <div className="absolute inset-0 bg-white transition-colors group-hover:bg-neon-cyan" />
               <span className="relative z-10 text-obsidian font-bold tracking-[0.2em] text-xs">
                 Explore Projects
               </span>
-            </Link>
+            </a>
           </motion.div>
         </div>
 

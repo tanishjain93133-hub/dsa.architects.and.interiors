@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Home', href: isHome ? '#home' : '/' },
     { name: 'About', href: '/about' },
-    { name: 'Projects', href: '/portfolio' },
+    { name: 'Projects', href: 'https://projects-rho-dun.vercel.app/' },
     { name: 'Testimonials', href: '/testimonials' },
     { name: 'Lights', href: isHome ? '#lights' : '/#lights' },
     { name: 'Contact Us', href: isHome ? '#contact' : '/#contact' },
@@ -61,7 +61,7 @@ export const Navbar: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                {link.href.startsWith('#') || link.href.includes('#') ? (
+                {link.href.startsWith('http') || link.href.startsWith('#') || link.href.includes('#') ? (
                   <a
                     href={link.href}
                     className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[10px] tracking-[0.2em] text-white font-medium hover:bg-white hover:text-obsidian transition-all hover:scale-105 active:scale-95"
@@ -103,7 +103,7 @@ export const Navbar: React.FC = () => {
             className="absolute top-full left-0 right-0 glass p-6 md:hidden flex flex-col gap-4"
           >
             {navLinks.map((link) => (
-              link.href.startsWith('#') || link.href.includes('#') ? (
+              link.href.startsWith('http') || link.href.startsWith('#') || link.href.includes('#') ? (
                 <a
                   key={link.name}
                   href={link.href}

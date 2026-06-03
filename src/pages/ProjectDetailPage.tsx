@@ -518,12 +518,12 @@ export const ProjectDetailPage: React.FC = () => {
       <main className="pt-32 pb-24">
         {/* Header Section */}
         <div className={cn("max-w-7xl mx-auto px-6 transition-all duration-700", viewMode === 'gallery' ? "opacity-0 invisible h-0 pointer-events-none" : "opacity-100 visible mb-20")}>
-          <button 
-            onClick={() => navigate(-1)} 
+          <a 
+            href="https://projects-rho-dun.vercel.app/" 
             className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform cursor-pointer"
           >
             <ArrowLeft size={16} /> Back to Projects
-          </button>
+          </a>
 
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <motion.div
@@ -589,13 +589,13 @@ export const ProjectDetailPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             className="fixed top-8 left-8 md:top-32 md:left-24 z-50 flex items-center gap-6"
           >
-            <button 
-              onClick={() => navigate(-1)}
+            <a 
+              href="https://projects-rho-dun.vercel.app/"
               className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-obsidian flex items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.3)] hover:scale-110 active:scale-95 transition-all group cursor-pointer"
               title="Back to Projects"
             >
               <ArrowLeft size={20} className="md:size-6 group-hover:-translate-x-1 transition-transform" />
-            </button>
+            </a>
             <div className="hidden lg:block">
               <span className="text-white/40 text-[10px] font-black tracking-[0.4em] uppercase block mb-1">Project</span>
               <h4 className="text-white text-sm font-bold tracking-widest uppercase">{project.title}</h4>

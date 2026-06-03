@@ -117,6 +117,10 @@ const PROJECTS_IMAGES = [
 ];
 
 export const ProjectsPage: React.FC = () => {
+  React.useEffect(() => {
+    window.location.replace('https://projects-rho-dun.vercel.app/');
+  }, []);
+
   const [activeFilter, setActiveFilter] = React.useState<string>(() => {
     return sessionStorage.getItem('projects-active-filter') || 'All';
   });
