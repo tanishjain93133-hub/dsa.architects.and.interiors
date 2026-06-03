@@ -144,7 +144,10 @@ async function validateAndProxyAndSaveImage(id: string, width: string, res: expr
   // Target Google Drive URLs to fetch from in order (optimized for maximum proxy speed)
   const targetUrls = [
     `https://lh3.googleusercontent.com/d/${id}=w${width}`,
-    `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`
+    `https://lh3.googleusercontent.com/u/0/d/${id}=w${width}`,
+    `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`,
+    `https://drive.google.com/uc?id=${id}&export=download`,
+    `https://docs.google.com/uc?id=${id}&export=download`
   ];
 
   let fetchResponse: HttpsGetResponse | null = null;
@@ -152,21 +155,21 @@ async function validateAndProxyAndSaveImage(id: string, width: string, res: expr
 
   for (const url of targetUrls) {
     try {
-      const resp = await httpsGet(url);
+      const resp = await httpsGet(url, 8000);
       if (resp.ok && resp.buffer.length > 5000) { // minimum image size limit
         const snippet = resp.buffer.toString("utf8", 0, 150);
-        const isHtml = snippet.includes("<html") || snippet.includes("<!doctype html") || snippet.includes("<HTML") || snippet.includes("<!DOCTYPE");
+        const isHtml = snippet.includes("<html") || snippet.includes("<html") || snippet.includes("<!doctype html") || snippet.includes("<HTML") || snippet.includes("<!DOCTYPE");
         if (!isHtml) {
           fetchResponse = resp;
           break;
         } else {
-          lastError = "Response was HTML login screen redirect";
+          lastError = `Response from ${url} was HTML/Login page redirect`;
         }
       } else {
-        lastError = `Status ${resp.status}, size ${resp.buffer.length}`;
+        lastError = `Status ${resp.status}, size ${resp.buffer.length} from ${url}`;
       }
     } catch (err: any) {
-      lastError = err.message || "Unknown error";
+      lastError = `${err.message || "Unknown error"} on ${url}`;
     }
   }
 
@@ -205,7 +208,7 @@ async function validateAndProxyAndSaveImage(id: string, width: string, res: expr
   }
 
   // Return deterministic Unsplash fallback redirect to make sure guest/incognito users never see broken images!
-  console.warn(`[Proxy Fallback] Failed proxy load for ID: ${id}. Redirecting to Unsplash fallback.`);
+  console.warn(`[Proxy Fallback] Failed proxy load for ID: ${id}. Reason: ${lastError}. Redirecting to Unsplash fallback.`);
   return res.redirect(getDeterministicUnsplashUrl(id));
 }
 

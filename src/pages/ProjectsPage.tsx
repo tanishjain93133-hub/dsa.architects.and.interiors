@@ -117,10 +117,6 @@ const PROJECTS_IMAGES = [
 ];
 
 export const ProjectsPage: React.FC = () => {
-  React.useEffect(() => {
-    window.location.replace('https://projects-rho-dun.vercel.app/');
-  }, []);
-
   const [activeFilter, setActiveFilter] = React.useState<string>(() => {
     return sessionStorage.getItem('projects-active-filter') || 'All';
   });
@@ -166,10 +162,24 @@ export const ProjectsPage: React.FC = () => {
               </div>
             </div>
             
-            <p className="text-white/80 text-base md:text-lg max-w-md leading-relaxed font-light mb-12 border-l border-white/10 pl-8">
+            <p className="text-white/80 text-base md:text-lg max-w-md leading-relaxed font-light mb-8 border-l border-white/10 pl-8">
               A collection of architectural narratives that redefine modern living through 
               timeless aesthetics and meticulous spatial planning.
             </p>
+
+            {/* Prominent Direct Portfolio Link with smooth scroll */}
+            <div className="mb-12 border-l border-white/10 pl-8">
+              <button 
+                onClick={() => {
+                  const el = document.getElementById('live-portfolio-showcase');
+                  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-neon-cyan text-obsidian text-xs font-bold tracking-widest uppercase hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_30px_rgba(30,227,249,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.5)] cursor-pointer"
+              >
+                <span>Discover Live Portfolio</span>
+                <span className="text-sm font-semibold">↓</span>
+              </button>
+            </div>
 
             {/* High-End Social Links */}
             <div className="flex items-center gap-10 text-[11px] tracking-[0.4em] font-bold uppercase">
@@ -254,6 +264,41 @@ export const ProjectsPage: React.FC = () => {
           <span className="text-[9px] tracking-[0.5em] text-white/70 uppercase">Architecture Hero 02</span>
           <div className="w-16 h-[1px] bg-white/20" />
         </motion.div>
+      </section>
+
+      {/* Live Interactive Showcase Embedded Section */}
+      <section id="live-portfolio-showcase" className="relative z-20 py-16 bg-black border-b border-white/5 scroll-mt-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <span className="text-neon-cyan text-[10px] font-black tracking-[0.5em] mb-4 block uppercase leading-none">
+              Interactive Design Hub
+            </span>
+            <h2 className="text-white text-3xl md:text-5xl font-display font-thin tracking-widest uppercase">
+              Live <span className="text-gradient font-bold">Interactive Showcase</span>
+            </h2>
+            <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto mt-4 font-light leading-relaxed">
+              Explore our fully featured custom projects, interactive blueprints, and galleries directly below. Use the in-app controls to navigate smoothly.
+            </p>
+          </div>
+
+          <div className="relative w-full h-[650px] md:h-[850px] lg:h-[1000px] rounded-[2.5rem] border border-white/10 overflow-hidden shadow-[0_0_60px_rgba(30,227,249,0.15)] bg-black/50">
+            {/* Elegant Loader Spinner shown while loading */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0a0a] z-0">
+              <div className="w-12 h-12 border-4 border-white/10 border-t-neon-cyan rounded-full animate-spin mb-4" />
+              <p className="text-white/40 tracking-[0.3em] text-[10px] uppercase font-bold">
+                Connecting to Portfolio Services...
+              </p>
+            </div>
+            
+            <iframe 
+              src="https://projects-rho-dun.vercel.app/"
+              title="DSA Architects Live Project Showcase Portfolio"
+              className="relative z-10 w-full h-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
       </section>
 
       {/* Filter Section - High Energy Cinematic Style */}
@@ -474,11 +519,15 @@ export const ProjectsPage: React.FC = () => {
                         {project.description || 'Redefining contemporary living through an uncompromising commitment to structural integrity and spatial harmony. This project stands as a testament to the DSA design philosophy.'}
                       </p>
                       <div className="flex gap-6">
-                        <Link to={`/project/${project.id}`}>
+                        <a 
+                          href="https://projects-rho-dun.vercel.app/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
                           <button className="px-10 py-4 rounded-full bg-white text-obsidian text-[10px] font-bold tracking-widest uppercase hover:bg-neon-cyan transition-all">
-                            View Project Gallery
+                            Open Full-Screen Portfolio
                           </button>
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </motion.div>

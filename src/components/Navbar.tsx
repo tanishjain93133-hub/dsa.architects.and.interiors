@@ -64,6 +64,8 @@ export const Navbar: React.FC = () => {
                 {link.href.startsWith('http') || link.href.startsWith('#') || link.href.includes('#') ? (
                   <a
                     href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[10px] tracking-[0.2em] text-white font-medium hover:bg-white hover:text-obsidian transition-all hover:scale-105 active:scale-95"
                   >
                     {link.name}
@@ -107,6 +109,8 @@ export const Navbar: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   onClick={() => setIsOpen(false)}
                   className="text-lg font-display font-bold text-white hover:text-neon-cyan transition-colors"
                 >
