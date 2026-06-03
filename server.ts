@@ -11,22 +11,33 @@ interface HttpsGetResponse {
   buffer: Buffer;
 }
 
-function httpsGet(url: string): Promise<HttpsGetResponse> {
+function httpsGet(url: string, timeoutMs = 2000): Promise<HttpsGetResponse> {
   return new Promise((resolve, reject) => {
+    let resolved = false;
     const client = url.startsWith("https") ? https : http;
-    client.get(url, {
+    
+    const req = client.get(url, {
+      timeout: timeoutMs,
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/437.36",
       }
     }, (res) => {
+      if (resolved) return;
       if (res.statusCode && res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        httpsGet(res.headers.location).then(resolve).catch(reject);
+        resolved = true;
+        req.destroy();
+        httpsGet(res.headers.location, timeoutMs).then(resolve).catch(reject);
         return;
       }
       
       const chunks: Buffer[] = [];
-      res.on("data", (chunk) => chunks.push(chunk));
+      res.on("data", (chunk) => {
+        if (resolved) return;
+        chunks.push(chunk);
+      });
       res.on("end", () => {
+        if (resolved) return;
+        resolved = true;
         const headers: Record<string, string> = {};
         for (const [key, val] of Object.entries(res.headers)) {
           if (val !== undefined) {
@@ -40,7 +51,18 @@ function httpsGet(url: string): Promise<HttpsGetResponse> {
           buffer: Buffer.concat(chunks)
         });
       });
-    }).on("error", (err) => {
+    });
+    
+    req.on("timeout", () => {
+      if (resolved) return;
+      resolved = true;
+      req.destroy();
+      reject(new Error("Request timeout"));
+    });
+    
+    req.on("error", (err) => {
+      if (resolved) return;
+      resolved = true;
       reject(err);
     });
   });
@@ -119,12 +141,10 @@ async function validateAndProxyAndSaveImage(id: string, width: string, res: expr
     return res.sendFile(localPath);
   }
 
-  // Target Google Drive URLs to fetch from in order
+  // Target Google Drive URLs to fetch from in order (optimized for maximum proxy speed)
   const targetUrls = [
     `https://lh3.googleusercontent.com/d/${id}=w${width}`,
-    `https://lh3.googleusercontent.com/d/${id}`,
-    `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`,
-    `https://drive.google.com/uc?id=${id}&export=download`
+    `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`
   ];
 
   let fetchResponse: HttpsGetResponse | null = null;

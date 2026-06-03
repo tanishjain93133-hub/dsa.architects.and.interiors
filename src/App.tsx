@@ -47,6 +47,18 @@ const HomePage: React.FC = () => (
 );
 
 export default function App() {
+  React.useEffect(() => {
+    fetch('/api/list-drive-ids')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.cached) {
+          (window as any).__cachedDriveIds = new Set(data.cached);
+          window.dispatchEvent(new CustomEvent('cached-drive-ids-updated'));
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <Router>
       <ScrollRestoration />

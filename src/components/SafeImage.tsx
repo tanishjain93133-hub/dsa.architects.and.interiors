@@ -87,6 +87,9 @@ export const SafeImage: React.FC<SafeImageProps> = ({
     // Optimize Google Drive for previewing - prefer our server proxy to leverage local caches
     const driveId = extractDriveId(originalUrl);
     if (driveId) {
+      if ((window as any).__cachedDriveIds?.has(driveId)) {
+        return `/images/drive_${driveId}.jpg`;
+      }
       const width = size === 'small' ? '400' : size === 'medium' ? '1000' : '1600';
       return `/api/image-proxy?id=${driveId}&w=${width}`;
     }
@@ -198,11 +201,25 @@ export const SafeImage: React.FC<SafeImageProps> = ({
 
   // Immediate layout evaluation for cached images (safeguard for Safari page-load caching)
   useEffect(() => {
+    const handleCachedUpdated = () => {
+      const driveId = extractDriveId(src || '');
+      if (driveId && (window as any).__cachedDriveIds?.has(driveId)) {
+        setCurrentSrc(`/images/drive_${driveId}.jpg`);
+      }
+    };
+
+    window.addEventListener('cached-drive-ids-updated', handleCachedUpdated);
+    handleCachedUpdated();
+
     const img = imgRef.current;
     if (img && img.complete && img.naturalWidth >= 10) {
       setIsLoaded(true);
     }
-  }, []);
+
+    return () => {
+      window.removeEventListener('cached-drive-ids-updated', handleCachedUpdated);
+    };
+  }, [src]);
 
   return (
     <div className={cn("relative overflow-hidden bg-white/5", className)}>

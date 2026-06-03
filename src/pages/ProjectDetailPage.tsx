@@ -113,23 +113,17 @@ const SUBTLE_SANCTUARY_GALLERY = [
 ];
 
 const THE_WHITE_HOUSE_GALLERY = [
-  { image: 'https://lh3.googleusercontent.com/d/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM', text: 'The White House 01' },
-  { image: 'https://lh3.googleusercontent.com/d/1GHRlkdpuKtOVQ9p2t35-pMhmfu9m8KRM', text: 'The White House 02' },
-  { image: 'https://lh3.googleusercontent.com/d/1-muYkqhKVHIFcPnOTRMuHckfveopxo9M', text: 'The White House 03' },
-  { image: 'https://lh3.googleusercontent.com/d/1H6q1qNWQHacRX-hMgou8B1FiWhRQChA9', text: 'The White House 04' },
-  { image: 'https://lh3.googleusercontent.com/d/1RAbB85Awvx_M7HDwpeLTHFHe_hVhD5Ei', text: 'The White House 05' },
-  { image: 'https://lh3.googleusercontent.com/d/19slMjCDOJX7utwGRjYTzXNSoClLzkPx_', text: 'The White House 06' },
-  { image: 'https://lh3.googleusercontent.com/d/1DGldHecHJLmt7AkjiUlSn60qWGwIfH87', text: 'The White House 07' },
-  { image: 'https://lh3.googleusercontent.com/d/18_7CMiYHoSYBhdpz3wpWKfoQkGwhUvof', text: 'The White House 08' },
-  { image: 'https://lh3.googleusercontent.com/d/1VizU1uLT7de9piaTNGn2dJ3PFC1Bqc9h', text: 'The White House 09' },
-  { image: 'https://lh3.googleusercontent.com/d/1Vr36TSJPInbGPkPCG5a42anV8U1T2vBD', text: 'The White House 10' },
-  { image: 'https://lh3.googleusercontent.com/d/1iQmVJffURWt36pHSEUDtBVea6DohwNui', text: 'The White House 11' },
-  { image: 'https://lh3.googleusercontent.com/d/1ougaUOsunQBGofdyvOBG9Khbgdk0vqUv', text: 'The White House 12' },
-  { image: 'https://lh3.googleusercontent.com/d/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE', text: 'The White House 13' },
-  { image: 'https://lh3.googleusercontent.com/d/18ZAqVZ_dUvWc_Ty2yITX2JVYMpQl0C96', text: 'The White House 14' },
-  { image: 'https://lh3.googleusercontent.com/d/1EsMLe08jkprzx3ZDo1GAcmzZH3N-Frpp', text: 'The White House 15' },
-  { image: 'https://lh3.googleusercontent.com/d/1YyyJgCvAd-Q9_dcwhd7A7YLY_MGaTjuF', text: 'The White House 16' },
-  { image: 'https://lh3.googleusercontent.com/d/1QLoxtToMtlmg-ipEwkZmSlumXOUQN8xl', text: 'The White House 17' },
+  { image: 'https://lh3.googleusercontent.com/d/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I', text: 'The White House 01' },
+  { image: 'https://lh3.googleusercontent.com/d/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE', text: 'The White House 02' },
+  { image: 'https://lh3.googleusercontent.com/d/18ZAqVZ_dUvWc_Ty2yITX2JVYMpQl0C96', text: 'The White House 03' },
+  { image: 'https://lh3.googleusercontent.com/d/18_7CMiYHoSYBhdpz3wpWKfoQkGwhUvof', text: 'The White House 04' },
+  { image: 'https://lh3.googleusercontent.com/d/1EsMLe08jkprzx3ZDo1GAcmzZH3N-Frpp', text: 'The White House 05' },
+  { image: 'https://lh3.googleusercontent.com/d/1H6q1qNWQHacRX-hMgou8B1FiWhRQChA9', text: 'The White House 06' },
+  { image: 'https://lh3.googleusercontent.com/d/1QLoxtToMtlmg-ipEwkZmSlumXOUQN8xl', text: 'The White House 07' },
+  { image: 'https://lh3.googleusercontent.com/d/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM', text: 'The White House 08' },
+  { image: 'https://lh3.googleusercontent.com/d/1YyyJgCvAd-Q9_dcwhd7A7YLY_MGaTjuF', text: 'The White House 09' },
+  { image: 'https://lh3.googleusercontent.com/d/1iQmVJffURWt36pHSEUDtBVea6DohwNui', text: 'The White House 10' },
+  { image: 'https://lh3.googleusercontent.com/d/1ougaUOsunQBGofdyvOBG9Khbgdk0vqUv', text: 'The White House 11' },
 ];
 
 const JS_HOUSE_GALLERY = [
