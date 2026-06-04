@@ -14,7 +14,7 @@ const CP_HOUSE_REVIEW_DATA = [
     videoLink: 'https://youtube.com/shorts/4Ym1Dd2zYyo?si=nNcHTo8k2x_HnIuI'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1QXMPG5YtO4y0kC1CKzrB_b2GUAJ5pt0Z', 
+    image: 'https://lh3.googleusercontent.com/d/1eyUNJD40wCPn03R_vRjBCfjyROOawtks', 
     title: 'WELL-PLANNED', 
     desc: 'Thoughtfully designed interiors where every detail was planned for beauty, functionality, and daily comfort.',
     videoLink: 'https://youtube.com/shorts/78-R4XpK6eI?si=9fH5AXETthfjDN8H'

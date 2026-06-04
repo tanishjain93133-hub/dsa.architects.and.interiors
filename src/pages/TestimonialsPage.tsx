@@ -71,9 +71,8 @@ const allTestimonials = [
     image: "https://lh3.googleusercontent.com/d/1Y43Nu1oD9H8ibrjbsNX1Dfu6prWNesM4",
     projectName: "Shlip Aaron",
     projectId: "comm-dsa-07",
-    videoLink: "",
-    reviewPath: "/project/comm-dsa-07",
-    disableImageLink: true
+    videoLink: "https://youtu.be/PClXJVyL4sE?si=mWC5rs-k2mGcgoVf",
+    reviewPath: "https://youtu.be/PClXJVyL4sE?si=mWC5rs-k2mGcgoVf"
   }
 ];
 
@@ -178,7 +177,7 @@ export const TestimonialsPage: React.FC = () => {
                   {/* Bottom Section */}
                   <div className="flex flex-col items-center w-full mt-auto">
                     {/* Project Button */}
-                    <Link to={`/project/${testimonial.projectId}`} className="mb-5">
+                    <a href="https://projects-rho-dun.vercel.app/" target="_blank" rel="noopener noreferrer" className="mb-5">
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -188,7 +187,7 @@ export const TestimonialsPage: React.FC = () => {
                           {testimonial.projectName}
                         </span>
                       </motion.button>
-                    </Link>
+                    </a >
 
                     {testimonial.reviewPath?.startsWith('http') ? (
                       <a 
