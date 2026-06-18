@@ -8,25 +8,25 @@ import { SafeImage } from '../components/SafeImage';
 
 const PARTH_SHAH_REVIEW_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1Y41fXvA3RArFVTj5XIhR-3YfnHeTYwMF', 
+    image: '/images/drive_1Y41fXvA3RArFVTj5XIhR-3YfnHeTYwMF.png', 
     title: 'STARTED FROM SCRATCH', 
     desc: 'A completely blank space transformed into a warm, elegant, and thoughtfully designed dream home.',
     videoLink: 'https://youtube.com/shorts/k-pZipf1kpM?si=E5GxmHw69u9I9iIt'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1y_BUKxYPucLE9d_Mn8WShV3FCX_44vY-', 
+    image: '/images/drive_1y_BUKxYPucLE9d_Mn8WShV3FCX_44vY-.png', 
     title: 'PROBLEM SOLVING', 
     desc: 'Smart planning and creative interior solutions solved every space and functionality challenge beautifully.',
     videoLink: 'https://youtube.com/shorts/uQWnLGPpLEE?si=GPcDDGU9ONxxFeAl'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1G-ZNBiHlK0_L3_VsQp-OKnYI_ozfbYl_', 
+    image: '/images/drive_1G-ZNBiHlK0_L3_VsQp-OKnYI_ozfbYl_.png', 
     title: 'BUDGET FRIENDLY', 
     desc: 'Premium aesthetics and modern comfort achieved with practical planning and balanced budgeting.',
     videoLink: 'https://youtube.com/shorts/THubXSNQtMQ?si=5hwmazhYhtBTqC8w' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1BMtbZJHsCSXn0tlcu3Sn0kRAsO-Pe5yx', 
+    image: '/images/drive_1BMtbZJHsCSXn0tlcu3Sn0kRAsO-Pe5yx.png', 
     title: 'DREAM COMPLETED', 
     desc: 'A personalized dream home brought to life exactly as imagined with refined detailing and comfort.',
     videoLink: 'https://youtube.com/shorts/4TTUjtNYh3g?si=DzSDHD_uTnFprhTF'

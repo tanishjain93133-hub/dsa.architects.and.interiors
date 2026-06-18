@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
           <Link to="/" className="flex items-center gap-4 group">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 overflow-hidden bg-black/40 backdrop-blur-md group-hover:border-neon-cyan transition-colors">
               <SafeImage 
-                src="https://lh3.googleusercontent.com/d/19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs" 
+                src="/images/drive_19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs.jpg" 
                 alt="DSA Logo" 
                 size="small"
                 className="w-full h-full object-cover"

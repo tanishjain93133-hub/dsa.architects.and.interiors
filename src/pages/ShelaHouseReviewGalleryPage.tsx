@@ -8,22 +8,22 @@ import { SafeImage } from '../components/SafeImage';
 
 const SHELA_HOUSE_REVIEW_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki', 
+    image: '/images/drive_1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki.jpg', 
     title: 'Serene Sanctuary', 
     desc: 'Graceful custom paneling with soft ambient glows to soothe the senses.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1v6qalvsM3Qea36VXgliizpmmhqogNXId', 
+    image: '/images/drive_1v6qalvsM3Qea36VXgliizpmmhqogNXId.jpg', 
     title: 'Timeless Detailing', 
     desc: 'Uncompromising attention to linear alignment and luxury materials.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1FpP771cL8vy2eMZZwTwtBGFve-Ip_sGU', 
+    image: '/images/drive_1FpP771cL8vy2eMZZwTwtBGFve-Ip_sGU.jpg', 
     title: 'Tactile Warmth', 
     desc: 'A composition of natural oak, textured fabrics, and subtle lighting accents.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1nZrTa5mHbMUJH8AzgkUXHcvWVAyOJ5w8', 
+    image: '/images/drive_1nZrTa5mHbMUJH8AzgkUXHcvWVAyOJ5w8.jpg', 
     title: 'Dynamic Spaces', 
     desc: 'Spurious layout optimized to balance social gathering and intimate comfort.' 
   }

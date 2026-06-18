@@ -8,19 +8,19 @@ import { SafeImage } from '../components/SafeImage';
 
 const JS_HOUSE_REVIEW_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1L_Srg6u-xk1_nOSwxrexxcy3cdGPupQN', 
+    image: '/images/drive_1L_Srg6u-xk1_nOSwxrexxcy3cdGPupQN.png', 
     title: 'DESIGN CLARITY', 
     desc: 'Clear planning and smart concepts that turned ideas into reality.',
     videoLink: 'https://youtube.com/shorts/-1tGdGRpzFo?si=2v2E7LhfDDezGVnI'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1xYA2QYmETIW4lsJJkqIp4j8c4UIyktK2', 
+    image: '/images/drive_1xYA2QYmETIW4lsJJkqIp4j8c4UIyktK2.jpg', 
     title: 'WHY DSA CHOOSE', 
     desc: 'Trusted expertise, smooth execution, and attention to every detail.',
     videoLink: 'https://youtube.com/shorts/_ll6rw4dy8A?si=q0UNdsiUH83lkoGK'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1ezmNrbJg-jmiBsSA2eGIamXdjQTpCty9', 
+    image: '/images/drive_1ezmNrbJg-jmiBsSA2eGIamXdjQTpCty9.png', 
     title: 'BEYOND EXPECTATIONS', 
     desc: 'Delivered more than imagined with premium quality and perfect finishing.',
     videoLink: 'https://youtube.com/shorts/LrDeeDrff9A?si=jupeKbRdeRNquPwg'

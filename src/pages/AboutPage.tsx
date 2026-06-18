@@ -12,7 +12,7 @@ import { SafeImage } from '../components/SafeImage';
 export const AboutPage: React.FC = () => {
   const teamItems = [
     {
-      image: "https://lh3.googleusercontent.com/d/111OTmw-5OnABcNOMgnx4ko3C1cndGuPc",
+      image: "/images/drive_111OTmw-5OnABcNOMgnx4ko3C1cndGuPc.jpg",
       title: "Tanish Jain",
       subtitle: "Social media manager & website developer",
       handle: "@tanishjain",
@@ -20,7 +20,7 @@ export const AboutPage: React.FC = () => {
       gradient: "linear-gradient(180deg, #7000FF, #000)",
     },
     {
-      image: "https://lh3.googleusercontent.com/d/10nFCmvCeEitMYkquFOZlifiAI7sbZdrh",
+      image: "/images/drive_10nFCmvCeEitMYkquFOZlifiAI7sbZdrh.jpg",
       title: "Dhruv Solanki",
       subtitle: "Draftsman",
       handle: "@dhruvsolanki",
@@ -28,7 +28,7 @@ export const AboutPage: React.FC = () => {
       gradient: "linear-gradient(180deg, #00F3FF, #000)",
     },
     {
-      image: "https://lh3.googleusercontent.com/d/1m5u6VbAhfgU-G97qKkeqMo_7Sspdvx1z",
+      image: "/images/drive_1m5u6VbAhfgU-G97qKkeqMo_7Sspdvx1z.jpg",
       title: "Ronak Shah",
       subtitle: "Site supervisor",
       handle: "@ronakshah",

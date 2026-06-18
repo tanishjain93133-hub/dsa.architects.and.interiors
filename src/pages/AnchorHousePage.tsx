@@ -8,37 +8,37 @@ import { SafeImage } from '../components/SafeImage';
 
 const ANCHOR_HOUSE_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1L_Srg6u-xk1_nOSwxrexxcy3cdGPupQN', 
+    image: '/images/drive_1L_Srg6u-xk1_nOSwxrexxcy3cdGPupQN.png', 
     title: 'DESIGN CLARITY', 
     desc: 'Smart planning that gave a clear vision from day one.',
     videoLink: 'https://youtube.com/shorts/bJX3JVCjFyg?si=Jw8T9i3GVv3R7FzF'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1oYmipYl4ALNBCWEut-7mpQ3PvoN4EaBl', 
+    image: '/images/drive_1oYmipYl4ALNBCWEut-7mpQ3PvoN4EaBl.png', 
     title: 'SAME AS 3D', 
     desc: 'The final home looked exactly like the design we imagined.',
     videoLink: 'https://youtube.com/shorts/_IFCW2cBoDU?si=BfWGXU9yF5XeLeYN'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1ZngK_XgobM9f4gHT_NLkz4bHTqykhKSV', 
+    image: '/images/drive_1ZngK_XgobM9f4gHT_NLkz4bHTqykhKSV.png', 
     title: 'TRUSTED TEAMWORK', 
     desc: 'Smooth coordination and reliable execution throughout the project.',
     videoLink: 'https://youtube.com/shorts/jMgkL7Rzee4?si=_WjmCj8nmGatd9E-'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1domLU1l6dVKY6JFAiLvx5NBxpp8cLmz9', 
+    image: '/images/drive_1domLU1l6dVKY6JFAiLvx5NBxpp8cLmz9.png', 
     title: 'DREAM TO REALITY', 
     desc: 'Turning ideas and imagination into a beautiful living space.',
     videoLink: 'https://youtube.com/shorts/u80EaWFqLYQ?si=9aRUZLHsvyBGnFnj'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1vLY-SLoEeypev5w_3fGHO6QlixCDABT-', 
+    image: '/images/drive_1vLY-SLoEeypev5w_3fGHO6QlixCDABT-.png', 
     title: 'Budget & Quality Balance', 
     desc: 'Premium quality delivered perfectly without exceeding expectations.',
     videoLink: 'https://youtube.com/shorts/hbUZ839MvV8?si=7ijIQIU83QLUjphM'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1fYxYVzfD8Sgem7C9wKoIX1eIW4yMVdYg', 
+    image: '/images/drive_1fYxYVzfD8Sgem7C9wKoIX1eIW4yMVdYg.png', 
     title: 'Transparent Material Selection', 
     desc: 'Honest guidance with zero hidden commission and quality-focused choices.',
     videoLink: 'https://youtube.com/shorts/RgbqR62kG7k?si=tAXEYMlizoL5VncW'

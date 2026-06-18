@@ -36,7 +36,7 @@ export const About: React.FC = () => {
           >
             <div className="aspect-square rounded-3xl overflow-hidden border border-white/10 glass p-4">
               <SafeImage
-                src="https://lh3.googleusercontent.com/d/1zIowbroWdab39MHVjBfVN_nqJFCpVJv7"
+                src="/images/drive_1zIowbroWdab39MHVjBfVN_nqJFCpVJv7.jpg"
                 alt="DSA Architectural Studio"
                 size="large"
                 className="w-full h-full object-cover rounded-2xl"

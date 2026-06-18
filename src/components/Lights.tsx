@@ -8,37 +8,37 @@ const lightingFeatures: BentoCardData[] = [
     title: 'Precision Craftsmanship',
     label: 'Timber',
     description: 'Each light is carefully crafted from high-quality teak wood, ensuring durability, fine detailing, and a premium finish.',
-    image: 'https://lh3.googleusercontent.com/d/1WZuVgBKDE_f97AL27KJB7K31VocjBNXN'
+    image: '/images/drive_1WZuVgBKDE_f97AL27KJB7K31VocjBNXN.jpg'
   },
   {
     title: 'Smart Lighting Technology',
     label: 'Adaptive',
     description: 'Our lights are designed with modern technology to provide optimal brightness and energy efficiency.',
-    image: 'https://lh3.googleusercontent.com/d/1ckWSpc9gT8v06ybrmigWqKoQgonLOle6'
+    image: '/images/drive_1ckWSpc9gT8v06ybrmigWqKoQgonLOle6.jpg'
   },
   {
     title: 'Sustainable Wood Collection',
     label: 'Premium',
     description: 'Made from responsibly sourced wood, our designs are eco-friendly and built to age gracefully.',
-    image: 'https://lh3.googleusercontent.com/d/1qyz8oKL6ldUULHlZs21mjWCHrNIi39wU'
+    image: '/images/drive_1qyz8oKL6ldUULHlZs21mjWCHrNIi39wU.jpg'
   },
   {
     title: 'Atmosphere & Ambience',
     label: 'Experience',
     description: '2700K warmth for a natural architectural feel that bridges nature and home.',
-    image: 'https://lh3.googleusercontent.com/d/1ytTl_Rcei72Q7IaTf51CxOGmxm404D1m'
+    image: '/images/drive_1ytTl_Rcei72Q7IaTf51CxOGmxm404D1m.jpg'
   },
   {
     title: 'Sculptural Form',
     label: 'Design',
     description: 'Unique miniature architectural sculptures.',
-    image: 'https://lh3.googleusercontent.com/d/1EsMLe08jkprzx3ZDo1GAcmzZH3N-Frpp'
+    image: '/images/drive_1EsMLe08jkprzx3ZDo1GAcmzZH3N-Frpp.jpg'
   },
   {
     title: 'Artisanal Detail',
     label: 'Finish',
     description: 'Hand-rubbed natural oil for lasting texture.',
-    image: 'https://lh3.googleusercontent.com/d/1VizU1uLT7de9piaTNGn2dJ3PFC1Bqc9h'
+    image: '/images/drive_1VizU1uLT7de9piaTNGn2dJ3PFC1Bqc9h.jpg'
   }
 ];
 
@@ -117,7 +117,7 @@ export const Lights: React.FC = () => {
                 
                 {/* High-quality optimized image that preserves 100% of the natural aspect ratio */}
                 <SafeImage
-                  src="https://lh3.googleusercontent.com/d/14vWYwDCMoQEcmeXOm2ggKXDszMM9EBL_"
+                  src="/images/drive_14vWYwDCMoQEcmeXOm2ggKXDszMM9EBL_.png"
                   alt="The Timber Lights Premium Showcase"
                   loading="lazy"
                   decoding="async"

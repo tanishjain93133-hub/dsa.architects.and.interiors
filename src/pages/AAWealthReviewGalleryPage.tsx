@@ -8,37 +8,37 @@ import { SafeImage } from '../components/SafeImage';
 
 const AA_WEALTH_REVIEW_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/11SkczFb1XHrgWcMlRyxo0Ncx1XGUsWdR', 
+    image: '/images/drive_11SkczFb1XHrgWcMlRyxo0Ncx1XGUsWdR.png', 
     title: 'LUXURY WITHIN BUDGET', 
     desc: 'Premium office aesthetics achieved with smart planning, functional design, and budget-conscious execution.',
     videoLink: 'https://youtube.com/shorts/IsQJ_I5lvC0?si=Ipj9R8upW-J3wP6o'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1t2y0zdd55FJSIRuzTM54EXPCSt-7Udf5', 
+    image: '/images/drive_1t2y0zdd55FJSIRuzTM54EXPCSt-7Udf5.jpg', 
     title: 'SMOOTH PROCESS', 
     desc: 'A seamless design journey with clear communication, timely execution, and hassle-free coordination.',
     videoLink: 'https://youtube.com/shorts/obSgqzNZnxM?si=X92oj335io02_qnd'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1siPgPnVrWQFJycGfDi1gPHXgfUYocSbo', 
+    image: '/images/drive_1siPgPnVrWQFJycGfDi1gPHXgfUYocSbo.jpg', 
     title: 'DELIVERED AS PROMISED', 
     desc: 'Every expectation was fulfilled with precision, transparency, and attention to detail.',
     videoLink: 'https://youtube.com/shorts/oNgfVy2HU7U?si=_FnZsnF6dWZRqz11'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1bp9jkz-TNVWZrSIytSx5crAzXC5uRZR_', 
+    image: '/images/drive_1bp9jkz-TNVWZrSIytSx5crAzXC5uRZR_.jpg', 
     title: 'TRUSTED TEAMWORK', 
     desc: 'Strong collaboration and mutual trust helped transform the vision into a refined commercial space.',
     videoLink: 'https://youtube.com/shorts/dMq94n6C6oI?si=fJyqKXr-002R65wI'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1lLY4JdpG34ZWglkSrAd6USmhl4_uoEqc', 
+    image: '/images/drive_1lLY4JdpG34ZWglkSrAd6USmhl4_uoEqc.png', 
     title: 'COLLABORATIVE AREAS', 
     desc: 'Smartly planned spaces designed to encourage productivity, teamwork, and seamless daily workflow.',
     videoLink: 'https://youtube.com/shorts/00A-HvP5DF4?si=4zWFpWC5MsMJ0ykp'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1E5xewnh4MFm2xWapf5HC8tHwKcbDPO5X', 
+    image: '/images/drive_1E5xewnh4MFm2xWapf5HC8tHwKcbDPO5X.png', 
     title: 'REFINED WORKSPACES', 
     desc: 'Elegant office interiors combining functionality, sophistication, and modern professional aesthetics.',
     videoLink: 'https://youtube.com/shorts/oNgfVy2HU7U?si=AFjvgdJ8luVTNL-G' 

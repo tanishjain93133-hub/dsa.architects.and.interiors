@@ -11,105 +11,105 @@ import { SafeImage } from '../components/SafeImage';
 const PROJECTS_IMAGES = [
   {
     id: 'comm-dsa-04',
-    src: 'https://lh3.googleusercontent.com/d/16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ',
+    src: '/images/drive_16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ.jpg',
     alt: 'A & A Wealth',
     category: 'Commercial',
     description: 'A & A Wealth is a modern commercial office space designed to create a professional yet comfortable working environment. The project features elegant interiors, premium materials, warm lighting, and smart space planning that together give the office a sophisticated and welcoming feel.'
   },
   {
     id: 'res-dsa-02',
-    src: 'https://lh3.googleusercontent.com/d/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I',
+    src: '/images/drive_1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I.jpg',
     alt: 'The White House',
     category: 'Residential',
     description: 'The White House is a modern architectural masterpiece featuring clean lines, minimal aesthetics, and functional design tailored for luxury living.'
   },
   {
     id: 'res-dsa-10',
-    src: 'https://lh3.googleusercontent.com/d/1T8U7brn4ddyC2AvlBXLJe_Q6lR9r8gEB',
+    src: '/images/drive_1T8U7brn4ddyC2AvlBXLJe_Q6lR9r8gEB.jpg',
     alt: 'Serene Sanctuary',
     category: 'Residential',
     description: 'Serene Sanctuary is an elegant luxury residential interior showcasing magnificent spatial design, sophisticated bespoke fittings, warm lighting, and a modern minimal layout that provides the ultimate cozy and premium comfort.'
   },
   {
     id: 'comm-dsa-06',
-    src: 'https://lh3.googleusercontent.com/d/1ZfjIAL296LD5uhCuifOGUUhAAFEkFWoB',
+    src: '/images/drive_1ZfjIAL296LD5uhCuifOGUUhAAFEkFWoB.jpg',
     alt: 'iFlair',
     category: 'Commercial',
     description: 'iFlair is a modern commercial office space designed with clean interiors, smart workspace planning, and contemporary aesthetics to create a comfortable and productive working environment.'
   },
   {
     id: 'comm-dsa-01',
-    src: 'https://lh3.googleusercontent.com/d/1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41',
+    src: '/images/drive_1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41.jpg',
     alt: 'Achira Diamond & Fashion',
     category: 'Commercial',
     description: 'Achira Diamond & Fashion is a premium boutique commercial project designed with a focus on sophisticated interiors, efficient layout, and modern lighting to create a professional business environment.'
   },
   {
     id: 'res-dsa-04',
-    src: 'https://lh3.googleusercontent.com/d/1ATpVoCZUuKvgssfy4TcClIPCA6v8K3yz',
+    src: '/images/drive_1ATpVoCZUuKvgssfy4TcClIPCA6v8K3yz.jpg',
     alt: 'JS House',
     category: 'Residential',
     description: 'JS House is a modern residential interior designed with warm textures, elegant furniture, and a clean contemporary layout to create a comfortable and inviting living experience.'
   },
   {
     id: 'comm-dsa-02',
-    src: 'https://lh3.googleusercontent.com/d/1_BEEwFeRswSl-qmhg6cGM3CSVZBNxitc',
+    src: '/images/drive_1_BEEwFeRswSl-qmhg6cGM3CSVZBNxitc.jpg',
     alt: 'JD Office',
     category: 'Commercial',
     description: 'A premium JD office designed with elegant interiors, warm lighting, and modern detailing to create a professional yet luxurious workspace. The space combines comfort, sophistication, and functionality for a refined office experience.'
   },
   {
     id: 'res-dsa-06',
-    src: 'https://lh3.googleusercontent.com/d/18wghnSqoU4DceWGwb3OrGqMIb-bCrx_4',
+    src: '/images/drive_18wghnSqoU4DceWGwb3OrGqMIb-bCrx_4.jpg',
     alt: 'DHS House',
     category: 'Residential',
     description: 'DHS House is a modern residential interior designed with clean lines, premium materials, and warm lighting to create a sophisticated and welcoming home environment.'
   },
   {
     id: 'res-dsa-01',
-    src: 'https://lh3.googleusercontent.com/d/1IvJZ2tMlDc86dsptcjWoTjVBbn2GLJXe',
+    src: '/images/drive_1IvJZ2tMlDc86dsptcjWoTjVBbn2GLJXe.jpg',
     alt: 'Subtle Sanctuary',
     category: 'Residential',
     description: 'This home interior combines simplicity, functionality, and modern design with soft color tones, spacious layouts, and refined finishes for comfortable everyday living'
   },
   {
     id: 'comm-dsa-05',
-    src: 'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor',
+    src: '/images/drive_1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor.jpg',
     alt: 'Safal',
     category: 'Commercial',
     description: 'Safal is a modern commercial project designed with efficient space planning and premium detailing to create a professional business environment.'
   },
   {
     id: 'res-dsa-08',
-    src: 'https://lh3.googleusercontent.com/d/1fQxUcOX6Xya8S1QgM-SEPknvST3Z-XPV',
+    src: '/images/drive_1fQxUcOX6Xya8S1QgM-SEPknvST3Z-XPV.jpg',
     alt: 'Anchor House',
     category: 'Residential',
     description: 'Anchor House is a modern residential interior designed with warm tones, elegant wall detailing, and comfortable seating to create a calm and welcoming living space'
   },
   {
     id: 'res-dsa-07',
-    src: 'https://lh3.googleusercontent.com/d/1Tzq0ooCQnYLh-F6ns11Wfy1QK7K3W0jh',
+    src: '/images/drive_1Tzq0ooCQnYLh-F6ns11Wfy1QK7K3W0jh.jpg',
     alt: 'CP House',
     category: 'Residential',
     description: 'JS House This home interior combines simplicity and elegance through minimal design, soft color tones, and smart space planning for a modern everyday lifestyle.'
   },
   {
     id: 'res-dsa-05',
-    src: 'https://lh3.googleusercontent.com/d/1UlOsOlkAnM_Z-ohufO0QsFR1gQ7NzcnK',
+    src: '/images/drive_1UlOsOlkAnM_Z-ohufO0QsFR1gQ7NzcnK.jpg',
     alt: 'JD Bedroom',
     category: 'Residential',
     description: 'JS House Designed with a balance of luxury and comfort, this JD Bedroom offers modern interiors, rich textures, and a peaceful ambiance perfect for everyday relaxation.'
   },
   {
     id: 'res-dsa-09',
-    src: 'https://lh3.googleusercontent.com/d/1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki',
+    src: '/images/drive_1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki.jpg',
     alt: 'Shela House',
     category: 'Residential',
     description: 'Shela House is a modern residential interior designed with clean lines, warm lighting, and elegant finishes that create a calm and welcoming living experience.'
   },
   {
     id: 'comm-dsa-07',
-    src: 'https://lh3.googleusercontent.com/d/10bqHIbfF1VJqrGk1I_iC9AyLh_aKscph',
+    src: '/images/drive_10bqHIbfF1VJqrGk1I_iC9AyLh_aKscph.jpg',
     alt: 'Shlip Aaron',
     category: 'Commercial',
     description: 'Shlip Aaron is a premium commercial office space featuring state-of-the-art office interiors, modern materials, sophisticated lighting designs, and highly functional workspace planning.'
@@ -222,7 +222,7 @@ export const ProjectsPage: React.FC = () => {
             className="w-full h-full"
           >
             <SafeImage 
-              src="https://lh3.googleusercontent.com/d/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE" 
+              src="/images/drive_151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg" 
               alt="Architectural Masterpiece" 
               loading="eager"
               decoding="async"
@@ -246,7 +246,7 @@ export const ProjectsPage: React.FC = () => {
         {/* Mobile View Background Image (Overlay) */}
         <div className="lg:hidden absolute inset-0 -z-10 opacity-30">
           <SafeImage 
-            src="https://lh3.googleusercontent.com/d/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE" 
+            src="/images/drive_151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg" 
             alt="Mobile Bg" 
             objectFit="cover"
             className="w-full h-full grayscale-0"
@@ -324,10 +324,10 @@ export const ProjectsPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {[
-              { name: 'All', img: 'https://lh3.googleusercontent.com/d/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE', type: 'Complete' },
-              { name: 'Residential', img: 'https://lh3.googleusercontent.com/d/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I', type: 'Living' },
-              { name: 'Commercial', img: 'https://lh3.googleusercontent.com/d/1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41', type: 'Luxe Retail' },
-              { name: 'Dome Gallery', img: 'https://lh3.googleusercontent.com/d/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM', type: 'Concept' }
+              { name: 'All', img: '/images/drive_151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg', type: 'Complete' },
+              { name: 'Residential', img: '/images/drive_1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I.jpg', type: 'Living' },
+              { name: 'Commercial', img: '/images/drive_1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41.jpg', type: 'Luxe Retail' },
+              { name: 'Dome Gallery', img: '/images/drive_1XibxVzxzjgvmI85XDUywtUpJTUus7bzM.jpg', type: 'Concept' }
             ].map((cat, idx) => (
               <motion.button
                 key={cat.name}
@@ -425,50 +425,50 @@ export const ProjectsPage: React.FC = () => {
           >
             <DomeGallery 
               images={[
-                'https://lh3.googleusercontent.com/d/1IvJZ2tMlDc86dsptcjWoTjVBbn2GLJXe',
-                'https://lh3.googleusercontent.com/d/1WC-BXDJSfS3GKFozaBavmZkHfrGeWE8k',
-                'https://lh3.googleusercontent.com/d/1cb-sHqV2zBhZm-q_xzutywoL5Mk38mOx',
-                'https://lh3.googleusercontent.com/d/1A-GMMiT7zVSVme_9ANjVRoJpd6cbuNjY',
-                'https://lh3.googleusercontent.com/d/1ATpVoCZUuKvgssfy4TcClIPCA6v8K3yz',
-                'https://lh3.googleusercontent.com/d/1QtyrH4BL03_19HDNi4U5L8jdjWxbGmqG',
-                'https://lh3.googleusercontent.com/d/1UlOsOlkAnM_Z-ohufO0QsFR1gQ7NzcnK',
-                'https://lh3.googleusercontent.com/d/1zLZcMS7ehDmOXqZ3xftn68HSZIpPf-eG',
-                'https://lh3.googleusercontent.com/d/1WTeS-ivEHtUgCizv4QWCr-0OMg4-h8gT',
-                'https://lh3.googleusercontent.com/d/13dT40m1keBawrXj_LTFiqHf5L68DurIW',
-                'https://lh3.googleusercontent.com/d/1OlTdX7oAFnvHokByvAo7CDRtG3Ev0jKh',
-                'https://lh3.googleusercontent.com/d/1WcsfUWRrmZ3_KCXMIssJEjm0p6WzBCld',
-                'https://lh3.googleusercontent.com/d/1-muYkqhKVHIFcPnOTRMuHckfveopxo9M',
-                'https://lh3.googleusercontent.com/d/1EsMLe08jkprzx3ZDo1GAcmzZH3N-Frpp',
-                'https://lh3.googleusercontent.com/d/1U7YxzdLn1xQcth_3bK9aNjKxS9XHEMJ9',
-                'https://lh3.googleusercontent.com/d/1f9c0oNatpygcipVjuBuTEn6JukHXPiXT',
-                'https://lh3.googleusercontent.com/d/1fQxUcOX6Xya8S1QgM-SEPknvST3Z-XPV',
-                'https://lh3.googleusercontent.com/d/1W3WQQZozxeLqmqfLGkhsrE2YFcShJycD',
-                'https://lh3.googleusercontent.com/d/1nCDhbW97MEx7Teo-E8-0FM74rds5iXr6',
-                'https://lh3.googleusercontent.com/d/1sN2oH3O1ZuOl6CPssgOQXNVWE-gAe6Yf',
-                'https://lh3.googleusercontent.com/d/1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki',
-                'https://lh3.googleusercontent.com/d/1CwpouFmp3RkObvO8v0kStEZr5Qho1upO',
-                'https://lh3.googleusercontent.com/d/1VmORiXXnSwLwAMa6ZFZNUyFSeODRuJvZ',
-                'https://lh3.googleusercontent.com/d/17OkF3i4Ktbnkjw21ieEtiueXdcppqQhA',
-                'https://lh3.googleusercontent.com/d/1UZf7kEu_LgU7H725aGhIs2oD3r7dxsaL',
-                'https://lh3.googleusercontent.com/d/1yNArVeNijD0ZdMs_b6gVzA4cDGZQrNDa',
-                'https://lh3.googleusercontent.com/d/1BFzYFW7w2D_fSzHxGGXC0jP_9NLJ1k0O',
-                'https://lh3.googleusercontent.com/d/1O52HcsPN87XM4fbK7Geh4MXe4Gd49je-',
-                'https://lh3.googleusercontent.com/d/1_BEEwFeRswSl-qmhg6cGM3CSVZBNxitc',
-                'https://lh3.googleusercontent.com/d/16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ',
-                'https://lh3.googleusercontent.com/d/1JHPhEFvokVoMViai2JRY2C97I_wcZ5Ap',
-                'https://lh3.googleusercontent.com/d/1gtqBoeZxA4aXSYVrnm_ldNO2G0aOFjhJ',
-                'https://lh3.googleusercontent.com/d/1Wi0ySgvW2nXAkjt9VZO_142AScdkhoe5',
-                'https://lh3.googleusercontent.com/d/1cCkNNGVuquVa7qJsIwU3DaB3HmLywvn5',
-                'https://lh3.googleusercontent.com/d/1w2v0x_u3_eykFh4KxJHv9UdmK4AL_PrY',
-                'https://lh3.googleusercontent.com/d/1i2Yqp-lSj_-Jjv7UUTPNFJDn0OhmvOr2',
-                'https://lh3.googleusercontent.com/d/1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor',
-                'https://lh3.googleusercontent.com/d/1x4dXgc6hRFY3orI353oZn6N5aqjmkWRt',
-                'https://lh3.googleusercontent.com/d/1-z9QVSJHey4ihF6Pwnj26-KEnj-wKPUV',
-                'https://lh3.googleusercontent.com/d/13nXjHCUV7Xwp08vBD9hlm7_OuAj5ojeA',
-                'https://lh3.googleusercontent.com/d/16DTIb9D_Uc7F_EZNe2bUHR8Ho1yNrEia',
-                'https://lh3.googleusercontent.com/d/18SLksv2YuecX-2m5uf_0RjLZhSrBaF7P',
-                'https://lh3.googleusercontent.com/d/1KVLAxgv8m7HbwmUkQyjXAR1mYoWGRZyP',
-                'https://lh3.googleusercontent.com/d/1fRywdtBR8KPW3elUsh2gVq1DDGUKaCZO',
+                '/images/drive_1IvJZ2tMlDc86dsptcjWoTjVBbn2GLJXe.jpg',
+                '/images/drive_1WC-BXDJSfS3GKFozaBavmZkHfrGeWE8k.jpg',
+                '/images/drive_1cb-sHqV2zBhZm-q_xzutywoL5Mk38mOx.jpg',
+                '/images/drive_1A-GMMiT7zVSVme_9ANjVRoJpd6cbuNjY.jpg',
+                '/images/drive_1ATpVoCZUuKvgssfy4TcClIPCA6v8K3yz.jpg',
+                '/images/drive_1QtyrH4BL03_19HDNi4U5L8jdjWxbGmqG.jpg',
+                '/images/drive_1UlOsOlkAnM_Z-ohufO0QsFR1gQ7NzcnK.jpg',
+                '/images/drive_1zLZcMS7ehDmOXqZ3xftn68HSZIpPf-eG.jpg',
+                '/images/drive_1WTeS-ivEHtUgCizv4QWCr-0OMg4-h8gT.jpg',
+                '/images/drive_13dT40m1keBawrXj_LTFiqHf5L68DurIW.jpg',
+                '/images/drive_1OlTdX7oAFnvHokByvAo7CDRtG3Ev0jKh.jpg',
+                '/images/drive_1WcsfUWRrmZ3_KCXMIssJEjm0p6WzBCld.jpg',
+                '/images/drive_1-muYkqhKVHIFcPnOTRMuHckfveopxo9M.jpg',
+                '/images/drive_1EsMLe08jkprzx3ZDo1GAcmzZH3N-Frpp.jpg',
+                '/images/drive_1U7YxzdLn1xQcth_3bK9aNjKxS9XHEMJ9.jpg',
+                '/images/drive_1f9c0oNatpygcipVjuBuTEn6JukHXPiXT.jpg',
+                '/images/drive_1fQxUcOX6Xya8S1QgM-SEPknvST3Z-XPV.jpg',
+                '/images/drive_1W3WQQZozxeLqmqfLGkhsrE2YFcShJycD.jpg',
+                '/images/drive_1nCDhbW97MEx7Teo-E8-0FM74rds5iXr6.jpg',
+                '/images/drive_1sN2oH3O1ZuOl6CPssgOQXNVWE-gAe6Yf.jpg',
+                '/images/drive_1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki.jpg',
+                '/images/drive_1CwpouFmp3RkObvO8v0kStEZr5Qho1upO.jpg',
+                '/images/drive_1VmORiXXnSwLwAMa6ZFZNUyFSeODRuJvZ.jpg',
+                '/images/drive_17OkF3i4Ktbnkjw21ieEtiueXdcppqQhA.jpg',
+                '/images/drive_1UZf7kEu_LgU7H725aGhIs2oD3r7dxsaL.jpg',
+                '/images/drive_1yNArVeNijD0ZdMs_b6gVzA4cDGZQrNDa.jpg',
+                '/images/drive_1BFzYFW7w2D_fSzHxGGXC0jP_9NLJ1k0O.jpg',
+                '/images/drive_1O52HcsPN87XM4fbK7Geh4MXe4Gd49je-.jpg',
+                '/images/drive_1_BEEwFeRswSl-qmhg6cGM3CSVZBNxitc.jpg',
+                '/images/drive_16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ.jpg',
+                '/images/drive_1JHPhEFvokVoMViai2JRY2C97I_wcZ5Ap.jpg',
+                '/images/drive_1gtqBoeZxA4aXSYVrnm_ldNO2G0aOFjhJ.jpg',
+                '/images/drive_1Wi0ySgvW2nXAkjt9VZO_142AScdkhoe5.jpg',
+                '/images/drive_1cCkNNGVuquVa7qJsIwU3DaB3HmLywvn5.jpg',
+                '/images/drive_1w2v0x_u3_eykFh4KxJHv9UdmK4AL_PrY.jpg',
+                '/images/drive_1i2Yqp-lSj_-Jjv7UUTPNFJDn0OhmvOr2.jpg',
+                '/images/drive_1n1BRt7ypqRy_2DlVe1vLwKxtfrSIOAor.jpg',
+                '/images/drive_1x4dXgc6hRFY3orI353oZn6N5aqjmkWRt.jpg',
+                '/images/drive_1-z9QVSJHey4ihF6Pwnj26-KEnj-wKPUV.jpg',
+                '/images/drive_13nXjHCUV7Xwp08vBD9hlm7_OuAj5ojeA.jpg',
+                '/images/drive_16DTIb9D_Uc7F_EZNe2bUHR8Ho1yNrEia.jpg',
+                '/images/drive_18SLksv2YuecX-2m5uf_0RjLZhSrBaF7P.jpg',
+                '/images/drive_1KVLAxgv8m7HbwmUkQyjXAR1mYoWGRZyP.jpg',
+                '/images/drive_1fRywdtBR8KPW3elUsh2gVq1DDGUKaCZO.jpg',
               ]}
               fit={0.8}
               fitBasis="height"

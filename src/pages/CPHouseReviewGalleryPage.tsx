@@ -8,31 +8,31 @@ import { SafeImage } from '../components/SafeImage';
 
 const CP_HOUSE_REVIEW_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1mhpz_vNze-FuV7hH9ufbbI1x5Hx4-HQu', 
+    image: '/images/drive_1mhpz_vNze-FuV7hH9ufbbI1x5Hx4-HQu.jpg', 
     title: 'TRANSFORMATIVE', 
     desc: 'A complete home transformation designed with elegance, comfort, and smart space planning in mind.',
     videoLink: 'https://youtube.com/shorts/4Ym1Dd2zYyo?si=nNcHTo8k2x_HnIuI'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1eyUNJD40wCPn03R_vRjBCfjyROOawtks', 
+    image: '/images/drive_1eyUNJD40wCPn03R_vRjBCfjyROOawtks.jpg', 
     title: 'WELL-PLANNED', 
     desc: 'Thoughtfully designed interiors where every detail was planned for beauty, functionality, and daily comfort.',
     videoLink: 'https://youtube.com/shorts/78-R4XpK6eI?si=9fH5AXETthfjDN8H'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1lD0CEuLCr-nI2BGcaRcvl_X0-Z47qZSU', 
+    image: '/images/drive_1lD0CEuLCr-nI2BGcaRcvl_X0-Z47qZSU.jpg', 
     title: 'VISION TO REALITY', 
     desc: 'Turning creative concepts into a beautifully crafted living experience with precision and clarity.',
     videoLink: 'https://youtube.com/shorts/SHspUt_74-I?si=jAP3UZAye1PMoFcJ'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1btD6mutBhXw9Nbv1CmQ7P6pC4zHOUxtj', 
+    image: '/images/drive_1btD6mutBhXw9Nbv1CmQ7P6pC4zHOUxtj.jpg', 
     title: 'BALANCED AESTHETICS', 
     desc: 'A perfect balance of modern luxury, warm ambiance, and practical interior solutions.',
     videoLink: 'https://youtube.com/shorts/Al7pwYM4xJk?si=TSbKjw2_hIJ_uy5k'
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1Bj5scyAh-CBR_weHmdjcECgjcmhTmFk-', 
+    image: '/images/drive_1Bj5scyAh-CBR_weHmdjcECgjcmhTmFk-.jpg', 
     title: 'FAMILY APPROVED', 
     desc: 'A warm and elegant home designed to make every family member feel comfortable, connected, and truly at home.',
     videoLink: 'https://youtube.com/shorts/y70IIQYpufM?si=dc5F5wJCF0AZY99j'

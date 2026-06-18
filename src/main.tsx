@@ -7,9 +7,9 @@ import './index.css';
 if (typeof window !== 'undefined') {
   // Preload crucial above-the-fold hero images for instant First Contentful Paint (FCP)
   const criticalImages = [
-    'https://lh3.googleusercontent.com/d/1X6xG-7r6aVJJEwqXFfLno2nZ6v7rLz21', // Home hero background
-    'https://lh3.googleusercontent.com/d/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE', // Projects hero background
-    'https://lh3.googleusercontent.com/d/14vWYwDCMoQEcmeXOm2ggKXDszMM9EBL_'  // Timber Lights showcase
+    '/images/drive_1X6xG-7r6aVJJEwqXFfLno2nZ6v7rLz21.jpg', // Home hero background
+    '/images/drive_151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg', // Projects hero background
+    '/images/drive_14vWYwDCMoQEcmeXOm2ggKXDszMM9EBL_.png'  // Timber Lights showcase
   ];
 
   const preloadImages = () => {

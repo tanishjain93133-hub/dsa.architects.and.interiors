@@ -36,7 +36,7 @@ export const Workspace: React.FC = () => {
           {/* India Map Geographic Background - User Provided Asset */}
           <div className="absolute inset-0 z-0">
             <SafeImage 
-              src="https://lh3.googleusercontent.com/d/1v43npXG3_pKwSJQqEZljlY__493jP83m" 
+              src="/images/drive_1v43npXG3_pKwSJQqEZljlY__493jP83m.png" 
               alt="Geographic Map of Ahmedabad" 
               className="w-full h-full object-cover opacity-100 transition-opacity duration-1000"
             />

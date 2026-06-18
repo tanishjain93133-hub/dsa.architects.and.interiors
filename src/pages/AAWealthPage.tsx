@@ -7,77 +7,77 @@ import { SafeImage } from '../components/SafeImage';
 
 const AA_WEALTH_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1HitK9MepXCJqmoMaisI3_pUTzvYJZA00', 
+    image: '/images/drive_1HitK9MepXCJqmoMaisI3_pUTzvYJZA00.jpg', 
     title: 'Natural Integration', 
     desc: 'Incorporating light and openness into office design.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1NPceFslGWT3fUyWn6AGSqGJPxh0a4j1A', 
+    image: '/images/drive_1NPceFslGWT3fUyWn6AGSqGJPxh0a4j1A.jpg', 
     title: 'Dynamic Spaces', 
     desc: 'Versatile areas for various business needs.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1JHPhEFvokVoMViai2JRY2C97I_wcZ5Ap', 
+    image: '/images/drive_1JHPhEFvokVoMViai2JRY2C97I_wcZ5Ap.jpg', 
     title: 'Professional Hub', 
     desc: 'A central point for excellence and collaboration.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1QD35D6_0pT2a_j9vYk2IO5-BhrRbXrwc', 
+    image: '/images/drive_1QD35D6_0pT2a_j9vYk2IO5-BhrRbXrwc.jpg', 
     title: 'Luminous Design', 
     desc: 'Bright and energetic work environment.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1Rg-tzflx4mY1yefb608u77YANq5xeFUk', 
+    image: '/images/drive_1Rg-tzflx4mY1yefb608u77YANq5xeFUk.jpg', 
     title: 'Structured Elegance', 
     desc: 'Defined lines and premium material choices.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1MHk72anDHYgYGtCAuWJx2GWJ02Ts97UC', 
+    image: '/images/drive_1MHk72anDHYgYGtCAuWJx2GWJ02Ts97UC.jpg', 
     title: 'Elite Atmosphere', 
     desc: 'A space that exudes confidence and success.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1eKA1CHzewmgRmwNRWG_oI2s_fKYrSMDL', 
+    image: '/images/drive_1eKA1CHzewmgRmwNRWG_oI2s_fKYrSMDL.jpg', 
     title: 'Visionary Layout', 
     desc: 'Forward-thinking space management.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1fsRJBocZlFhIge-FrFCk09hJwHK3Vqpt', 
+    image: '/images/drive_1fsRJBocZlFhIge-FrFCk09hJwHK3Vqpt.jpg', 
     title: 'Seamless Flow', 
     desc: 'Effortless transition between different office zones.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ', 
+    image: '/images/drive_16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ.jpg', 
     title: 'Design Harmony', 
     desc: 'Balanced aesthetics across the workspace.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1gtqBoeZxA4aXSYVrnm_ldNO2G0aOFjhJ', 
+    image: '/images/drive_1gtqBoeZxA4aXSYVrnm_ldNO2G0aOFjhJ.jpg', 
     title: 'Crafted Excellence', 
     desc: 'High-quality finishes in every corner.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/14xLpEu59w4M4VNtvc7GaQid9pBAwQfd-', 
+    image: '/images/drive_14xLpEu59w4M4VNtvc7GaQid9pBAwQfd-.jpg', 
     title: 'Interior Precision', 
     desc: 'Meticulous attention to internal spatial arrangements.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1z1nVJt04BqT5iYcHD8cbRbvFmKg_flY_', 
+    image: '/images/drive_1z1nVJt04BqT5iYcHD8cbRbvFmKg_flY_.jpg', 
     title: 'Innovative Workplace', 
     desc: 'Setting new standards for corporate interiors.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1O5txCTxKc9EoSV62XE9b09ds8eZtQ61r', 
+    image: '/images/drive_1O5txCTxKc9EoSV62XE9b09ds8eZtQ61r.jpg', 
     title: 'Clean Aesthetics', 
     desc: 'Minimalist design for maximum focus.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1kxc3WSIA8ddPNzX0dIpJ4FeGhQYu7uH2', 
+    image: '/images/drive_1kxc3WSIA8ddPNzX0dIpJ4FeGhQYu7uH2.jpg', 
     title: 'Modern Nuances', 
     desc: 'Subtle design elements that add character.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1-yVVcug6KYFWQvXMQntsOJWdJ7skf4Mh', 
+    image: '/images/drive_1-yVVcug6KYFWQvXMQntsOJWdJ7skf4Mh.jpg', 
     title: 'Modern Architecture', 
     desc: 'Contemporary commercial facade design.' 
   }

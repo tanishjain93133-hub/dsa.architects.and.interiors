@@ -80,7 +80,7 @@ export const Assembly: React.FC = () => {
               <div className="absolute inset-0 border border-white/5 rounded-[3rem] p-4 lg:p-6 bg-white/[0.02]">
                 <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 group">
                   <SafeImage 
-                    src="https://lh3.googleusercontent.com/d/11pcH9eTpIsNc2YMB7Sis-jInvHOu_ESl" 
+                    src="/images/drive_11pcH9eTpIsNc2YMB7Sis-jInvHOu_ESl.png" 
                     alt="Dhwanish Shah - DSA Architects" 
                     className="w-full h-full object-cover opacity-100 transition-all duration-1000 scale-105 group-hover:scale-100"
                   />

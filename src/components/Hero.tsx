@@ -92,7 +92,7 @@ export const Hero: React.FC = () => {
             className="absolute inset-0 -z-10 w-full h-full pointer-events-none"
         >
           <SafeImage 
-            src="https://lh3.googleusercontent.com/d/1X6xG-7r6aVJJEwqXFfLno2nZ6v7rLz21" 
+            src="/images/drive_1X6xG-7r6aVJJEwqXFfLno2nZ6v7rLz21.jpg" 
             alt="Premium Architectural Background" 
             size="large"
             className="w-full h-full object-cover"

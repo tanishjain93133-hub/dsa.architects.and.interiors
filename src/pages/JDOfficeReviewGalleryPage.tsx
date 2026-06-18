@@ -8,22 +8,22 @@ import { SafeImage } from '../components/SafeImage';
 
 const JD_OFFICE_REVIEW_DATA = [
   { 
-    image: 'https://lh3.googleusercontent.com/d/1_BEEwFeRswSl-qmhg6cGM3CSVZBNxitc', 
+    image: '/images/drive_1_BEEwFeRswSl-qmhg6cGM3CSVZBNxitc.jpg', 
     title: 'Executive Presence', 
     desc: 'Refining modern office culture with deep natural tones and rich leather finishes.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1BFzYFW7w2D_fSzHxGGXC0jP_9NLJ1k0O', 
+    image: '/images/drive_1BFzYFW7w2D_fSzHxGGXC0jP_9NLJ1k0O.jpg', 
     title: 'Linear Geometry', 
     desc: 'A precise layout offering fluid transitions and clutter-free focus environments.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1O52HcsPN87XM4fbK7Geh4MXe4Gd49je-', 
+    image: '/images/drive_1O52HcsPN87XM4fbK7Geh4MXe4Gd49je-.jpg', 
     title: 'Corporate Luminescence', 
     desc: 'Masterfully positioned warm ceiling arrays to ensure comfort and productivity.' 
   },
   { 
-    image: 'https://lh3.googleusercontent.com/d/1Y7u30gzvsxNrgdhMvs6XhsqzlEjpHY2i', 
+    image: '/images/drive_1Y7u30gzvsxNrgdhMvs6XhsqzlEjpHY2i.jpg', 
     title: 'Bespoke Collaborations', 
     desc: 'Meeting spaces engineered to spark ideas through a premium, distraction-free environment.' 
   }

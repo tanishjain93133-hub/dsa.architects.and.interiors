@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
               className="w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-white/10 overflow-hidden flex items-center justify-center p-0 bg-transparent shadow-2xl"
             >
               <SafeImage 
-                src="https://lh3.googleusercontent.com/d/19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs" 
+                src="/images/drive_19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs.jpg" 
                 alt="DSA Architects Logo" 
                 size="small"
                 className="w-full h-full object-cover"
