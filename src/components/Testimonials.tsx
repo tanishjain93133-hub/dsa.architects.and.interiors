@@ -10,7 +10,7 @@ const testimonials = [
     role: "Chartered Accountant",
     content: "Working with DSA was a smooth and professional experience from start to finish. The team understood our vision perfectly and transformed our home into a modern, elegant, and comfortable living space. Their attention to detail, material selection, and execution quality truly exceeded our expectations.",
     rating: 4,
-    image: "https://lh3.googleusercontent.com/d/1m1Di2ATc7FCF1xlCB2HHy9GTa7spClb5",
+    image: "https://lh3.googleusercontent.com/d/1lu9AvHbFrIOP6DPXEap_3A0t3quM8ibn",
     projectName: "CP House",
     projectId: "res-dsa-07",
     videoLink: "https://youtu.be/RShwYG0Znao?si=SgVgDsSz6Eyzr0oD",
