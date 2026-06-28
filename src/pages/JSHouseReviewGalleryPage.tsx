@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SafeImage } from '../components/SafeImage';
@@ -28,13 +28,30 @@ const JS_HOUSE_REVIEW_DATA = [
 ];
 
 export const JSHouseReviewGalleryPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleBack = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const stackData = sessionStorage.getItem('nav-history-stack');
+    const stack = stackData ? JSON.parse(stackData) : [];
+    if (stack.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
     <div className="bg-obsidian min-h-screen text-white">
       <Navbar />
       
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6">
-          <Link to="/" className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform">
+          <Link 
+            to="/" 
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform"
+          >
             <ArrowLeft size={16} /> Back to Home
           </Link>
 

@@ -511,6 +511,17 @@ export const ProjectDetailPage: React.FC = () => {
     }
   }, [location.hash]);
 
+  const handleBack = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const stackData = sessionStorage.getItem('nav-history-stack');
+    const stack = stackData ? JSON.parse(stackData) : [];
+    if (stack.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/portfolio');
+    }
+  };
+
   return (
     <div className="bg-obsidian min-h-screen text-white">
       <Navbar />
@@ -520,6 +531,7 @@ export const ProjectDetailPage: React.FC = () => {
         <div className={cn("max-w-7xl mx-auto px-6 transition-all duration-700", viewMode === 'gallery' ? "opacity-0 invisible h-0 pointer-events-none" : "opacity-100 visible mb-20")}>
           <a 
             href="https://projects-rho-dun.vercel.app/" 
+            onClick={handleBack}
             className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform cursor-pointer"
           >
             <ArrowLeft size={16} /> Back to Projects
@@ -591,6 +603,7 @@ export const ProjectDetailPage: React.FC = () => {
           >
             <a 
               href="https://projects-rho-dun.vercel.app/"
+              onClick={handleBack}
               className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-obsidian flex items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.3)] hover:scale-110 active:scale-95 transition-all group cursor-pointer"
               title="Back to Projects"
             >

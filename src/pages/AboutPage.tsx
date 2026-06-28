@@ -1,15 +1,29 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { NebulaBackground } from '../components/NebulaBackground';
-import { LayoutGrid, Palette, ShieldCheck, Award, Users, Lightbulb } from 'lucide-react';
+import { ArrowLeft, LayoutGrid, Palette, ShieldCheck, Award, Users, Lightbulb } from 'lucide-react';
 import { Assembly } from '../components/Assembly';
 import { ChromaGrid } from '../components/ChromaGrid';
 import { cn } from '@/src/lib/utils';
 import { SafeImage } from '../components/SafeImage';
 
 export const AboutPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleBack = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const stackData = sessionStorage.getItem('nav-history-stack');
+    const stack = stackData ? JSON.parse(stackData) : [];
+    if (stack.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
+
   const teamItems = [
     {
       image: "/images/drive_111OTmw-5OnABcNOMgnx4ko3C1cndGuPc.jpg",
@@ -55,8 +69,16 @@ export const AboutPage: React.FC = () => {
       </div>
       <Navbar />
       
-      <main className="pt-24 pb-20">
+      <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6">
+          <Link 
+            to="/" 
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform"
+          >
+            <ArrowLeft size={16} /> Back to Home
+          </Link>
+
           {/* Hero Section of About Page */}
           <section className="mb-4 relative">
             <div className="flex justify-between items-start mb-6 border-b border-white/10 pb-6">

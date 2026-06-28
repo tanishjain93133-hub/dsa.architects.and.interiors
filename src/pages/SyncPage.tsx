@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { RefreshCw, CheckCircle, AlertTriangle, Play, HelpCircle, ArrowLeft, Image as ImageIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface ScanResult {
   totalCount: number;
@@ -13,6 +13,19 @@ interface ScanResult {
 }
 
 export const SyncPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleBack = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const stackData = sessionStorage.getItem('nav-history-stack');
+    const stack = stackData ? JSON.parse(stackData) : [];
+    if (stack.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
+
   const [data, setData] = useState<ScanResult | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [syncing, setSyncing] = useState<boolean>(false);
@@ -213,6 +226,7 @@ export const SyncPage: React.FC = () => {
         <div className="flex justify-between items-center mb-12">
           <Link 
             to="/" 
+            onClick={handleBack}
             className="flex items-center gap-2 text-white/50 hover:text-white transition-colors text-xs uppercase tracking-widest font-medium"
           >
             <ArrowLeft size={14} /> Back to Home

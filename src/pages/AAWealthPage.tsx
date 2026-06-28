@@ -93,6 +93,16 @@ export const AAWealthPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6">
           <a 
             href="https://projects-rho-dun.vercel.app/" 
+            onClick={(e) => {
+              e.preventDefault();
+              const stackData = sessionStorage.getItem('nav-history-stack');
+              const stack = stackData ? JSON.parse(stackData) : [];
+              if (stack.length > 1) {
+                navigate(-1);
+              } else {
+                navigate('/portfolio');
+              }
+            }}
             className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform cursor-pointer"
           >
             <ArrowLeft size={16} /> Back to Projects

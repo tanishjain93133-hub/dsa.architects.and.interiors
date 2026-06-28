@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Star, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SafeImage } from '../components/SafeImage';
@@ -77,6 +77,19 @@ const allTestimonials = [
 ];
 
 export const TestimonialsPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleBack = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const stackData = sessionStorage.getItem('nav-history-stack');
+    const stack = stackData ? JSON.parse(stackData) : [];
+    if (stack.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
     <div className="bg-obsidian min-h-screen text-white">
       <Navbar />
@@ -89,7 +102,11 @@ export const TestimonialsPage: React.FC = () => {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <Link to="/" className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform">
+          <Link 
+            to="/" 
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform"
+          >
             <ArrowLeft size={16} /> Back to Home
           </Link>
 
