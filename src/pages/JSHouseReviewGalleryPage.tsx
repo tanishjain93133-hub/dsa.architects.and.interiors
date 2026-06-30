@@ -37,7 +37,7 @@ export const JSHouseReviewGalleryPage: React.FC = () => {
     if (stack.length > 1) {
       navigate(-1);
     } else {
-      navigate('/');
+      navigate('/testimonials');
     }
   };
 
@@ -48,11 +48,11 @@ export const JSHouseReviewGalleryPage: React.FC = () => {
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6">
           <Link 
-            to="/" 
+            to="/testimonials" 
             onClick={handleBack}
             className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform"
           >
-            <ArrowLeft size={16} /> Back to Home
+            <ArrowLeft size={16} /> Back to Testimonials
           </Link>
 
           <motion.div
@@ -61,7 +61,7 @@ export const JSHouseReviewGalleryPage: React.FC = () => {
             className="text-center mb-16"
           >
             <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight uppercase">
-              Mr. Jainam <span className="text-gradient">Bhai</span> Review
+              Mr. Dhrupen <span className="text-gradient">Bhai</span> Review
             </h1>
             <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto font-light">
               Explore the premium design journey of DHS House through this exclusive review gallery.

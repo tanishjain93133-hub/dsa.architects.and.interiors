@@ -7,25 +7,29 @@ const services = [
     icon: <PencilRuler className="w-8 h-8" />,
     title: "Architecture Design",
     desc: "We design innovative and well-planned architectural spaces that combine functionality, aesthetics, and long-term value.",
-    color: "from-neon-cyan to-white/20"
+    color: "from-neon-cyan to-white/20",
+    theme: "dark-icon"
   },
   {
     icon: <Armchair className="w-8 h-8" />,
     title: "Interior Design",
     desc: "We create stylish and practical interiors that reflect your personality while ensuring comfort and usability.",
-    color: "from-electric-purple to-white/20"
+    color: "from-electric-purple to-white/20",
+    theme: "light-icon"
   },
   {
     icon: <Box className="w-8 h-8" />,
     title: "3D Visualization",
     desc: "We provide realistic 3D views to help you visualize your space before execution, ensuring clarity and confidence in design decisions.",
-    color: "from-neon-cyan to-electric-purple"
+    color: "from-neon-cyan to-electric-purple",
+    theme: "light-icon"
   },
   {
     icon: <Hammer className="w-8 h-8" />,
     title: "Renovation & Remodeling",
     desc: "We transform existing spaces into modern, efficient, and visually appealing environments with smart design solutions.",
-    color: "from-white to-white/20"
+    color: "from-[#C9A66B] to-[#C9A66B]/30",
+    theme: "light-icon"
   }
 ];
 
@@ -66,13 +70,15 @@ export const Services: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative glass p-12 rounded-[3.5rem] border border-white/5 hover:border-white/20 transition-all duration-700 overflow-hidden"
+              className="group relative bg-white p-12 rounded-[3.5rem] border-[1.5px] border-[#9CA3AF] shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-all duration-700 overflow-hidden"
             >
               {/* Background Glow */}
               <div className={`absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-700`} />
               
               <div className="relative z-10">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-10 text-white shadow-lg group-hover:scale-110 transition-transform duration-500`}>
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-10 shadow-lg group-hover:scale-110 transition-transform duration-500 ${
+                  service.theme === 'light-icon' ? 'service-icon-light' : 'service-icon-dark'
+                }`}>
                   {service.icon}
                 </div>
                 

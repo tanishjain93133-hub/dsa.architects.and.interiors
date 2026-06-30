@@ -31,14 +31,11 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <nav
-        className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4',
-          scrolled ? 'glass py-3' : 'bg-transparent'
-        )}
+        className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-zinc-200/60 shadow-sm px-6 py-3"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link to="/" className="flex items-center gap-4 group">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 overflow-hidden bg-black/40 backdrop-blur-md group-hover:border-neon-cyan transition-colors">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-zinc-200 overflow-hidden bg-white flex items-center justify-center p-0 shadow-sm">
               <SafeImage 
                 src="/images/drive_19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs.jpg" 
                 alt="DSA Logo" 
@@ -47,8 +44,8 @@ export const Navbar: React.FC = () => {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-white font-medium tracking-[0.2em] text-[10px] md:text-xs">DSA</span>
-              <span className="text-white/70 tracking-[0.1em] text-[8px] uppercase hidden md:block">Architects & Interiors</span>
+              <span className="text-zinc-900 font-bold tracking-[0.2em] text-[10px] md:text-xs">DSA</span>
+              <span className="text-zinc-500 tracking-[0.1em] text-[8px] uppercase hidden md:block">Architects & Interiors</span>
             </div>
           </Link>
 
@@ -59,21 +56,21 @@ export const Navbar: React.FC = () => {
                 key={link.name}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.05 }}
               >
                 {link.href.startsWith('http') || link.href.startsWith('#') || link.href.includes('#') ? (
                   <a
                     href={link.href}
                     target={link.href.startsWith('http') ? '_blank' : undefined}
                     rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[10px] tracking-[0.2em] text-white font-medium hover:bg-white hover:text-obsidian transition-all hover:scale-105 active:scale-95"
+                    className="px-4 py-2 rounded-full text-[10px] tracking-[0.2em] text-zinc-700 hover:text-amber-600 hover:bg-zinc-50 transition-all font-semibold"
                   >
                     {link.name}
                   </a>
                 ) : (
                   <Link
                     to={link.href}
-                    className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[10px] tracking-[0.2em] text-white font-medium hover:bg-white hover:text-obsidian transition-all hover:scale-105 active:scale-95"
+                    className="px-4 py-2 rounded-full text-[10px] tracking-[0.2em] text-zinc-700 hover:text-amber-600 hover:bg-zinc-50 transition-all font-semibold"
                   >
                     {link.name}
                   </Link>
@@ -85,24 +82,24 @@ export const Navbar: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               onClick={() => setIsInquireOpen(true)}
-              className="ml-4 px-6 py-2 rounded-full bg-white text-obsidian text-[10px] font-bold tracking-widest hover:bg-neon-cyan transition-colors shadow-lg"
+              className="ml-4 px-6 py-2 rounded-full bg-zinc-900 text-white text-[10px] font-bold tracking-widest hover:bg-amber-600 transition-colors shadow-md hover:shadow-lg"
             >
               Inquire
             </motion.button>
           </div>
 
           {/* Mobile Toggle */}
-          <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X /> : <Menu />}
+          <button className="md:hidden text-zinc-850 hover:text-amber-600 transition-colors p-2" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute top-full left-0 right-0 glass p-6 md:hidden flex flex-col gap-4"
+            className="absolute top-full left-0 right-0 bg-white border-b border-zinc-200/80 p-6 md:hidden flex flex-col gap-4 shadow-lg"
           >
             {navLinks.map((link) => (
               link.href.startsWith('http') || link.href.startsWith('#') || link.href.includes('#') ? (
@@ -112,7 +109,7 @@ export const Navbar: React.FC = () => {
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   onClick={() => setIsOpen(false)}
-                  className="text-lg font-display font-bold text-white hover:text-neon-cyan transition-colors"
+                  className="text-base font-display font-bold text-zinc-800 hover:text-amber-600 transition-colors py-1"
                 >
                   {link.name}
                 </a>
@@ -121,7 +118,7 @@ export const Navbar: React.FC = () => {
                   key={link.name}
                   to={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-lg font-display font-bold text-white hover:text-neon-cyan transition-colors"
+                  className="text-base font-display font-bold text-zinc-800 hover:text-amber-600 transition-colors py-1"
                 >
                   {link.name}
                 </Link>
@@ -132,7 +129,7 @@ export const Navbar: React.FC = () => {
                 setIsOpen(false);
                 setIsInquireOpen(true);
               }}
-              className="mt-4 px-6 py-4 rounded-full bg-neon-cyan text-obsidian text-sm font-bold tracking-widest"
+              className="mt-4 px-6 py-4 rounded-full bg-zinc-900 text-white text-sm font-bold tracking-widest hover:bg-amber-600 transition-all shadow-md"
             >
               Inquire Now
             </button>

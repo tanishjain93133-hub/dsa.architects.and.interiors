@@ -1,30 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import DecryptedText from './DecryptedText';
 import { SafeImage } from './SafeImage';
 
 export const Workspace: React.FC = () => {
   return (
     <section id="workspace" className="pt-0 pb-0 bg-[#050505] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-        {/* Headline Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="mb-8 md:mb-12 text-center"
-        >
-          <h2 className="text-6xl md:text-8xl lg:text-[10rem] font-extralight tracking-tight text-white leading-none">
-            <DecryptedText 
-              text="Location" 
-              animateOn="view" 
-              revealDirection="center"
-              className="text-white font-extralight"
-            />
-          </h2>
-        </motion.div>
-
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full pt-12 md:pt-16">
         {/* Cinematic Location Frame */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

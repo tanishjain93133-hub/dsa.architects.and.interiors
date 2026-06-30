@@ -31,7 +31,7 @@ export const AboutPage: React.FC = () => {
       subtitle: "Social media manager & website developer",
       handle: "@tanishjain",
       borderColor: "#7000FF",
-      gradient: "linear-gradient(180deg, #7000FF, #000)",
+      gradient: "linear-gradient(180deg, rgba(112, 0, 255, 0.05), #ffffff)",
     },
     {
       image: "/images/drive_10nFCmvCeEitMYkquFOZlifiAI7sbZdrh.jpg",
@@ -39,7 +39,7 @@ export const AboutPage: React.FC = () => {
       subtitle: "Draftsman",
       handle: "@dhruvsolanki",
       borderColor: "#00F3FF",
-      gradient: "linear-gradient(180deg, #00F3FF, #000)",
+      gradient: "linear-gradient(180deg, rgba(0, 243, 255, 0.05), #ffffff)",
     },
     {
       image: "/images/drive_1m5u6VbAhfgU-G97qKkeqMo_7Sspdvx1z.jpg",
@@ -47,7 +47,7 @@ export const AboutPage: React.FC = () => {
       subtitle: "Site supervisor",
       handle: "@ronakshah",
       borderColor: "#FF00E5",
-      gradient: "linear-gradient(180deg, #FF00E5, #000)",
+      gradient: "linear-gradient(180deg, rgba(255, 0, 229, 0.05), #ffffff)",
     }
   ];
 
@@ -81,32 +81,41 @@ export const AboutPage: React.FC = () => {
 
           {/* Hero Section of About Page */}
           <section className="mb-4 relative">
-            <div className="flex justify-between items-start mb-6 border-b border-white/10 pb-6">
-              {/* "About" Label - Top Left Corner */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6 border-b border-white/10 pb-6">
+              {/* "Studio" Label - Top Left Corner */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="flex flex-col gap-2"
+                className="flex flex-col gap-2 shrink-0"
               >
-                <span className="text-neon-cyan text-[10px] font-bold tracking-[1em] uppercase font-mono">
-                   About
+                <span className="text-neon-cyan text-xs sm:text-sm font-bold tracking-[1em] uppercase font-mono">
+                   Studio
                 </span>
-                <span className="text-white/70 text-4xl font-extralight tracking-tighter uppercase">Studio</span>
               </motion.div>
 
-              {/* DSA Headline - Central and Small */}
-              <motion.div 
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="absolute left-1/2 -translate-x-1/2 top-0"
-              >
-                <h1 className="text-[10px] md:text-xs font-medium text-white tracking-[0.6em] uppercase border border-white/20 px-8 py-3 rounded-full bg-black/40 backdrop-blur-md">
-                  DSA Architects & Interior Design
-                </h1>
-              </motion.div>
+              {/* Large ABOUT Heading + DSA Architects & Interior Design Badge */}
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-[40px] flex-1 md:justify-start">
+                <motion.span
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="text-white/70 text-4xl md:text-5xl font-extralight tracking-tighter uppercase shrink-0"
+                >
+                  About
+                </motion.span>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="shrink-0 max-w-full"
+                >
+                  <h1 className="text-[9px] sm:text-[10px] md:text-xs font-medium text-white tracking-[0.2em] xs:tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] lg:tracking-[0.6em] uppercase border border-white/20 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-full bg-black/40 backdrop-blur-md whitespace-nowrap overflow-hidden text-ellipsis">
+                    DSA Architects & Interior Design
+                  </h1>
+                </motion.div>
+              </div>
               
               {/* Optional Right Accoutrement to balance */}
-              <div className="hidden md:block text-right">
+              <div className="hidden md:block text-right shrink-0">
               </div>
             </div>
 
@@ -195,11 +204,10 @@ export const AboutPage: React.FC = () => {
           </div>
 
           {/* ChromaGrid Team Section */}
-          <section className="mt-4 mb-8 px-4 bg-black/40 pt-12 pb-12 rounded-[3rem] border border-white/5 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black pointer-events-none" />
+          <section className="mt-4 mb-8 px-4 bg-white/80 backdrop-blur-md pt-12 pb-12 rounded-[3rem] border border-zinc-200/50 relative overflow-hidden shadow-sm">
             <div className="max-w-7xl mx-auto relative z-10">
               <div className="flex flex-col items-center mb-12">
-                <h2 className="text-white text-6xl md:text-7xl font-black tracking-tighter uppercase mb-4 opacity-90">Our Team</h2>
+                <h2 className="text-white text-4xl md:text-5xl font-black tracking-tighter uppercase mb-4 opacity-90">Our Team</h2>
                 <div className="w-40 h-[2px] bg-neon-cyan/50 shadow-[0_0_15px_rgba(0,243,255,0.5)]" />
               </div>
               

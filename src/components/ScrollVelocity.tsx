@@ -89,7 +89,7 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({ texts, velocity 
           {row1.map((text, i) => (
             <div 
               key={`upper-${i}`} 
-              className="inline-flex items-center justify-center mx-10 px-8 py-4 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-2xl text-white font-sans font-black uppercase text-xl md:text-2xl tracking-tighter transition-all duration-700 hover:bg-electric-purple/10 hover:text-white hover:border-electric-purple/50 hover:scale-105 animate-pulse-border group cursor-default min-w-[180px]"
+              className="velocity-badge inline-flex items-center justify-center mx-10 px-8 py-4 rounded-full bg-white/[0.03] border-[1.5px] border-[#9CA3AF] backdrop-blur-2xl text-white font-sans font-black uppercase text-xl md:text-2xl tracking-tighter transition-all duration-700 hover:bg-electric-purple/10 hover:text-white hover:border-electric-purple/50 hover:scale-105 group cursor-default min-w-[180px]"
             >
               <span className="drop-shadow-md text-center group-hover:text-electric-purple transition-colors duration-500">{text}</span>
             </div>
@@ -103,7 +103,7 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({ texts, velocity 
           {row2.map((text, i) => (
             <div 
               key={`lower-${i}`} 
-              className="inline-flex items-center justify-center mx-10 px-8 py-4 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-2xl text-white font-sans font-black uppercase text-xl md:text-2xl tracking-tighter transition-all duration-700 hover:bg-neon-cyan/10 hover:text-white hover:border-neon-cyan/50 hover:scale-105 animate-pulse-border group cursor-default min-w-[180px]"
+              className="velocity-badge inline-flex items-center justify-center mx-10 px-8 py-4 rounded-full bg-white/[0.03] border-[1.5px] border-[#9CA3AF] backdrop-blur-2xl text-white font-sans font-black uppercase text-xl md:text-2xl tracking-tighter transition-all duration-700 hover:bg-neon-cyan/10 hover:text-white hover:border-neon-cyan/50 hover:scale-105 group cursor-default min-w-[180px]"
             >
               <span className="drop-shadow-md text-center group-hover:text-neon-cyan transition-colors duration-500">{text}</span>
             </div>

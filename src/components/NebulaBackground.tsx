@@ -34,7 +34,7 @@ export const NebulaBackground: React.FC = memo(() => {
         this.speedY = (Math.random() - 0.5) * 0.2;
         this.opacity = Math.random() * 0.4 + 0.1;
         
-        const colors = ['#BF5AF2', '#007AFF', '#5E5CE6', '#34C759', '#FFFFFF'];
+        const colors = ['#007AFF', '#BF5AF2', '#111827', '#b45309', '#d4d4d8'];
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }
 
@@ -100,9 +100,9 @@ export const NebulaBackground: React.FC = memo(() => {
 
   return (
     <div 
-      className="fixed inset-0 -z-10 pointer-events-none bg-black"
+      className="fixed inset-0 -z-10 pointer-events-none bg-zinc-50"
       style={{
-        background: 'radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000000 100%)'
+        background: 'radial-gradient(circle at 50% 50%, #ffffff 0%, #f4f4f5 100%)'
       }}
     >
       <canvas

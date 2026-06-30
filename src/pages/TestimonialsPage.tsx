@@ -8,17 +8,6 @@ import { SafeImage } from '../components/SafeImage';
 
 const allTestimonials = [
   {
-    name: "Mr. Chetas Patel",
-    role: "Chartered Accountant",
-    content: "Working with DSA was a smooth and professional experience from start to finish. The team understood our vision perfectly and transformed our home into a modern, elegant, and comfortable living space. Their attention to detail, material selection, and execution quality truly exceeded our expectations.",
-    rating: 4,
-    image: "/images/drive_1lu9AvHbFrIOP6DPXEap_3A0t3quM8ibn.jpg",
-    projectName: "CP House",
-    projectId: "res-dsa-07",
-    videoLink: "https://youtu.be/RShwYG0Znao?si=SgVgDsSz6Eyzr0oD",
-    reviewPath: "/cp-house-review"
-  },
-  {
     name: "Mr Chinten Bhai",
     role: "CEO, Accurate Wealth",
     content: "Honestly, the final result looked almost exactly the same as the 3D design we were shown. Every detail from the lighting and colors to the furniture placement was executed perfectly. The entire process felt smooth and transparent, and seeing the design come to life exactly as imagined was truly satisfying.",
@@ -41,7 +30,7 @@ const allTestimonials = [
     reviewPath: "/parth-shah-review"
   },
   {
-    name: "Mr. Jainam Bhai",
+    name: "Mr. Dhrupen Bhai",
     role: "Ahmedabad",
     content: "Initially, we had many doubts about how the home would turn out, but the 3D designs gave us complete clarity and confidence. Every detail was executed perfectly, and the final home looked exactly as we imagined. DSA truly understood our vision and transformed our space beautifully.",
     rating: 4.9,
@@ -52,11 +41,23 @@ const allTestimonials = [
     reviewPath: "/js-house-review"
   },
   {
+    name: "Mr. Chetas Patel",
+    role: "Chartered Accountant",
+    content: "Working with DSA was a smooth and professional experience from start to finish. The team understood our vision perfectly and transformed our home into a modern, elegant, and comfortable living space. Their attention to detail, material selection, and execution quality truly exceeded our expectations.",
+    rating: 4,
+    image: "/images/drive_1lu9AvHbFrIOP6DPXEap_3A0t3quM8ibn.jpg",
+    projectName: "CP House",
+    projectId: "res-dsa-07",
+    videoLink: "https://youtu.be/RShwYG0Znao?si=SgVgDsSz6Eyzr0oD",
+    reviewPath: "/cp-house-review"
+  },
+  {
     name: "Mr. Shashan Bhai",
     role: "Ahmedabad",
     content: "We wanted a home that felt warm, comfortable, and exactly the way we imagined. What we loved most about DSA was the transparency throughout the process — from material selection to final execution, everything was handled honestly and professionally. The final result looked exactly like our vision.",
     rating: 5,
-    image: "/images/drive_1jYcOoT-ACzACodGSQwgxSJz1no6_ISWG.jpg",
+    // Google Drive: https://drive.google.com/file/d/11uAgsnf6gVgt0vsGuH64XCXiX5nBU5xg/view?usp=sharing
+    image: "/images/drive_11uAgsnf6gVgt0vsGuH64XCXiX5nBU5xg.jpg",
     projectName: "Anchor House",
     projectId: "res-dsa-08",
     videoLink: "https://youtu.be/OONMZxcLYus?si=KagpkB4PpsW0uqzT",

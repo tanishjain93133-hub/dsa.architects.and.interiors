@@ -507,14 +507,15 @@ const MagicBento: React.FC<MagicBentoProps> = ({
 
       <div className="card-grid bento-section" ref={gridRef}>
         {cardData.map((card, index) => {
-          const baseClassName = `magic-bento-card group ${textAutoHide ? 'magic-bento-card--text-autohide' : ''} ${enableBorderGlow ? 'magic-bento-card--border-glow' : ''} ${card.className || ''}`;
+          const hasImage = !!card.image;
+          const baseClassName = `magic-bento-card group ${textAutoHide ? 'magic-bento-card--text-autohide' : ''} ${enableBorderGlow ? 'magic-bento-card--border-glow' : ''} ${hasImage ? 'magic-bento-card--has-image' : ''} ${card.className || ''}`;
           
           return (
             <ParticleCard
               key={index}
               className={baseClassName}
               style={{
-                backgroundColor: card.image ? 'transparent' : (card.color || '#120F17'),
+                backgroundColor: card.image ? 'transparent' : (card.color || '#ffffff'),
                 '--glow-color': glowColor
               } as React.CSSProperties}
               disableAnimations={shouldDisableAnimations}

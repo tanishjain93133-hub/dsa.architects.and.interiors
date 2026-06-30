@@ -49,7 +49,7 @@ export const CPHouseReviewGalleryPage: React.FC = () => {
     if (stack.length > 1) {
       navigate(-1);
     } else {
-      navigate('/');
+      navigate('/testimonials');
     }
   };
 
@@ -60,11 +60,11 @@ export const CPHouseReviewGalleryPage: React.FC = () => {
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6">
           <Link 
-            to="/" 
+            to="/testimonials" 
             onClick={handleBack}
             className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase mb-12 hover:translate-x-[-10px] transition-transform"
           >
-            <ArrowLeft size={16} /> Back to Home
+            <ArrowLeft size={16} /> Back to Testimonials
           </Link>
 
           <motion.div

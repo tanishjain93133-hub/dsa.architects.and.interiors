@@ -15,8 +15,9 @@
   width: 100%;
   padding: 1.5rem;
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #120F17;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -29,15 +30,15 @@
 
 .magic-bento-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(132, 0, 255, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(180, 83, 9, 0.3); /* gold/amber hover accent */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
 }
 
 .magic-bento-card__header,
 .magic-bento-card__content {
   display: flex;
   position: relative;
-  color: white;
+  color: #111827; /* high contrast charcoal black */
   z-index: 10;
 }
 
@@ -51,7 +52,7 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: #4b5563; /* slate gray */
 }
 
 .magic-bento-card__content {
@@ -64,13 +65,29 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  color: #111827;
 }
 
 .magic-bento-card__description {
   font-size: 0.875rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.6);
+  color: #4b5563; /* slate gray */
   max-width: 250px;
+}
+
+/* Ensure text on cards with explicit images stays high contrast and white/readable */
+.magic-bento-card--has-image .magic-bento-card__header,
+.magic-bento-card--has-image .magic-bento-card__content,
+.magic-bento-card--has-image .magic-bento-card__title {
+  color: #ffffff !important;
+}
+
+.magic-bento-card--has-image .magic-bento-card__label {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.magic-bento-card--has-image .magic-bento-card__description {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* 4x4 Mosaic Architecture */
