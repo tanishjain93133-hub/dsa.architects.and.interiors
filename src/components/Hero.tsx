@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { WireframeAssembly } from './WireframeAssembly';
 import { cn } from '@/src/lib/utils';
 
 import { SafeImage } from './SafeImage';
@@ -12,8 +11,25 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="home" className="relative min-h-0 md:min-h-screen h-auto flex items-start md:items-center justify-center pt-[84px] pb-[24px] md:pt-20 md:pb-0 overflow-hidden bg-obsidian">
-      <WireframeAssembly />
       
+      {/* High-End Architectural Background (Covering the entire hero section) */}
+      <motion.div
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+          className="absolute inset-0 -z-10 w-full h-full pointer-events-none"
+      >
+        {/* Google Drive: https://drive.google.com/file/d/1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h/view?usp=sharing */}
+        <SafeImage 
+          src="/images/drive_1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h.jpg" 
+          alt="Premium Architectural Background" 
+          size="large"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Dark elegant overlay (50-60% opacity) to make the image darker and premium */}
+        <div className="absolute inset-0 hero-dark-overlay" />
+      </motion.div>
+
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
         <div className="flex flex-col items-center text-center">
           <motion.div
@@ -28,7 +44,7 @@ export const Hero: React.FC = () => {
                 initial={{ y: "50%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-                className="text-[80px] sm:text-[140px] md:text-[280px] font-sans font-thin tracking-[-0.02em] text-white leading-none drop-shadow-2xl"
+                className="text-[80px] sm:text-[140px] md:text-[280px] font-sans font-thin tracking-[-0.02em] text-white leading-none"
               >
                 DSA
               </motion.h1>
@@ -60,10 +76,10 @@ export const Hero: React.FC = () => {
                   ease: "easeOut"
                 }}
                 className={cn(
-                  "text-lg md:text-2xl tracking-wide",
+                  "hero-tagline-word text-lg md:text-2xl tracking-wide",
                   i >= 5 
-                    ? "text-zinc-950 font-bold" 
-                    : "text-zinc-500 font-light"
+                    ? "font-bold" 
+                    : "font-light"
                 )}
               >
                 {word}
@@ -71,26 +87,7 @@ export const Hero: React.FC = () => {
             ))}
           </div>
  
-
         </div>
-
-        {/* High-End Architectural Background (Visible & Integrated) */}
-        <motion.div
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 0.7, scale: 1 }}
-            transition={{ duration: 3, ease: "easeOut" }}
-            className="absolute inset-0 -z-10 w-full h-full pointer-events-none"
-        >
-          <SafeImage 
-            src="/images/drive_1X6xG-7r6aVJJEwqXFfLno2nZ6v7rLz21.jpg" 
-            alt="Premium Architectural Background" 
-            size="large"
-            className="w-full h-full object-cover"
-          />
-          {/* Subtle dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-transparent to-obsidian" />
-        </motion.div>
       </div>
       
     </section>

@@ -76,9 +76,7 @@ export const Services: React.FC = () => {
               <div className={`absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-700`} />
               
               <div className="relative z-10">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-10 shadow-lg group-hover:scale-110 transition-transform duration-500 ${
-                  service.theme === 'light-icon' ? 'service-icon-light' : 'service-icon-dark'
-                }`}>
+                <div className="w-16 h-16 rounded-2xl bg-white border-2 border-black flex items-center justify-center mb-10 shadow-lg group-hover:scale-110 transition-transform duration-500 service-icon-custom">
                   {service.icon}
                 </div>
                 

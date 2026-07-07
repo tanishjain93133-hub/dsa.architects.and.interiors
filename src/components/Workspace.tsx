@@ -17,14 +17,16 @@ export const Workspace: React.FC = () => {
           {/* India Map Geographic Background - User Provided Asset */}
           <div className="absolute inset-0 z-0">
             <SafeImage 
-              src="/images/drive_1v43npXG3_pKwSJQqEZljlY__493jP83m.png" 
+              src="/images/drive_1o64ShmOwrbN2QYyOC6ptrVy7ADrADxr8.jpg" 
               alt="Geographic Map of Ahmedabad" 
               className="w-full h-full object-cover opacity-100 transition-opacity duration-1000"
             />
+            {/* Elegant dark semi-transparent overlay to ensure excellent readability of white text */}
+            <div className="absolute inset-0 bg-black/45 z-[1]" />
             {/* Overlay Grid - Subtler */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.01)_1px,transparent_1px)] bg-[size:60px_60px] opacity-10" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20 opacity-80" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.01)_1px,transparent_1px)] bg-[size:60px_60px] opacity-10 z-[2]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50 z-[2]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 opacity-90 z-[2]" />
           </div>
 
           {/* Overlay Info */}
@@ -33,7 +35,7 @@ export const Workspace: React.FC = () => {
               <span className="text-[#3B82F6] text-[11px] font-bold tracking-[0.5em] mb-4 block uppercase font-mono border-l-2 border-[#3B82F6] pl-4">
                 HEADQUARTERS & STUDIO
               </span>
-              <h1 className="text-2xl md:text-3xl font-light text-white mb-6 leading-tight tracking-tight">
+              <h1 className="text-2xl md:text-3xl font-light text-white mb-6 leading-tight tracking-tight workspace-text-white">
                 601, Anikedhya Capitol 2, <br />
                 Paldi, Ahmedabad, Gujarat 380007
               </h1>
