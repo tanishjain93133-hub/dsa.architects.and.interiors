@@ -117,9 +117,16 @@
   }
 
   /* Custom Hero Title */
-  .dsa-title {
-    color: #1F1F1F !important;
-    font-weight: 600 !important;
+  .dsa-title-main {
+    color: #1a1a1a !important;
+    font-weight: 100 !important;
+    font-family: var(--font-sans);
+  }
+
+  .dsa-title-sub {
+    color: #333333 !important;
+    font-weight: 500 !important;
+    font-family: var(--font-sans);
   }
 
   /* Custom Hero Dark Overlay & Text overrides */
@@ -128,14 +135,21 @@
   }
 
   #home h1 {
-    color: #ffffff !important;
-    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.6) !important;
+    color: #1a1a1a !important;
+    text-shadow: none !important;
   }
 
-  #home .dsa-title {
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8), 0 1px 5px rgba(0, 0, 0, 0.6) !important;
+  #home .dsa-title-main {
+    color: #000000 !important;
+    font-weight: 100 !important;
+    text-shadow: none !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  #home .dsa-title-sub {
+    color: #111111 !important;
+    font-weight: 500 !important;
+    text-shadow: none !important;
     letter-spacing: 0.3em !important;
   }
 
