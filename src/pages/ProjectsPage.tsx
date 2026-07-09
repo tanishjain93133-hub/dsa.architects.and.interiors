@@ -7,6 +7,7 @@ import { Footer } from '../components/Footer';
 import DomeGallery from '../components/DomeGallery';
 import { cn } from '@/src/lib/utils';
 import { SafeImage } from '../components/SafeImage';
+import { SEO } from '../components/SEO';
 
 const PROJECTS_IMAGES = [
   {
@@ -134,6 +135,10 @@ export const ProjectsPage: React.FC = () => {
 
   return (
     <div className="relative w-full min-h-screen bg-black select-none no-scrollbar">
+      <SEO 
+        title="Our Portfolio | Luxury Architecture & Design Projects by DSA"
+        description="Explore our architectural and interior design portfolio, featuring high-end residential estates, modern commercial offices, and luxury retail projects by DSA."
+      />
       <Navbar />
       {/* 1. TOP HERO: TemplateMonster Style Design */}
       <section className="relative h-screen flex flex-col lg:flex-row overflow-hidden bg-[#050505]">

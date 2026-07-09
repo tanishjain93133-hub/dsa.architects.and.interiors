@@ -6,6 +6,7 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { cn } from '../lib/utils';
 import { SafeImage } from '../components/SafeImage';
+import { SEO } from '../components/SEO';
 
 const ACHIRA_GALLERY = [
   { image: '/images/drive_1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41.jpg', text: 'Achira Diamond & Fashion 01' },
@@ -524,6 +525,10 @@ export const ProjectDetailPage: React.FC = () => {
 
   return (
     <div className="bg-obsidian min-h-screen text-white">
+      <SEO 
+        title={`${project?.title || 'Project'} | Luxury Architectural Design | DSA`}
+        description={project?.description || `Discover ${project?.title || 'a luxury project'}, a custom architectural masterpiece designed by Dhwanish Shah Architects (DSA).`}
+      />
       <Navbar />
       
       <main className="pt-32 pb-24">

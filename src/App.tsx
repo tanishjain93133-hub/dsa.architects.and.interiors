@@ -26,9 +26,16 @@ import { ShelaHouseReviewGalleryPage } from './pages/ShelaHouseReviewGalleryPage
 import { JDOfficeReviewGalleryPage } from './pages/JDOfficeReviewGalleryPage';
 import { TestimonialsPage } from './pages/TestimonialsPage';
 import { SyncPage } from './pages/SyncPage';
+import { BlogPage } from './pages/BlogPage';
+import { ContactPage } from './pages/ContactPage';
+import { SEO } from './components/SEO';
 
 const HomePage: React.FC = () => (
   <>
+    <SEO 
+      title="DSA | Dhwanish Shah Architects & Interiors | Ahmedabad, India"
+      description="Dhwanish Shah Architects (DSA) is a premier luxury architecture and interior design firm in Ahmedabad, India. We design timeless, sophisticated spaces with meticulous care."
+    />
     <NebulaBackground />
     <Navbar />
     <main>
@@ -77,6 +84,8 @@ export default function App() {
           <Route path="/shela-house-review" element={<ShelaHouseReviewGalleryPage />} />
           <Route path="/jd-office-review" element={<JDOfficeReviewGalleryPage />} />
           <Route path="/testimonials" element={<TestimonialsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/sync" element={<SyncPage />} />
         </Routes>
       </div>

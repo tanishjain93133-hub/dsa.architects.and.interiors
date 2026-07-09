@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SafeImage } from '../components/SafeImage';
+import { SEO } from '../components/SEO';
 
 const allTestimonials = [
   {
@@ -93,6 +94,10 @@ export const TestimonialsPage: React.FC = () => {
 
   return (
     <div className="bg-obsidian min-h-screen text-white">
+      <SEO 
+        title="Client Reviews & Testimonials | DSA Architects"
+        description="Read what our clients say about their experience collaborating with Dhwanish Shah Architects (DSA) on their luxury homes, offices, and retail spaces."
+      />
       <Navbar />
 
       <main className="pt-32 pb-24 relative overflow-hidden">

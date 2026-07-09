@@ -381,10 +381,333 @@ async function startServer() {
     }
   });
 
-  // Client SPA routing
+  // Helper to extract dynamic project IDs
+  function getDynamicProjectIds(): string[] {
+    try {
+      const filePath = path.join(process.cwd(), "src", "pages", "ProjectDetailPage.tsx");
+      if (fs.existsSync(filePath)) {
+        const content = fs.readFileSync(filePath, "utf8");
+        const idRegex = /id:\s*['"]([a-zA-Z0-9_-]+)['"]/g;
+        const ids = new Set<string>();
+        let match;
+        while ((match = idRegex.exec(content)) !== null) {
+          if (match[1]) {
+            ids.add(match[1]);
+          }
+        }
+        return Array.from(ids);
+      }
+    } catch (err) {
+      console.error("Error reading ProjectDetailPage.tsx:", err);
+    }
+    return [
+      'res-dsa-01', 'res-dsa-02', 'res-dsa-10', 'comm-dsa-01',
+      'comm-dsa-04', 'comm-dsa-05', 'comm-dsa-06', 'res-dsa-03',
+      'res-dsa-04', 'res-dsa-05', 'res-dsa-06', 'res-dsa-07',
+      'res-dsa-08', 'comm-dsa-02', 'res-dsa-09', 'comm-dsa-07'
+    ];
+  }
+
+  // Helper to extract dynamic blog IDs
+  function getDynamicBlogIds(): string[] {
+    try {
+      const blogDir = path.join(process.cwd(), "src", "pages", "blog");
+      if (fs.existsSync(blogDir)) {
+        const files = fs.readdirSync(blogDir);
+        return files
+          .filter(f => f.endsWith(".tsx") || f.endsWith(".ts"))
+          .map(f => f.replace(/\.(tsx|ts)$/, "").toLowerCase());
+      }
+    } catch (err) {
+      // ignore
+    }
+    // Return the hardcoded ones if directory doesn't exist yet but has matching routes
+    return ['minimal-luxury-philosophy', 'acoustic-detailing-office', 'bespoke-fitouts-craft'];
+  }
+
+  // Helper to get detailed metadata for a single project
+  function getProjectMetadata(id: string) {
+    try {
+      const filePath = path.join(process.cwd(), "src", "pages", "ProjectDetailPage.tsx");
+      if (fs.existsSync(filePath)) {
+        const content = fs.readFileSync(filePath, "utf8");
+        const idEscaped = id.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        const blockRegex = new RegExp(`id:\\s*['"]${idEscaped}['"]\\s*,[^}]*title:\\s*['"]([^'"]+)['"]\\s*,[^}]*subtitle:\\s*['"]([^'"]+)['"]\\s*,[^}]*description:\\s*['"]([^'"]+)['"]`, 's');
+        const match = blockRegex.exec(content);
+        if (match) {
+          return {
+            title: `${match[1]} | Luxury Project by DSA`,
+            description: match[3] || `${match[1]} - A premium ${match[2]} architectural masterpiece designed by Dhwanish Shah Architects (DSA).`
+          };
+        }
+      }
+    } catch (err) {
+      console.error("Error reading project details for SEO:", err);
+    }
+    
+    // Fallbacks
+    const fallbackProjects: Record<string, { title: string, description: string }> = {
+      'res-dsa-01': { title: "Subtle Sanctuary", description: "This home interior combines simplicity, functionality, and modern design with soft color tones, spacious layouts, and refined finishes." },
+      'res-dsa-02': { title: "Craft House", description: "A beautifully crafted residence featuring traditional design techniques with modern sensibilities, exquisite details, and premium materials." },
+      'res-dsa-10': { title: "The Shaded Abode", description: "An architecturally stunning residential home designed with dynamic shaded screens, comfortable open courtyards, and clean modern aesthetics." },
+      'comm-dsa-01': { title: "JD Office", description: "A high-end modern corporate office space designed with elegant minimalist work zones, executive lounges, and bespoke detailing." }
+    };
+
+    const proj = fallbackProjects[id];
+    if (proj) {
+      return {
+        title: `${proj.title} | Luxury Project by DSA`,
+        description: proj.description
+      };
+    }
+
+    const formattedId = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    return {
+      title: `${formattedId} | Luxury Architectural Design | DSA`,
+      description: `Discover ${formattedId}, a luxury custom architectural and interior design project designed by Dhwanish Shah Architects (DSA).`
+    };
+  }
+
+  // Dynamic SEO HTML Hydration Injector
+  function injectSeoTags(html: string, reqPath: string): string {
+    const domain = "https://dsa-architects-and-interiors.vercel.app";
+    const canonicalUrl = `${domain}${reqPath === "/" ? "" : reqPath}`;
+    
+    let title = "DSA | Dhwanish Shah Architects & Interiors";
+    let description = "Dhwanish Shah Architects (DSA) is a premier luxury architecture and interior design firm in Ahmedabad, India, specializing in high-end homes and offices.";
+    
+    if (reqPath === "/" || reqPath === "") {
+      title = "DSA | Dhwanish Shah Architects & Interiors | Ahmedabad, India";
+      description = "Dhwanish Shah Architects (DSA) is a premier luxury architecture and interior design firm in Ahmedabad, India. We design timeless, sophisticated spaces with meticulous care.";
+    } else if (reqPath === "/about") {
+      title = "About DSA | Luxury Architecture & Interior Designers";
+      description = "Learn about Dhwanish Shah Architects (DSA), our design philosophy, and our legacy of creating luxurious residential and commercial masterpieces across India.";
+    } else if (reqPath === "/portfolio") {
+      title = "Our Portfolio | Luxury Architecture & Design Projects by DSA";
+      description = "Explore our architectural and interior design portfolio, featuring high-end residential estates, modern commercial offices, and luxury retail projects by DSA.";
+    } else if (reqPath === "/testimonials") {
+      title = "Client Reviews & Testimonials | DSA Architects";
+      description = "Read what our clients say about their experience collaborating with Dhwanish Shah Architects (DSA) on their luxury homes, offices, and retail spaces.";
+    } else if (reqPath === "/blog") {
+      title = "Design Journal & Blog | Architecture & Interior Design Insights";
+      description = "Read the latest design trends, architecture philosophy, and construction insights from Dhwanish Shah Architects (DSA).";
+    } else if (reqPath === "/contact") {
+      title = "Contact DSA | Inquire About Luxury Design Services";
+      description = "Get in touch with Dhwanish Shah Architects (DSA) for your luxury residential, commercial, or retail architecture and interior design requirements.";
+    } else if (reqPath.startsWith("/project/")) {
+      const id = reqPath.split("/")[2];
+      if (id) {
+        const meta = getProjectMetadata(id);
+        title = meta.title;
+        description = meta.description;
+      }
+    } else if (reqPath === "/anchor-house") {
+      title = "Anchor House | Architectural Design Review & Gallery | DSA";
+      description = "Explore the complete architectural design, spatial layout, and high-quality photography gallery of the Anchor House by DSA.";
+    } else if (reqPath === "/aa-wealth") {
+      title = "AA Wealth | Commercial Office Design & Review | DSA";
+      description = "An in-depth look at AA Wealth's office interior planning, workspace ergonomics, and luxury detailing designed by DSA.";
+    } else if (reqPath === "/cp-house-review") {
+      title = "CP House | Residence Review & Design Gallery | DSA";
+      description = "Review and photograph gallery showcasing the premium material selection and custom craftsmanship of CP House.";
+    } else if (reqPath === "/aa-wealth-review") {
+      title = "AA Wealth | Corporate Workspace Review & Gallery | DSA";
+      description = "Reviewing the corporate workspace planning, luxurious executive cabins, and breakout zones of AA Wealth.";
+    } else if (reqPath === "/parth-shah-review") {
+      title = "Parth Shah Residence | Interior Design Review | DSA";
+      description = "A detailed interior walkthrough and design critique of the custom Parth Shah luxury apartment residence.";
+    } else if (reqPath === "/js-house-review") {
+      title = "JS House | Modern Luxury Villa Review & Gallery | DSA";
+      description = "Explore the review and stunning photography of JS House, an elegant modern villa blending interior and exterior spaces.";
+    } else if (reqPath === "/shela-house-review") {
+      title = "Shela House | Elegant Residential Design Review | DSA";
+      description = "Review and design details of the Shela House, a premium residence in Ahmedabad designed with bespoke furniture and timeless style.";
+    } else if (reqPath === "/jd-office-review") {
+      title = "JD Office | Contemporary Workspace Design Review | DSA";
+      description = "Review of the JD Office interior planning, acoustic detailing, and sophisticated custom lighting schemes by DSA.";
+    } else if (reqPath.startsWith("/blog/")) {
+      const id = reqPath.split("/")[2];
+      if (id) {
+        const formattedId = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        title = `${formattedId} | Design Journal | DSA`;
+        description = `Insights, architectural philosophy, and detailed discussion about ${formattedId} by Dhwanish Shah Architects.`;
+      }
+    }
+
+    // JSON-LD Structured Data
+    const jsonLdOrg = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Dhwanish Shah Architects (DSA)",
+      "alternateName": "DSA Architects & Interiors",
+      "url": domain,
+      "logo": `${domain}/images/drive_19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs.jpg`,
+      "sameAs": [
+        "https://www.instagram.com/dhwanishshah_architects"
+      ]
+    };
+
+    const jsonLdLocalBusiness = {
+      "@context": "https://schema.org",
+      "@type": "ArchitecturalOffice",
+      "name": "Dhwanish Shah Architects",
+      "image": `${domain}/images/drive_1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h.jpg`,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "601, Anikedhya Capitol 2, Paldi",
+        "addressLocality": "Ahmedabad",
+        "addressRegion": "Gujarat",
+        "postalCode": "380007",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "23.0120",
+        "longitude": "72.5614"
+      },
+      "url": domain,
+      "telephone": "+919879819691",
+      "priceRange": "$$$$"
+    };
+
+    const jsonLdWebsite = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Dhwanish Shah Architects",
+      "url": domain,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${domain}/portfolio?search={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    };
+
+    const breadcrumbItems = [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": domain }
+    ];
+    if (reqPath !== "/" && reqPath !== "") {
+      const parts = reqPath.split("/").filter(Boolean);
+      let currentLink = domain;
+      parts.forEach((part, index) => {
+        currentLink += `/${part}`;
+        const name = part.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+        breadcrumbItems.push({
+          "@type": "ListItem",
+          "position": index + 2,
+          "name": name,
+          "item": currentLink
+        });
+      });
+    }
+    const jsonLdBreadcrumbs = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbItems
+    };
+
+    const seoTags = `
+    <!-- Standard Meta Tags -->
+    <title>${title}</title>
+    <meta name="description" content="${description}" />
+    <link rel="canonical" href="${canonicalUrl}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="${canonicalUrl}" />
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${description}" />
+    <meta property="og:image" content="${domain}/images/drive_1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="${canonicalUrl}" />
+    <meta property="twitter:title" content="${title}" />
+    <meta property="twitter:description" content="${description}" />
+    <meta property="twitter:image" content="${domain}/images/drive_1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h.jpg" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">${JSON.stringify(jsonLdOrg)}</script>
+    <script type="application/ld+json">${JSON.stringify(jsonLdLocalBusiness)}</script>
+    <script type="application/ld+json">${JSON.stringify(jsonLdWebsite)}</script>
+    <script type="application/ld+json">${JSON.stringify(jsonLdBreadcrumbs)}</script>
+    `;
+
+    // Remove existing title tag
+    let cleanHtml = html.replace(/<title>.*?<\/title>/gi, "");
+    
+    // Inject into head
+    if (cleanHtml.includes("</head>")) {
+      return cleanHtml.replace("</head>", `${seoTags}\n  </head>`);
+    }
+    
+    return cleanHtml;
+  }
+
+  // 1. Dynamic Sitemap.xml Route
+  app.get("/sitemap.xml", (req, res) => {
+    const domain = "https://dsa-architects-and-interiors.vercel.app";
+    const staticPages = [
+      "",
+      "/about",
+      "/portfolio",
+      "/testimonials",
+      "/blog",
+      "/contact",
+      "/anchor-house",
+      "/aa-wealth",
+      "/cp-house-review",
+      "/aa-wealth-review",
+      "/parth-shah-review",
+      "/js-house-review",
+      "/shela-house-review",
+      "/jd-office-review"
+    ];
+
+    const projectIds = getDynamicProjectIds();
+    const blogIds = getDynamicBlogIds();
+
+    const allPages = [
+      ...staticPages,
+      ...projectIds.map(id => `/project/${id}`),
+      ...blogIds.map(id => `/blog/${id}`)
+    ];
+
+    const sitemapEntries = allPages.map(page => {
+      const url = `${domain}${page}`;
+      const priority = page === "" ? "1.0" : (page.includes("/project/") || page.includes("/blog/") ? "0.8" : "0.7");
+      return `  <url>
+    <loc>${url}</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+    });
+
+    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapEntries.join("\n")}
+</urlset>`;
+
+    res.header("Content-Type", "application/xml");
+    return res.status(200).send(sitemapXml);
+  });
+
+  // 2. Robots.txt Route
+  app.get("/robots.txt", (req, res) => {
+    const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: https://dsa-architects-and-interiors.vercel.app/sitemap.xml`;
+
+    res.header("Content-Type", "text/plain");
+    return res.status(200).send(robotsTxt);
+  });
+
+  // Client SPA routing & dynamic metadata pre-rendering
+  let vite: any;
   if (process.env.NODE_ENV !== "production") {
     const { createServer: createViteServer } = await import("vite");
-    const vite = await createViteServer({
+    vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
     });
@@ -392,10 +715,40 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
-    });
   }
+
+  // Handle all other navigation paths (inject SEO tags)
+  app.get("*", async (req, res, next) => {
+    if (req.path.includes(".") || req.path.startsWith("/api") || req.path.startsWith("/images")) {
+      return next();
+    }
+    
+    try {
+      let htmlPath = "";
+      if (process.env.NODE_ENV !== "production") {
+        htmlPath = path.join(process.cwd(), "index.html");
+      } else {
+        htmlPath = path.join(process.cwd(), "dist", "index.html");
+      }
+
+      if (!fs.existsSync(htmlPath)) {
+        return next();
+      }
+
+      let html = fs.readFileSync(htmlPath, "utf8");
+      
+      if (process.env.NODE_ENV !== "production" && vite) {
+        html = await vite.transformIndexHtml(req.url, html);
+      }
+
+      const injectedHtml = injectSeoTags(html, req.path);
+      res.setHeader("Content-Type", "text/html");
+      return res.status(200).send(injectedHtml);
+    } catch (err) {
+      console.error("SEO html injection error:", err);
+      return next();
+    }
+  });
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on port ${PORT}`);

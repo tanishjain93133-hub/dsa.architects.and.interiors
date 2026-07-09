@@ -9,6 +9,7 @@ import { Assembly } from '../components/Assembly';
 import { ChromaGrid } from '../components/ChromaGrid';
 import { cn } from '@/src/lib/utils';
 import { SafeImage } from '../components/SafeImage';
+import { SEO } from '../components/SEO';
 
 export const AboutPage: React.FC = () => {
   const navigate = useNavigate();
@@ -53,6 +54,10 @@ export const AboutPage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-black">
+      <SEO 
+        title="About DSA | Luxury Architecture & Interior Designers"
+        description="Learn about Dhwanish Shah Architects (DSA), our design philosophy, and our legacy of creating luxurious residential and commercial masterpieces across India."
+      />
       {/* Cinematic Watermark matching Gallery style */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 touch-none overflow-hidden">
         <h2 className="text-white/[0.03] text-[200px] md:text-[450px] font-black uppercase tracking-tighter select-none rotate-12">About</h2>
