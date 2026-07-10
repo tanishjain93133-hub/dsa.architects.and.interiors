@@ -98,7 +98,7 @@ export const AboutPage: React.FC = () => {
                 </span>
               </motion.div>
 
-              {/* Large ABOUT Heading + DSA Architects & Interior Design Badge */}
+              {/* Large ABOUT Heading + Dhwanish Shah Architects Badge */}
               <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-[40px] flex-1 md:justify-start">
                 <motion.span
                   initial={{ opacity: 0, x: -20 }}
@@ -114,7 +114,7 @@ export const AboutPage: React.FC = () => {
                   className="shrink-0 max-w-full"
                 >
                   <h1 className="text-[9px] sm:text-[10px] md:text-xs font-medium text-white tracking-[0.2em] xs:tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] lg:tracking-[0.6em] uppercase border border-white/20 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-full bg-black/40 backdrop-blur-md whitespace-nowrap overflow-hidden text-ellipsis">
-                    DSA Architects & Interior Design
+                    Dhwanish Shah Architects
                   </h1>
                 </motion.div>
               </div>
@@ -134,7 +134,7 @@ export const AboutPage: React.FC = () => {
                   viewport={{ once: true }}
                 >
                   <p className="text-white text-2xl md:text-4xl font-light leading-snug tracking-tight mb-8 max-w-4xl">
-                    <strong className="text-white font-medium border-b border-white/20 pb-1">DSA Architects & Interior Design</strong> is a creative studio dedicated to designing modern, functional, and elegant spaces.
+                    <strong className="text-white font-medium border-b border-white/20 pb-1">Dhwanish Shah Architects</strong> is a creative studio dedicated to designing modern, functional, and elegant spaces.
                   </p>
                   <div className="w-20 h-[1px] bg-white/20 mb-8" />
                   <p className="text-white/80 text-xl font-light leading-relaxed">

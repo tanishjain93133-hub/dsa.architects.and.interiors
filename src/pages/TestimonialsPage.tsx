@@ -95,8 +95,8 @@ export const TestimonialsPage: React.FC = () => {
   return (
     <div className="bg-obsidian min-h-screen text-white">
       <SEO 
-        title="Client Reviews & Testimonials | DSA Architects"
-        description="Read what our clients say about their experience collaborating with Dhwanish Shah Architects (DSA) on their luxury homes, offices, and retail spaces."
+        title="Client Reviews & Testimonials | Dhwanish Shah Architects"
+        description="Read what our clients say about their experience collaborating with Dhwanish Shah Architects on their luxury homes, offices, and retail spaces."
       />
       <Navbar />
 

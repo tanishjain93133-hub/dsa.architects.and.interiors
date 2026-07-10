@@ -44,8 +44,9 @@ export const Navbar: React.FC = () => {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-zinc-900 font-bold tracking-[0.2em] text-[10px] md:text-xs">DSA</span>
-              <span className="text-zinc-500 tracking-[0.1em] text-[8px] uppercase hidden md:block">Architects & Interiors</span>
+              <span className="text-zinc-900 font-extrabold tracking-[0.15em] text-[10px] md:text-sm uppercase whitespace-nowrap select-none">
+                Dhwanish Shah Architects
+              </span>
             </div>
           </Link>
 

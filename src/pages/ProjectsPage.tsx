@@ -136,8 +136,8 @@ export const ProjectsPage: React.FC = () => {
   return (
     <div className="relative w-full min-h-screen bg-black select-none no-scrollbar">
       <SEO 
-        title="Our Portfolio | Luxury Architecture & Design Projects by DSA"
-        description="Explore our architectural and interior design portfolio, featuring high-end residential estates, modern commercial offices, and luxury retail projects by DSA."
+        title="Our Portfolio | Luxury Architecture & Design Projects by Dhwanish Shah Architects"
+        description="Explore our architectural and interior design portfolio, featuring high-end residential estates, modern commercial offices, and luxury retail projects by Dhwanish Shah Architects."
       />
       <Navbar />
       {/* 1. TOP HERO: TemplateMonster Style Design */}
@@ -155,7 +155,7 @@ export const ProjectsPage: React.FC = () => {
             transition={{ duration: 1.2, ease: "easeOut" }}
           >
             <span className="text-neon-cyan text-[10px] font-bold tracking-[0.5em] mb-8 block uppercase border-l-2 border-neon-cyan pl-4">
-              Complete project DSA
+              Complete project portfolio
             </span>
             <div className="relative">
               <h1 className="text-6xl md:text-8xl lg:text-[110px] font-sans font-bold text-white leading-[0.9] tracking-tighter mb-10">
@@ -297,7 +297,7 @@ export const ProjectsPage: React.FC = () => {
             
             <iframe 
               src="https://projects-rho-dun.vercel.app/"
-              title="DSA Architects Live Project Showcase Portfolio"
+              title="Dhwanish Shah Architects Live Project Showcase Portfolio"
               className="relative z-10 w-full h-full border-0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen

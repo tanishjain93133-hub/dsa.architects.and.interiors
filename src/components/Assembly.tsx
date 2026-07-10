@@ -38,7 +38,7 @@ export const Assembly: React.FC = () => {
             
             <div className="space-y-10 text-white/80 text-base md:text-lg leading-relaxed font-light max-w-xl">
               <p>
-                <strong className="text-white font-medium">DSA Architects & Interior Design</strong> is a creative studio dedicated to designing modern, functional, and elegant spaces. Founded in 2018 by Ar. Dhwanish Shah, our firm focuses on delivering high-quality architectural and interior solutions that reflect both style and practicality.
+                <strong className="text-white font-medium">Dhwanish Shah Architects</strong> is a creative studio dedicated to designing modern, functional, and elegant spaces. Founded in 2018 by Ar. Dhwanish Shah, our firm focuses on delivering high-quality architectural and interior solutions that reflect both style and practicality.
               </p>
               <p>
                 Ar. Dhwanish Shah holds a Bachelor of Architecture degree from <span className="text-white/70">Anant National University</span> and brings a strong foundation of design thinking and innovation to every project.
@@ -81,7 +81,7 @@ export const Assembly: React.FC = () => {
                 <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden border border-white/10 group">
                   <SafeImage 
                     src="/images/drive_11pcH9eTpIsNc2YMB7Sis-jInvHOu_ESl.png" 
-                    alt="Dhwanish Shah - DSA Architects" 
+                    alt="Dhwanish Shah Architects" 
                     className="w-full h-full object-cover opacity-100 transition-all duration-1000 scale-105 group-hover:scale-100"
                   />
                 </div>
@@ -103,7 +103,7 @@ export const Assembly: React.FC = () => {
           <div className="flex flex-col items-center">
             <p className="text-4xl md:text-6xl font-display font-medium text-white mb-3 tracking-tighter">2018</p>
             <p className="text-[10px] md:text-xs tracking-[0.3em] text-white/40 uppercase font-bold leading-relaxed">
-              Foundation <span className="text-white/60 block mt-1 font-medium">DSA Architects</span>
+              Foundation <span className="text-white/60 block mt-1 font-medium">Dhwanish Shah Architects</span>
             </p>
           </div>
           <div className="flex flex-col items-center">

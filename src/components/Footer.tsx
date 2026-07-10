@@ -10,21 +10,24 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 relative">
           
-          {/* Left: Logo */}
-          <div className="flex-1 flex justify-start">
+          {/* Left: Logo and Brand */}
+          <div className="flex-1 flex flex-col items-center gap-3 text-center">
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
-              className="w-20 h-20 md:w-24 md:h-24 rounded-full border border-white/10 overflow-hidden flex items-center justify-center p-0 bg-white shadow-xl hover:border-white/30 transition-all duration-300"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/10 overflow-hidden flex items-center justify-center p-0 bg-white shadow-xl hover:border-white/30 transition-all duration-300"
             >
               <SafeImage 
                 src="/images/drive_19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs.jpg" 
-                alt="DSA Architects Logo" 
+                alt="Dhwanish Shah Architects Logo" 
                 size="small"
                 className="w-full h-full object-cover"
               />
             </motion.div>
+            <span className="footer-text-primary text-[12px] md:text-[14px] tracking-[0.25em] sm:tracking-[0.3em] uppercase font-bold select-none text-white">
+              Dhwanish Shah Architects
+            </span>
           </div>
           
           {/* Center: Social Icons */}

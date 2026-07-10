@@ -456,15 +456,15 @@ async function startServer() {
     const proj = fallbackProjects[id];
     if (proj) {
       return {
-        title: `${proj.title} | Luxury Project by DSA`,
+        title: `${proj.title} | Luxury Project by Dhwanish Shah Architects`,
         description: proj.description
       };
     }
 
     const formattedId = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     return {
-      title: `${formattedId} | Luxury Architectural Design | DSA`,
-      description: `Discover ${formattedId}, a luxury custom architectural and interior design project designed by Dhwanish Shah Architects (DSA).`
+      title: `${formattedId} | Luxury Architectural Design | Dhwanish Shah Architects`,
+      description: `Discover ${formattedId}, a luxury custom architectural and interior design project designed by Dhwanish Shah Architects.`
     };
   }
 
@@ -473,27 +473,27 @@ async function startServer() {
     const domain = "https://dsa-architects-and-interiors.vercel.app";
     const canonicalUrl = `${domain}${reqPath === "/" ? "" : reqPath}`;
     
-    let title = "DSA | Dhwanish Shah Architects & Interiors";
-    let description = "Dhwanish Shah Architects (DSA) is a premier luxury architecture and interior design firm in Ahmedabad, India, specializing in high-end homes and offices.";
+    let title = "Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad";
+    let description = "Dhwanish Shah Architects is a premium architecture and interior design firm in Ahmedabad, specializing in luxury residences, villas, commercial architecture, interior design, renovations, and 3D visualization across India.";
     
     if (reqPath === "/" || reqPath === "") {
-      title = "DSA | Dhwanish Shah Architects & Interiors | Ahmedabad, India";
-      description = "Dhwanish Shah Architects (DSA) is a premier luxury architecture and interior design firm in Ahmedabad, India. We design timeless, sophisticated spaces with meticulous care.";
+      title = "Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad";
+      description = "Dhwanish Shah Architects is a premium architecture and interior design firm in Ahmedabad, specializing in luxury residences, villas, commercial architecture, interior design, renovations, and 3D visualization across India.";
     } else if (reqPath === "/about") {
-      title = "About DSA | Luxury Architecture & Interior Designers";
-      description = "Learn about Dhwanish Shah Architects (DSA), our design philosophy, and our legacy of creating luxurious residential and commercial masterpieces across India.";
+      title = "About Dhwanish Shah Architects | Luxury Architecture & Interior Designers";
+      description = "Learn about Dhwanish Shah Architects, our design philosophy, and our legacy of creating luxurious residential and commercial masterpieces across India.";
     } else if (reqPath === "/portfolio") {
-      title = "Our Portfolio | Luxury Architecture & Design Projects by DSA";
-      description = "Explore our architectural and interior design portfolio, featuring high-end residential estates, modern commercial offices, and luxury retail projects by DSA.";
+      title = "Our Portfolio | Luxury Architecture & Design Projects by Dhwanish Shah Architects";
+      description = "Explore our architectural and interior design portfolio, featuring high-end residential estates, modern commercial offices, and luxury retail projects by Dhwanish Shah Architects.";
     } else if (reqPath === "/testimonials") {
-      title = "Client Reviews & Testimonials | DSA Architects";
-      description = "Read what our clients say about their experience collaborating with Dhwanish Shah Architects (DSA) on their luxury homes, offices, and retail spaces.";
+      title = "Client Reviews & Testimonials | Dhwanish Shah Architects";
+      description = "Read what our clients say about their experience collaborating with Dhwanish Shah Architects on their luxury homes, offices, and retail spaces.";
     } else if (reqPath === "/blog") {
       title = "Design Journal & Blog | Architecture & Interior Design Insights";
-      description = "Read the latest design trends, architecture philosophy, and construction insights from Dhwanish Shah Architects (DSA).";
+      description = "Read the latest design trends, architecture philosophy, and construction insights from Dhwanish Shah Architects.";
     } else if (reqPath === "/contact") {
-      title = "Contact DSA | Inquire About Luxury Design Services";
-      description = "Get in touch with Dhwanish Shah Architects (DSA) for your luxury residential, commercial, or retail architecture and interior design requirements.";
+      title = "Contact Dhwanish Shah Architects | Inquire About Luxury Design Services";
+      description = "Get in touch with Dhwanish Shah Architects for your luxury residential, commercial, or retail architecture and interior design requirements.";
     } else if (reqPath.startsWith("/project/")) {
       const id = reqPath.split("/")[2];
       if (id) {
@@ -502,34 +502,34 @@ async function startServer() {
         description = meta.description;
       }
     } else if (reqPath === "/anchor-house") {
-      title = "Anchor House | Architectural Design Review & Gallery | DSA";
-      description = "Explore the complete architectural design, spatial layout, and high-quality photography gallery of the Anchor House by DSA.";
+      title = "Anchor House | Architectural Design Review & Gallery | Dhwanish Shah Architects";
+      description = "Explore the complete architectural design, spatial layout, and high-quality photography gallery of the Anchor House by Dhwanish Shah Architects.";
     } else if (reqPath === "/aa-wealth") {
-      title = "AA Wealth | Commercial Office Design & Review | DSA";
-      description = "An in-depth look at AA Wealth's office interior planning, workspace ergonomics, and luxury detailing designed by DSA.";
+      title = "AA Wealth | Commercial Office Design & Review | Dhwanish Shah Architects";
+      description = "An in-depth look at AA Wealth's office interior planning, workspace ergonomics, and luxury detailing designed by Dhwanish Shah Architects.";
     } else if (reqPath === "/cp-house-review") {
-      title = "CP House | Residence Review & Design Gallery | DSA";
+      title = "CP House | Residence Review & Design Gallery | Dhwanish Shah Architects";
       description = "Review and photograph gallery showcasing the premium material selection and custom craftsmanship of CP House.";
     } else if (reqPath === "/aa-wealth-review") {
-      title = "AA Wealth | Corporate Workspace Review & Gallery | DSA";
+      title = "AA Wealth | Corporate Workspace Review & Gallery | Dhwanish Shah Architects";
       description = "Reviewing the corporate workspace planning, luxurious executive cabins, and breakout zones of AA Wealth.";
     } else if (reqPath === "/parth-shah-review") {
-      title = "Parth Shah Residence | Interior Design Review | DSA";
+      title = "Parth Shah Residence | Interior Design Review | Dhwanish Shah Architects";
       description = "A detailed interior walkthrough and design critique of the custom Parth Shah luxury apartment residence.";
     } else if (reqPath === "/js-house-review") {
-      title = "JS House | Modern Luxury Villa Review & Gallery | DSA";
+      title = "JS House | Modern Luxury Villa Review & Gallery | Dhwanish Shah Architects";
       description = "Explore the review and stunning photography of JS House, an elegant modern villa blending interior and exterior spaces.";
     } else if (reqPath === "/shela-house-review") {
-      title = "Shela House | Elegant Residential Design Review | DSA";
+      title = "Shela House | Elegant Residential Design Review | Dhwanish Shah Architects";
       description = "Review and design details of the Shela House, a premium residence in Ahmedabad designed with bespoke furniture and timeless style.";
     } else if (reqPath === "/jd-office-review") {
-      title = "JD Office | Contemporary Workspace Design Review | DSA";
-      description = "Review of the JD Office interior planning, acoustic detailing, and sophisticated custom lighting schemes by DSA.";
+      title = "JD Office | Contemporary Workspace Design Review | Dhwanish Shah Architects";
+      description = "Review of the JD Office interior planning, acoustic detailing, and sophisticated custom lighting schemes by Dhwanish Shah Architects.";
     } else if (reqPath.startsWith("/blog/")) {
       const id = reqPath.split("/")[2];
       if (id) {
         const formattedId = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        title = `${formattedId} | Design Journal | DSA`;
+        title = `${formattedId} | Design Journal | Dhwanish Shah Architects`;
         description = `Insights, architectural philosophy, and detailed discussion about ${formattedId} by Dhwanish Shah Architects.`;
       }
     }
@@ -538,20 +538,17 @@ async function startServer() {
     const jsonLdOrg = {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Dhwanish Shah Architects (DSA)",
-      "alternateName": "DSA Architects & Interiors",
-      "url": domain,
-      "logo": `${domain}/images/drive_19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs.jpg`,
-      "sameAs": [
-        "https://www.instagram.com/dhwanishshah_architects"
-      ]
+      "name": "Dhwanish Shah Architects",
+      "url": "https://dsa-architects-and-interiors.vercel.app",
+      "logo": `${domain}/logo.png`,
+      "image": `${domain}/logo.png`
     };
 
     const jsonLdLocalBusiness = {
       "@context": "https://schema.org",
       "@type": "ArchitecturalOffice",
       "name": "Dhwanish Shah Architects",
-      "image": `${domain}/images/drive_1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h.jpg`,
+      "image": `${domain}/logo.png`,
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "601, Anikedhya Capitol 2, Paldi",
@@ -574,12 +571,8 @@ async function startServer() {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Dhwanish Shah Architects",
-      "url": domain,
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": `${domain}/portfolio?search={search_term_string}`,
-        "query-input": "required name=search_term_string"
-      }
+      "alternateName": "DSA",
+      "url": "https://dsa-architects-and-interiors.vercel.app"
     };
 
     const breadcrumbItems = [
@@ -616,14 +609,14 @@ async function startServer() {
     <meta property="og:url" content="${canonicalUrl}" />
     <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${description}" />
-    <meta property="og:image" content="${domain}/images/drive_1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h.jpg" />
+    <meta property="og:image" content="${domain}/logo.png" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="${canonicalUrl}" />
-    <meta property="twitter:title" content="${title}" />
-    <meta property="twitter:description" content="${description}" />
-    <meta property="twitter:image" content="${domain}/images/drive_1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="${canonicalUrl}" />
+    <meta name="twitter:title" content="${title}" />
+    <meta name="twitter:description" content="${description}" />
+    <meta name="twitter:image" content="${domain}/logo.png" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">${JSON.stringify(jsonLdOrg)}</script>
