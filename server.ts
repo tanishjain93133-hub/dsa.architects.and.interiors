@@ -473,11 +473,11 @@ async function startServer() {
     const domain = "https://dsa-architects-and-interiors.vercel.app";
     const canonicalUrl = `${domain}${reqPath === "/" ? "" : reqPath}`;
     
-    let title = "DSA | Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad";
+    let title = "DSA | Dhwanish Shah Architects";
     let description = "Dhwanish Shah Architects (DSA) is a premium architecture and interior design firm in Ahmedabad specializing in luxury homes, villas, commercial spaces, interior design, renovations, and 3D visualization across India.";
     
     if (reqPath === "/" || reqPath === "") {
-      title = "DSA | Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad";
+      title = "DSA | Dhwanish Shah Architects";
       description = "Dhwanish Shah Architects (DSA) is a premium architecture and interior design firm in Ahmedabad specializing in luxury homes, villas, commercial spaces, interior design, renovations, and 3D visualization across India.";
     } else if (reqPath === "/about") {
       title = "About Dhwanish Shah Architects | Luxury Architecture & Interior Designers";
