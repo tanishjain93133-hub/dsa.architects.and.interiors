@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { cn } from '@/src/lib/utils';
 
 import { SafeImage } from './SafeImage';
+import BlurText from './BlurText';
 
 export const Hero: React.FC = () => {
   return (
@@ -27,16 +28,15 @@ export const Hero: React.FC = () => {
 
       {/* UPPER CENTER TEXT: Dhwanish Shah Architects (just below the navigation links) */}
       <div className="absolute top-[84px] md:top-[105px] left-0 right-0 z-20 flex justify-center text-center px-6 hero-title-container">
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1.2 }}
-          className="flex flex-col items-center"
-        >
-          <span className="dsa-title-sub text-[16px] sm:text-[20px] md:text-[24px] lg:text-[28px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-zinc-900 font-bold select-none">
-            Dhwanish Shah Architects
-          </span>
-        </motion.div>
+        <div className="flex flex-col items-center w-full">
+          <BlurText
+            text="Dhwanish Shah Architects"
+            delay={150}
+            animateBy="words"
+            direction="top"
+            className="dsa-title-sub text-[16px] sm:text-[20px] md:text-[24px] lg:text-[28px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-black font-extrabold select-none justify-center w-full"
+          />
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-10 hidden md:block">

@@ -33,8 +33,8 @@ import { SEO } from './components/SEO';
 const HomePage: React.FC = () => (
   <>
     <SEO 
-      title="Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad"
-      description="Dhwanish Shah Architects is a premium architecture and interior design firm in Ahmedabad, specializing in luxury residences, villas, commercial architecture, interior design, renovations, and 3D visualization across India."
+      title="DSA | Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad"
+      description="Dhwanish Shah Architects (DSA) is a premium architecture and interior design firm in Ahmedabad specializing in luxury homes, villas, commercial spaces, interior design, renovations, and 3D visualization across India."
     />
     <NebulaBackground />
     <Navbar />

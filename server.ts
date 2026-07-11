@@ -473,12 +473,12 @@ async function startServer() {
     const domain = "https://dsa-architects-and-interiors.vercel.app";
     const canonicalUrl = `${domain}${reqPath === "/" ? "" : reqPath}`;
     
-    let title = "Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad";
-    let description = "Dhwanish Shah Architects is a premium architecture and interior design firm in Ahmedabad, specializing in luxury residences, villas, commercial architecture, interior design, renovations, and 3D visualization across India.";
+    let title = "DSA | Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad";
+    let description = "Dhwanish Shah Architects (DSA) is a premium architecture and interior design firm in Ahmedabad specializing in luxury homes, villas, commercial spaces, interior design, renovations, and 3D visualization across India.";
     
     if (reqPath === "/" || reqPath === "") {
-      title = "Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad";
-      description = "Dhwanish Shah Architects is a premium architecture and interior design firm in Ahmedabad, specializing in luxury residences, villas, commercial architecture, interior design, renovations, and 3D visualization across India.";
+      title = "DSA | Dhwanish Shah Architects | Architects & Interior Designers in Ahmedabad";
+      description = "Dhwanish Shah Architects (DSA) is a premium architecture and interior design firm in Ahmedabad specializing in luxury homes, villas, commercial spaces, interior design, renovations, and 3D visualization across India.";
     } else if (reqPath === "/about") {
       title = "About Dhwanish Shah Architects | Luxury Architecture & Interior Designers";
       description = "Learn about Dhwanish Shah Architects, our design philosophy, and our legacy of creating luxurious residential and commercial masterpieces across India.";
@@ -537,8 +537,9 @@ async function startServer() {
     // JSON-LD Structured Data
     const jsonLdOrg = {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "Architect",
       "name": "Dhwanish Shah Architects",
+      "alternateName": "DSA",
       "url": "https://dsa-architects-and-interiors.vercel.app",
       "logo": `${domain}/logo.png`,
       "image": `${domain}/logo.png`
@@ -570,8 +571,8 @@ async function startServer() {
     const jsonLdWebsite = {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Dhwanish Shah Architects",
-      "alternateName": "DSA",
+      "name": "DSA",
+      "alternateName": "Dhwanish Shah Architects",
       "url": "https://dsa-architects-and-interiors.vercel.app"
     };
 
