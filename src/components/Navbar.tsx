@@ -24,6 +24,7 @@ export const Navbar: React.FC = () => {
     { name: 'About', href: '/about' },
     { name: 'Projects', href: 'https://projects-rho-dun.vercel.app/' },
     { name: 'Testimonials', href: '/testimonials' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Lights', href: isHome ? '#lights' : '/#lights' },
     { name: 'Contact Us', href: isHome ? '#contact' : '/#contact' },
   ];

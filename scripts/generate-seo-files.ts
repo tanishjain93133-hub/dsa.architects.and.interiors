@@ -39,7 +39,7 @@ function getDynamicBlogIds(): string[] {
   } catch (err) {
     // ignore
   }
-  return ['minimal-luxury-philosophy', 'acoustic-detailing-office', 'bespoke-fitouts-craft'];
+  return ['minimal-luxury-philosophy'];
 }
 
 function generateSitemap() {

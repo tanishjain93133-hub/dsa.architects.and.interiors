@@ -106,7 +106,7 @@
 
   /* Small descriptions: #464646 */
   small,
-  span:not(button *):not(a *):not(nav *):not(.stat-num):not(.stat-plus):not(.card-num):not(.dsa-title):not(.dsa-title-sub):not(.footer-text-primary):not(.footer-text-secondary),
+  span:not(button *):not(a *):not(nav *):not(.stat-num):not(.stat-plus):not(.card-num):not(.dsa-title):not(.dsa-title *):not(.dsa-title-sub):not(.dsa-title-sub *):not(.footer-text-primary):not(.footer-text-secondary),
   .text-white\/50,
   .text-white\/40,
   .text-white\/30,
@@ -123,9 +123,10 @@
     font-family: var(--font-sans);
   }
 
-  .dsa-title-sub {
-    color: #111111 !important;
-    font-weight: 700 !important;
+  .dsa-title-sub,
+  .dsa-title-sub span {
+    color: #050505 !important;
+    font-weight: 800 !important;
     font-family: var(--font-sans);
     text-shadow: none !important;
   }
@@ -147,9 +148,10 @@
     letter-spacing: 0.08em !important;
   }
 
-  #home .dsa-title-sub {
-    color: #111111 !important;
-    font-weight: 700 !important;
+  #home .dsa-title-sub,
+  #home .dsa-title-sub span {
+    color: #000000 !important;
+    font-weight: 800 !important;
     text-shadow: none !important;
     letter-spacing: 0.3em !important;
   }

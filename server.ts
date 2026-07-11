@@ -422,7 +422,7 @@ async function startServer() {
       // ignore
     }
     // Return the hardcoded ones if directory doesn't exist yet but has matching routes
-    return ['minimal-luxury-philosophy', 'acoustic-detailing-office', 'bespoke-fitouts-craft'];
+    return ['minimal-luxury-philosophy'];
   }
 
   // Helper to get detailed metadata for a single project
@@ -489,8 +489,8 @@ async function startServer() {
       title = "Client Reviews & Testimonials | Dhwanish Shah Architects";
       description = "Read what our clients say about their experience collaborating with Dhwanish Shah Architects on their luxury homes, offices, and retail spaces.";
     } else if (reqPath === "/blog") {
-      title = "Design Journal & Blog | Architecture & Interior Design Insights";
-      description = "Read the latest design trends, architecture philosophy, and construction insights from Dhwanish Shah Architects.";
+      title = "Architecture Blog | DSA | Dhwanish Shah Architects";
+      description = "Expert advice, design inspiration, construction tips, and modern architecture ideas to help you create timeless homes and inspiring spaces.";
     } else if (reqPath === "/contact") {
       title = "Contact Dhwanish Shah Architects | Inquire About Luxury Design Services";
       description = "Get in touch with Dhwanish Shah Architects for your luxury residential, commercial, or retail architecture and interior design requirements.";
