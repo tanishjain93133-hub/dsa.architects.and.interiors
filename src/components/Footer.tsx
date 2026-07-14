@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
               className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/10 overflow-hidden flex items-center justify-center p-0 bg-white shadow-xl hover:border-white/30 transition-all duration-300"
             >
               <SafeImage 
-                src="/images/drive_19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs.jpg" 
+                src="/logo.png" 
                 alt="Dhwanish Shah Architects Logo" 
                 size="small"
                 className="w-full h-full object-cover"

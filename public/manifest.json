@@ -1,5 +1,5 @@
 {
-  "name": "Dhwanish Shah Architects",
+  "name": "DSA | Dhwanish Shah Architects",
   "short_name": "DSA",
   "start_url": "/",
   "display": "standalone",
@@ -13,8 +13,8 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon.png",
-      "sizes": "192x192",
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png"
     }
   ]

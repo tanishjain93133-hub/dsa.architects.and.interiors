@@ -38,7 +38,7 @@ export const Navbar: React.FC = () => {
           <Link to="/" className="flex items-center gap-4 group">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-zinc-200 overflow-hidden bg-white flex items-center justify-center p-0 shadow-sm">
               <SafeImage 
-                src="/images/drive_19TvdU6o-mHetA8l28vZ6UEaEFA15bEHs.jpg" 
+                src="/logo.png" 
                 alt="DSA Logo" 
                 size="small"
                 className="w-full h-full object-cover"
