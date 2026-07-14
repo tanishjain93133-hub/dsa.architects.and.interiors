@@ -69,9 +69,19 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   ...props 
 }) => {
   const getInitialUrl = (originalUrl: string) => {
-    if (!originalUrl) return fallbackSrc;
-    // Optimize Unsplash images on initialization
-    if (originalUrl.includes('unsplash.com')) {
+  if (!originalUrl) return fallbackSrc;
+
+  // Local images (logo, favicon, etc.) should not be processed
+  if (
+    originalUrl.startsWith("/") ||
+    originalUrl.startsWith("./") ||
+    originalUrl.startsWith("../")
+  ) {
+    return originalUrl;
+  }
+
+  // Optimize Unsplash images on initialization
+  if (originalUrl.includes('unsplash.com')) {
       try {
         const url = new URL(originalUrl);
         url.searchParams.set('fm', 'webp');

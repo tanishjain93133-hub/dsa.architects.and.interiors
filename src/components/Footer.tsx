@@ -18,12 +18,11 @@ export const Footer: React.FC = () => {
               viewport={{ once: true }}
               className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/10 overflow-hidden flex items-center justify-center p-0 bg-white shadow-xl hover:border-white/30 transition-all duration-300"
             >
-              <SafeImage 
-                src="/logo.png" 
-                alt="Dhwanish Shah Architects Logo" 
-                size="small"
-                className="w-full h-full object-cover"
-              />
+              <img
+               src="/logo.png"
+               alt="DSA Logo"
+               className="w-full h-full object-cover"
+            />
             </motion.div>
             <span className="footer-text-primary text-[12px] md:text-[14px] tracking-[0.25em] sm:tracking-[0.3em] uppercase font-bold select-none text-white">
               Dhwanish Shah Architects

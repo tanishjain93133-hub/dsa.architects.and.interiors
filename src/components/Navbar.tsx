@@ -37,12 +37,11 @@ export const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link to="/" className="flex items-center gap-4 group">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-zinc-200 overflow-hidden bg-white flex items-center justify-center p-0 shadow-sm">
-              <SafeImage 
-                src="/logo.png" 
-                alt="DSA Logo" 
-                size="small"
-                className="w-full h-full object-cover"
-              />
+              <img
+                  src="/logo.png"
+                  alt="DSA Logo"
+                  className="w-full h-full object-cover"
+               />
             </div>
             <div className="flex flex-col">
               <span className="text-zinc-900 font-extrabold tracking-[0.15em] text-[10px] md:text-sm uppercase whitespace-nowrap select-none">
